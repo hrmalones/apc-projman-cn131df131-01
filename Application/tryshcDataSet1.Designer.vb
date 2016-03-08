@@ -20,20 +20,26 @@ Option Explicit On
  Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
  Global.System.ComponentModel.ToolboxItem(true),  _
  Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema"),  _
- Global.System.Xml.Serialization.XmlRootAttribute("tryshcDataSet1"),  _
+ Global.System.Xml.Serialization.XmlRootAttribute("Database1DataSet1"),  _
  Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")>  _
 Partial Public Class tryshcDataSet1
     Inherits Global.System.Data.DataSet
     
-    Private tableHealth_Certificate_Application_and_Renewal As Health_Certificate_Application_and_RenewalDataTable
+    Private tableConsultation As ConsultationDataTable
     
-    Private tableHIV_Voluntary_Counseling_and_Testing As HIV_Voluntary_Counseling_and_TestingDataTable
+    Private tableHealthCertificate As HealthCertificateDataTable
     
-    Private tableLogin As LoginDataTable
+    Private tablePersonalInformation As PersonalInformationDataTable
     
-    Private tablePersonal_Information As Personal_InformationDataTable
+    Private tableUser As UserDataTable
     
-    Private tableSTI_CONSULTATION As STI_CONSULTATIONDataTable
+    Private tableVCT As VCTDataTable
+    
+    Private relationPersonalInformation_Consultation As Global.System.Data.DataRelation
+    
+    Private relationPersonalInformation_HealthCertificate As Global.System.Data.DataRelation
+    
+    Private relationPersonalInformation_VCT As Global.System.Data.DataRelation
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -64,20 +70,20 @@ Partial Public Class tryshcDataSet1
         If (Me.DetermineSchemaSerializationMode(info, context) = Global.System.Data.SchemaSerializationMode.IncludeSchema) Then
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXmlSchema(New Global.System.Xml.XmlTextReader(New Global.System.IO.StringReader(strSchema)))
-            If (Not (ds.Tables("Health Certificate Application and Renewal")) Is Nothing) Then
-                MyBase.Tables.Add(New Health_Certificate_Application_and_RenewalDataTable(ds.Tables("Health Certificate Application and Renewal")))
+            If (Not (ds.Tables("Consultation")) Is Nothing) Then
+                MyBase.Tables.Add(New ConsultationDataTable(ds.Tables("Consultation")))
             End If
-            If (Not (ds.Tables("HIV Voluntary Counseling and Testing")) Is Nothing) Then
-                MyBase.Tables.Add(New HIV_Voluntary_Counseling_and_TestingDataTable(ds.Tables("HIV Voluntary Counseling and Testing")))
+            If (Not (ds.Tables("HealthCertificate")) Is Nothing) Then
+                MyBase.Tables.Add(New HealthCertificateDataTable(ds.Tables("HealthCertificate")))
             End If
-            If (Not (ds.Tables("Login")) Is Nothing) Then
-                MyBase.Tables.Add(New LoginDataTable(ds.Tables("Login")))
+            If (Not (ds.Tables("PersonalInformation")) Is Nothing) Then
+                MyBase.Tables.Add(New PersonalInformationDataTable(ds.Tables("PersonalInformation")))
             End If
-            If (Not (ds.Tables("Personal Information")) Is Nothing) Then
-                MyBase.Tables.Add(New Personal_InformationDataTable(ds.Tables("Personal Information")))
+            If (Not (ds.Tables("User")) Is Nothing) Then
+                MyBase.Tables.Add(New UserDataTable(ds.Tables("User")))
             End If
-            If (Not (ds.Tables("STI CONSULTATION")) Is Nothing) Then
-                MyBase.Tables.Add(New STI_CONSULTATIONDataTable(ds.Tables("STI CONSULTATION")))
+            If (Not (ds.Tables("VCT")) Is Nothing) Then
+                MyBase.Tables.Add(New VCTDataTable(ds.Tables("VCT")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -100,9 +106,9 @@ Partial Public Class tryshcDataSet1
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property Health_Certificate_Application_and_Renewal() As Health_Certificate_Application_and_RenewalDataTable
+    Public ReadOnly Property Consultation() As ConsultationDataTable
         Get
-            Return Me.tableHealth_Certificate_Application_and_Renewal
+            Return Me.tableConsultation
         End Get
     End Property
     
@@ -110,9 +116,9 @@ Partial Public Class tryshcDataSet1
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property HIV_Voluntary_Counseling_and_Testing() As HIV_Voluntary_Counseling_and_TestingDataTable
+    Public ReadOnly Property HealthCertificate() As HealthCertificateDataTable
         Get
-            Return Me.tableHIV_Voluntary_Counseling_and_Testing
+            Return Me.tableHealthCertificate
         End Get
     End Property
     
@@ -120,9 +126,9 @@ Partial Public Class tryshcDataSet1
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property Login() As LoginDataTable
+    Public ReadOnly Property PersonalInformation() As PersonalInformationDataTable
         Get
-            Return Me.tableLogin
+            Return Me.tablePersonalInformation
         End Get
     End Property
     
@@ -130,9 +136,9 @@ Partial Public Class tryshcDataSet1
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property Personal_Information() As Personal_InformationDataTable
+    Public ReadOnly Property User() As UserDataTable
         Get
-            Return Me.tablePersonal_Information
+            Return Me.tableUser
         End Get
     End Property
     
@@ -140,9 +146,9 @@ Partial Public Class tryshcDataSet1
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property STI_CONSULTATION() As STI_CONSULTATIONDataTable
+    Public ReadOnly Property VCT() As VCTDataTable
         Get
-            Return Me.tableSTI_CONSULTATION
+            Return Me.tableVCT
         End Get
     End Property
     
@@ -188,7 +194,7 @@ Partial Public Class tryshcDataSet1
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Public Overrides Function Clone() As Global.System.Data.DataSet
-        Dim cln As tryshcDataSet1 = CType(MyBase.Clone,tryshcDataSet1)
+        Dim cln As Database1DataSet1 = CType(MyBase.Clone,Database1DataSet1)
         cln.InitVars
         cln.SchemaSerializationMode = Me.SchemaSerializationMode
         Return cln
@@ -213,20 +219,20 @@ Partial Public Class tryshcDataSet1
             Me.Reset
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXml(reader)
-            If (Not (ds.Tables("Health Certificate Application and Renewal")) Is Nothing) Then
-                MyBase.Tables.Add(New Health_Certificate_Application_and_RenewalDataTable(ds.Tables("Health Certificate Application and Renewal")))
+            If (Not (ds.Tables("Consultation")) Is Nothing) Then
+                MyBase.Tables.Add(New ConsultationDataTable(ds.Tables("Consultation")))
             End If
-            If (Not (ds.Tables("HIV Voluntary Counseling and Testing")) Is Nothing) Then
-                MyBase.Tables.Add(New HIV_Voluntary_Counseling_and_TestingDataTable(ds.Tables("HIV Voluntary Counseling and Testing")))
+            If (Not (ds.Tables("HealthCertificate")) Is Nothing) Then
+                MyBase.Tables.Add(New HealthCertificateDataTable(ds.Tables("HealthCertificate")))
             End If
-            If (Not (ds.Tables("Login")) Is Nothing) Then
-                MyBase.Tables.Add(New LoginDataTable(ds.Tables("Login")))
+            If (Not (ds.Tables("PersonalInformation")) Is Nothing) Then
+                MyBase.Tables.Add(New PersonalInformationDataTable(ds.Tables("PersonalInformation")))
             End If
-            If (Not (ds.Tables("Personal Information")) Is Nothing) Then
-                MyBase.Tables.Add(New Personal_InformationDataTable(ds.Tables("Personal Information")))
+            If (Not (ds.Tables("User")) Is Nothing) Then
+                MyBase.Tables.Add(New UserDataTable(ds.Tables("User")))
             End If
-            If (Not (ds.Tables("STI CONSULTATION")) Is Nothing) Then
-                MyBase.Tables.Add(New STI_CONSULTATIONDataTable(ds.Tables("STI CONSULTATION")))
+            If (Not (ds.Tables("VCT")) Is Nothing) Then
+                MyBase.Tables.Add(New VCTDataTable(ds.Tables("VCT")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -260,85 +266,94 @@ Partial Public Class tryshcDataSet1
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Friend Overloads Sub InitVars(ByVal initTable As Boolean)
-        Me.tableHealth_Certificate_Application_and_Renewal = CType(MyBase.Tables("Health Certificate Application and Renewal"),Health_Certificate_Application_and_RenewalDataTable)
+        Me.tableConsultation = CType(MyBase.Tables("Consultation"),ConsultationDataTable)
         If (initTable = true) Then
-            If (Not (Me.tableHealth_Certificate_Application_and_Renewal) Is Nothing) Then
-                Me.tableHealth_Certificate_Application_and_Renewal.InitVars
+            If (Not (Me.tableConsultation) Is Nothing) Then
+                Me.tableConsultation.InitVars
             End If
         End If
-        Me.tableHIV_Voluntary_Counseling_and_Testing = CType(MyBase.Tables("HIV Voluntary Counseling and Testing"),HIV_Voluntary_Counseling_and_TestingDataTable)
+        Me.tableHealthCertificate = CType(MyBase.Tables("HealthCertificate"),HealthCertificateDataTable)
         If (initTable = true) Then
-            If (Not (Me.tableHIV_Voluntary_Counseling_and_Testing) Is Nothing) Then
-                Me.tableHIV_Voluntary_Counseling_and_Testing.InitVars
+            If (Not (Me.tableHealthCertificate) Is Nothing) Then
+                Me.tableHealthCertificate.InitVars
             End If
         End If
-        Me.tableLogin = CType(MyBase.Tables("Login"),LoginDataTable)
+        Me.tablePersonalInformation = CType(MyBase.Tables("PersonalInformation"),PersonalInformationDataTable)
         If (initTable = true) Then
-            If (Not (Me.tableLogin) Is Nothing) Then
-                Me.tableLogin.InitVars
+            If (Not (Me.tablePersonalInformation) Is Nothing) Then
+                Me.tablePersonalInformation.InitVars
             End If
         End If
-        Me.tablePersonal_Information = CType(MyBase.Tables("Personal Information"),Personal_InformationDataTable)
+        Me.tableUser = CType(MyBase.Tables("User"),UserDataTable)
         If (initTable = true) Then
-            If (Not (Me.tablePersonal_Information) Is Nothing) Then
-                Me.tablePersonal_Information.InitVars
+            If (Not (Me.tableUser) Is Nothing) Then
+                Me.tableUser.InitVars
             End If
         End If
-        Me.tableSTI_CONSULTATION = CType(MyBase.Tables("STI CONSULTATION"),STI_CONSULTATIONDataTable)
+        Me.tableVCT = CType(MyBase.Tables("VCT"),VCTDataTable)
         If (initTable = true) Then
-            If (Not (Me.tableSTI_CONSULTATION) Is Nothing) Then
-                Me.tableSTI_CONSULTATION.InitVars
+            If (Not (Me.tableVCT) Is Nothing) Then
+                Me.tableVCT.InitVars
             End If
         End If
+        Me.relationPersonalInformation_Consultation = Me.Relations("PersonalInformation_Consultation")
+        Me.relationPersonalInformation_HealthCertificate = Me.Relations("PersonalInformation_HealthCertificate")
+        Me.relationPersonalInformation_VCT = Me.Relations("PersonalInformation_VCT")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Private Sub InitClass()
-        Me.DataSetName = "tryshcDataSet1"
+        Me.DataSetName = "Database1DataSet1"
         Me.Prefix = ""
-        Me.Namespace = "http://tempuri.org/tryshcDataSet1.xsd"
+        Me.Namespace = "http://tempuri.org/Database1DataSet1.xsd"
         Me.EnforceConstraints = true
         Me.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
-        Me.tableHealth_Certificate_Application_and_Renewal = New Health_Certificate_Application_and_RenewalDataTable()
-        MyBase.Tables.Add(Me.tableHealth_Certificate_Application_and_Renewal)
-        Me.tableHIV_Voluntary_Counseling_and_Testing = New HIV_Voluntary_Counseling_and_TestingDataTable()
-        MyBase.Tables.Add(Me.tableHIV_Voluntary_Counseling_and_Testing)
-        Me.tableLogin = New LoginDataTable()
-        MyBase.Tables.Add(Me.tableLogin)
-        Me.tablePersonal_Information = New Personal_InformationDataTable()
-        MyBase.Tables.Add(Me.tablePersonal_Information)
-        Me.tableSTI_CONSULTATION = New STI_CONSULTATIONDataTable()
-        MyBase.Tables.Add(Me.tableSTI_CONSULTATION)
+        Me.tableConsultation = New ConsultationDataTable()
+        MyBase.Tables.Add(Me.tableConsultation)
+        Me.tableHealthCertificate = New HealthCertificateDataTable()
+        MyBase.Tables.Add(Me.tableHealthCertificate)
+        Me.tablePersonalInformation = New PersonalInformationDataTable()
+        MyBase.Tables.Add(Me.tablePersonalInformation)
+        Me.tableUser = New UserDataTable()
+        MyBase.Tables.Add(Me.tableUser)
+        Me.tableVCT = New VCTDataTable()
+        MyBase.Tables.Add(Me.tableVCT)
+        Me.relationPersonalInformation_Consultation = New Global.System.Data.DataRelation("PersonalInformation_Consultation", New Global.System.Data.DataColumn() {Me.tablePersonalInformation.IDColumn}, New Global.System.Data.DataColumn() {Me.tableConsultation.IDColumn}, false)
+        Me.Relations.Add(Me.relationPersonalInformation_Consultation)
+        Me.relationPersonalInformation_HealthCertificate = New Global.System.Data.DataRelation("PersonalInformation_HealthCertificate", New Global.System.Data.DataColumn() {Me.tablePersonalInformation.IDColumn}, New Global.System.Data.DataColumn() {Me.tableHealthCertificate.IDColumn}, false)
+        Me.Relations.Add(Me.relationPersonalInformation_HealthCertificate)
+        Me.relationPersonalInformation_VCT = New Global.System.Data.DataRelation("PersonalInformation_VCT", New Global.System.Data.DataColumn() {Me.tablePersonalInformation.IDColumn}, New Global.System.Data.DataColumn() {Me.tableVCT.IDColumn}, false)
+        Me.Relations.Add(Me.relationPersonalInformation_VCT)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializeHealth_Certificate_Application_and_Renewal() As Boolean
+    Private Function ShouldSerializeConsultation() As Boolean
         Return false
     End Function
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializeHIV_Voluntary_Counseling_and_Testing() As Boolean
+    Private Function ShouldSerializeHealthCertificate() As Boolean
         Return false
     End Function
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializeLogin() As Boolean
+    Private Function ShouldSerializePersonalInformation() As Boolean
         Return false
     End Function
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializePersonal_Information() As Boolean
+    Private Function ShouldSerializeUser() As Boolean
         Return false
     End Function
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializeSTI_CONSULTATION() As Boolean
+    Private Function ShouldSerializeVCT() As Boolean
         Return false
     End Function
     
@@ -353,7 +368,7 @@ Partial Public Class tryshcDataSet1
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Public Shared Function GetTypedDataSetSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-        Dim ds As tryshcDataSet1 = New tryshcDataSet1()
+        Dim ds As Database1DataSet1 = New Database1DataSet1()
         Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
         Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
         Dim any As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
@@ -401,97 +416,87 @@ Partial Public Class tryshcDataSet1
     End Function
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub Health_Certificate_Application_and_RenewalRowChangeEventHandler(ByVal sender As Object, ByVal e As Health_Certificate_Application_and_RenewalRowChangeEvent)
+    Public Delegate Sub ConsultationRowChangeEventHandler(ByVal sender As Object, ByVal e As ConsultationRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub HIV_Voluntary_Counseling_and_TestingRowChangeEventHandler(ByVal sender As Object, ByVal e As HIV_Voluntary_Counseling_and_TestingRowChangeEvent)
+    Public Delegate Sub HealthCertificateRowChangeEventHandler(ByVal sender As Object, ByVal e As HealthCertificateRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub LoginRowChangeEventHandler(ByVal sender As Object, ByVal e As LoginRowChangeEvent)
+    Public Delegate Sub PersonalInformationRowChangeEventHandler(ByVal sender As Object, ByVal e As PersonalInformationRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub Personal_InformationRowChangeEventHandler(ByVal sender As Object, ByVal e As Personal_InformationRowChangeEvent)
+    Public Delegate Sub UserRowChangeEventHandler(ByVal sender As Object, ByVal e As UserRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub STI_CONSULTATIONRowChangeEventHandler(ByVal sender As Object, ByVal e As STI_CONSULTATIONRowChangeEvent)
+    Public Delegate Sub VCTRowChangeEventHandler(ByVal sender As Object, ByVal e As VCTRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class Health_Certificate_Application_and_RenewalDataTable
-        Inherits Global.System.Data.TypedTableBase(Of Health_Certificate_Application_and_RenewalRow)
+    Partial Public Class ConsultationDataTable
+        Inherits Global.System.Data.TypedTableBase(Of ConsultationRow)
         
-        Private columnPatient_ID As Global.System.Data.DataColumn
+        Private columnSTI_ID As Global.System.Data.DataColumn
         
-        Private columnDate_of_Application As Global.System.Data.DataColumn
+        Private columnID As Global.System.Data.DataColumn
         
-        Private columnDate_Issued As Global.System.Data.DataColumn
+        Private columnChief_Complaint As Global.System.Data.DataColumn
         
-        Private columnUrine_Color As Global.System.Data.DataColumn
+        Private columnBlood_Pressure As Global.System.Data.DataColumn
         
-        Private columnTransparency As Global.System.Data.DataColumn
+        Private columnHeart_Rate As Global.System.Data.DataColumn
         
-        Private columnReaction As Global.System.Data.DataColumn
+        Private columnRespiratory_Rate As Global.System.Data.DataColumn
         
-        Private columnSpecific_Gravity As Global.System.Data.DataColumn
+        Private columnTemperature As Global.System.Data.DataColumn
         
-        Private columnUrine_Pus_Cells As Global.System.Data.DataColumn
+        Private columnHistory_of_Present_Illness As Global.System.Data.DataColumn
         
-        Private columnUrine_RBC As Global.System.Data.DataColumn
+        Private columnPast_Medical_History As Global.System.Data.DataColumn
         
-        Private columnBacteria As Global.System.Data.DataColumn
+        Private columnPersonal_and_Social_History As Global.System.Data.DataColumn
         
-        Private columnEpithelial_Cells As Global.System.Data.DataColumn
+        Private columnPhysical_Examination As Global.System.Data.DataColumn
         
-        Private columnCrystal As Global.System.Data.DataColumn
+        Private columnFinal_Diagnosis As Global.System.Data.DataColumn
         
-        Private columnCasts As Global.System.Data.DataColumn
+        Private columnMedications As Global.System.Data.DataColumn
         
-        Private columnUrine_Others As Global.System.Data.DataColumn
+        Private columnReferral As Global.System.Data.DataColumn
         
-        Private columnStool_Color_ As Global.System.Data.DataColumn
+        Private _columnDate_of_Follow_up As Global.System.Data.DataColumn
         
-        Private columnConsistency As Global.System.Data.DataColumn
+        Private columnDate_of_Consultation As Global.System.Data.DataColumn
         
-        Private columnStool_RBC As Global.System.Data.DataColumn
+        Private columnSTI_Diagnosis As Global.System.Data.DataColumn
         
-        Private columnStool_Pus_Cells As Global.System.Data.DataColumn
+        Private columnConsultation_Type_of_Client As Global.System.Data.DataColumn
         
-        Private columnAscaris_Lumbricoides As Global.System.Data.DataColumn
+        Private _columnCervical_Urethral_Smear As Global.System.Data.DataColumn
         
-        Private columnTrichura_triciura As Global.System.Data.DataColumn
+        Private columnVaginal_Smear As Global.System.Data.DataColumn
         
-        Private columnHookworms As Global.System.Data.DataColumn
+        Private columnWet_Mounts As Global.System.Data.DataColumn
         
-        Private columnEntamoeba_histolytica As Global.System.Data.DataColumn
+        Private _columnNumber_of_Contacts_Traced__C_ As Global.System.Data.DataColumn
         
-        Private columnEntamoeba_coli As Global.System.Data.DataColumn
+        Private _columnVDRL_RPR__C_ As Global.System.Data.DataColumn
         
-        Private columnStool_Others As Global.System.Data.DataColumn
+        Private _columnType_of_Visit__C_ As Global.System.Data.DataColumn
         
-        Private columnHealth_Cert_ID As Global.System.Data.DataColumn
+        Private _columnType_of_Client__C_ As Global.System.Data.DataColumn
         
-        Private columnVDRL As Global.System.Data.DataColumn
+        Private _columnTPHA_TPPA__C_ As Global.System.Data.DataColumn
         
-        Private columnRPR As Global.System.Data.DataColumn
-        
-        Private columnHBsAg As Global.System.Data.DataColumn
-        
-        Private columnGram_Stain As Global.System.Data.DataColumn
-        
-        Private columnNSS As Global.System.Data.DataColumn
-        
-        Private _column10__KOH As Global.System.Data.DataColumn
-        
-        Private _columnChest_X_ray As Global.System.Data.DataColumn
+        Private columnPertinent_Laboratory_Findings As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
             MyBase.New
-            Me.TableName = "Health Certificate Application and Renewal"
+            Me.TableName = "Consultation"
             Me.BeginInit
             Me.InitClass
             Me.EndInit
@@ -524,9 +529,706 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Patient_IDColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property STI_IDColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnPatient_ID
+                Return Me.columnSTI_ID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Chief_ComplaintColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnChief_Complaint
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Blood_PressureColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBlood_Pressure
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Heart_RateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnHeart_Rate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Respiratory_RateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRespiratory_Rate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property TemperatureColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTemperature
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property History_of_Present_IllnessColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnHistory_of_Present_Illness
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Past_Medical_HistoryColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPast_Medical_History
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Personal_and_Social_HistoryColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPersonal_and_Social_History
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Physical_ExaminationColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPhysical_Examination
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Final_DiagnosisColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFinal_Diagnosis
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property MedicationsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMedications
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ReferralColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnReferral
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _Date_of_Follow_upColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me._columnDate_of_Follow_up
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Date_of_ConsultationColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDate_of_Consultation
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property STI_DiagnosisColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSTI_Diagnosis
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Consultation_Type_of_ClientColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnConsultation_Type_of_Client
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _Cervical_Urethral_SmearColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me._columnCervical_Urethral_Smear
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Vaginal_SmearColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnVaginal_Smear
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Wet_MountsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnWet_Mounts
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _Number_of_Contacts_Traced__C_Column() As Global.System.Data.DataColumn
+            Get
+                Return Me._columnNumber_of_Contacts_Traced__C_
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _VDRL_RPR__C_Column() As Global.System.Data.DataColumn
+            Get
+                Return Me._columnVDRL_RPR__C_
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _Type_of_Visit__C_Column() As Global.System.Data.DataColumn
+            Get
+                Return Me._columnType_of_Visit__C_
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _Type_of_Client__C_Column() As Global.System.Data.DataColumn
+            Get
+                Return Me._columnType_of_Client__C_
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _TPHA_TPPA__C_Column() As Global.System.Data.DataColumn
+            Get
+                Return Me._columnTPHA_TPPA__C_
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Pertinent_Laboratory_FindingsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPertinent_Laboratory_Findings
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As ConsultationRow
+            Get
+                Return CType(Me.Rows(index),ConsultationRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event ConsultationRowChanging As ConsultationRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event ConsultationRowChanged As ConsultationRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event ConsultationRowDeleting As ConsultationRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event ConsultationRowDeleted As ConsultationRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Sub AddConsultationRow(ByVal row As ConsultationRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Function AddConsultationRow( _
+                    ByVal parentPersonalInformationRowByPersonalInformation_Consultation As PersonalInformationRow,  _
+                    ByVal Chief_Complaint As String,  _
+                    ByVal Blood_Pressure As String,  _
+                    ByVal Heart_Rate As String,  _
+                    ByVal Respiratory_Rate As String,  _
+                    ByVal Temperature As String,  _
+                    ByVal History_of_Present_Illness As String,  _
+                    ByVal Past_Medical_History As String,  _
+                    ByVal Personal_and_Social_History As String,  _
+                    ByVal Physical_Examination As String,  _
+                    ByVal Final_Diagnosis As String,  _
+                    ByVal Medications As String,  _
+                    ByVal Referral As String,  _
+                    ByVal _Date_of_Follow_up As Date,  _
+                    ByVal Date_of_Consultation As Date,  _
+                    ByVal STI_Diagnosis As String,  _
+                    ByVal Consultation_Type_of_Client As String,  _
+                    ByVal _Cervical_Urethral_Smear As String,  _
+                    ByVal Vaginal_Smear As String,  _
+                    ByVal Wet_Mounts As String,  _
+                    ByVal _Number_of_Contacts_Traced__C_ As String,  _
+                    ByVal _VDRL_RPR__C_ As String,  _
+                    ByVal _Type_of_Visit__C_ As String,  _
+                    ByVal _Type_of_Client__C_ As String,  _
+                    ByVal _TPHA_TPPA__C_ As String,  _
+                    ByVal Pertinent_Laboratory_Findings As String) As ConsultationRow
+            Dim rowConsultationRow As ConsultationRow = CType(Me.NewRow,ConsultationRow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, Chief_Complaint, Blood_Pressure, Heart_Rate, Respiratory_Rate, Temperature, History_of_Present_Illness, Past_Medical_History, Personal_and_Social_History, Physical_Examination, Final_Diagnosis, Medications, Referral, _Date_of_Follow_up, Date_of_Consultation, STI_Diagnosis, Consultation_Type_of_Client, _Cervical_Urethral_Smear, Vaginal_Smear, Wet_Mounts, _Number_of_Contacts_Traced__C_, _VDRL_RPR__C_, _Type_of_Visit__C_, _Type_of_Client__C_, _TPHA_TPPA__C_, Pertinent_Laboratory_Findings}
+            If (Not (parentPersonalInformationRowByPersonalInformation_Consultation) Is Nothing) Then
+                columnValuesArray(1) = parentPersonalInformationRowByPersonalInformation_Consultation(0)
+            End If
+            rowConsultationRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowConsultationRow)
+            Return rowConsultationRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function FindBySTI_ID(ByVal STI_ID As Long) As ConsultationRow
+            Return CType(Me.Rows.Find(New Object() {STI_ID}),ConsultationRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As ConsultationDataTable = CType(MyBase.Clone,ConsultationDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New ConsultationDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnSTI_ID = MyBase.Columns("STI ID")
+            Me.columnID = MyBase.Columns("ID")
+            Me.columnChief_Complaint = MyBase.Columns("Chief Complaint")
+            Me.columnBlood_Pressure = MyBase.Columns("Blood Pressure")
+            Me.columnHeart_Rate = MyBase.Columns("Heart Rate")
+            Me.columnRespiratory_Rate = MyBase.Columns("Respiratory Rate")
+            Me.columnTemperature = MyBase.Columns("Temperature")
+            Me.columnHistory_of_Present_Illness = MyBase.Columns("History of Present Illness")
+            Me.columnPast_Medical_History = MyBase.Columns("Past Medical History")
+            Me.columnPersonal_and_Social_History = MyBase.Columns("Personal and Social History")
+            Me.columnPhysical_Examination = MyBase.Columns("Physical Examination")
+            Me.columnFinal_Diagnosis = MyBase.Columns("Final Diagnosis")
+            Me.columnMedications = MyBase.Columns("Medications")
+            Me.columnReferral = MyBase.Columns("Referral")
+            Me._columnDate_of_Follow_up = MyBase.Columns("Date of Follow-up")
+            Me.columnDate_of_Consultation = MyBase.Columns("Date of Consultation")
+            Me.columnSTI_Diagnosis = MyBase.Columns("STI Diagnosis")
+            Me.columnConsultation_Type_of_Client = MyBase.Columns("Consultation Type of Client")
+            Me._columnCervical_Urethral_Smear = MyBase.Columns("Cervical/Urethral Smear")
+            Me.columnVaginal_Smear = MyBase.Columns("Vaginal Smear")
+            Me.columnWet_Mounts = MyBase.Columns("Wet Mounts")
+            Me._columnNumber_of_Contacts_Traced__C_ = MyBase.Columns("Number of Contacts Traced (C)")
+            Me._columnVDRL_RPR__C_ = MyBase.Columns("VDRL/RPR (C)")
+            Me._columnType_of_Visit__C_ = MyBase.Columns("Type of Visit (C)")
+            Me._columnType_of_Client__C_ = MyBase.Columns("Type of Client (C)")
+            Me._columnTPHA_TPPA__C_ = MyBase.Columns("TPHA/TPPA (C)")
+            Me.columnPertinent_Laboratory_Findings = MyBase.Columns("Pertinent Laboratory Findings")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnSTI_ID = New Global.System.Data.DataColumn("STI ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSTI_ID)
+            Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnID)
+            Me.columnChief_Complaint = New Global.System.Data.DataColumn("Chief Complaint", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnChief_Complaint)
+            Me.columnBlood_Pressure = New Global.System.Data.DataColumn("Blood Pressure", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBlood_Pressure)
+            Me.columnHeart_Rate = New Global.System.Data.DataColumn("Heart Rate", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnHeart_Rate)
+            Me.columnRespiratory_Rate = New Global.System.Data.DataColumn("Respiratory Rate", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRespiratory_Rate)
+            Me.columnTemperature = New Global.System.Data.DataColumn("Temperature", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTemperature)
+            Me.columnHistory_of_Present_Illness = New Global.System.Data.DataColumn("History of Present Illness", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnHistory_of_Present_Illness)
+            Me.columnPast_Medical_History = New Global.System.Data.DataColumn("Past Medical History", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPast_Medical_History)
+            Me.columnPersonal_and_Social_History = New Global.System.Data.DataColumn("Personal and Social History", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPersonal_and_Social_History)
+            Me.columnPhysical_Examination = New Global.System.Data.DataColumn("Physical Examination", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPhysical_Examination)
+            Me.columnFinal_Diagnosis = New Global.System.Data.DataColumn("Final Diagnosis", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFinal_Diagnosis)
+            Me.columnMedications = New Global.System.Data.DataColumn("Medications", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMedications)
+            Me.columnReferral = New Global.System.Data.DataColumn("Referral", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnReferral)
+            Me._columnDate_of_Follow_up = New Global.System.Data.DataColumn("Date of Follow-up", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnDate_of_Follow_up.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnDate_of_Follow_up")
+            Me._columnDate_of_Follow_up.ExtendedProperties.Add("Generator_UserColumnName", "Date of Follow-up")
+            MyBase.Columns.Add(Me._columnDate_of_Follow_up)
+            Me.columnDate_of_Consultation = New Global.System.Data.DataColumn("Date of Consultation", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDate_of_Consultation)
+            Me.columnSTI_Diagnosis = New Global.System.Data.DataColumn("STI Diagnosis", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSTI_Diagnosis)
+            Me.columnConsultation_Type_of_Client = New Global.System.Data.DataColumn("Consultation Type of Client", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnConsultation_Type_of_Client)
+            Me._columnCervical_Urethral_Smear = New Global.System.Data.DataColumn("Cervical/Urethral Smear", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnCervical_Urethral_Smear.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnCervical_Urethral_Smear")
+            Me._columnCervical_Urethral_Smear.ExtendedProperties.Add("Generator_UserColumnName", "Cervical/Urethral Smear")
+            MyBase.Columns.Add(Me._columnCervical_Urethral_Smear)
+            Me.columnVaginal_Smear = New Global.System.Data.DataColumn("Vaginal Smear", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnVaginal_Smear)
+            Me.columnWet_Mounts = New Global.System.Data.DataColumn("Wet Mounts", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnWet_Mounts)
+            Me._columnNumber_of_Contacts_Traced__C_ = New Global.System.Data.DataColumn("Number of Contacts Traced (C)", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnNumber_of_Contacts_Traced__C_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnNumber_of_Contacts_Traced__C_")
+            Me._columnNumber_of_Contacts_Traced__C_.ExtendedProperties.Add("Generator_UserColumnName", "Number of Contacts Traced (C)")
+            MyBase.Columns.Add(Me._columnNumber_of_Contacts_Traced__C_)
+            Me._columnVDRL_RPR__C_ = New Global.System.Data.DataColumn("VDRL/RPR (C)", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnVDRL_RPR__C_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnVDRL_RPR__C_")
+            Me._columnVDRL_RPR__C_.ExtendedProperties.Add("Generator_UserColumnName", "VDRL/RPR (C)")
+            MyBase.Columns.Add(Me._columnVDRL_RPR__C_)
+            Me._columnType_of_Visit__C_ = New Global.System.Data.DataColumn("Type of Visit (C)", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnType_of_Visit__C_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnType_of_Visit__C_")
+            Me._columnType_of_Visit__C_.ExtendedProperties.Add("Generator_UserColumnName", "Type of Visit (C)")
+            MyBase.Columns.Add(Me._columnType_of_Visit__C_)
+            Me._columnType_of_Client__C_ = New Global.System.Data.DataColumn("Type of Client (C)", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnType_of_Client__C_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnType_of_Client__C_")
+            Me._columnType_of_Client__C_.ExtendedProperties.Add("Generator_UserColumnName", "Type of Client (C)")
+            MyBase.Columns.Add(Me._columnType_of_Client__C_)
+            Me._columnTPHA_TPPA__C_ = New Global.System.Data.DataColumn("TPHA/TPPA (C)", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnTPHA_TPPA__C_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnTPHA_TPPA__C_")
+            Me._columnTPHA_TPPA__C_.ExtendedProperties.Add("Generator_UserColumnName", "TPHA/TPPA (C)")
+            MyBase.Columns.Add(Me._columnTPHA_TPPA__C_)
+            Me.columnPertinent_Laboratory_Findings = New Global.System.Data.DataColumn("Pertinent Laboratory Findings", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPertinent_Laboratory_Findings)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnSTI_ID}, true))
+            Me.columnSTI_ID.AutoIncrement = true
+            Me.columnSTI_ID.AutoIncrementSeed = 1
+            Me.columnSTI_ID.AllowDBNull = false
+            Me.columnSTI_ID.ReadOnly = true
+            Me.columnSTI_ID.Unique = true
+            Me.columnID.AllowDBNull = false
+            Me.columnChief_Complaint.MaxLength = 100
+            Me.columnBlood_Pressure.MaxLength = 10
+            Me.columnHeart_Rate.MaxLength = 10
+            Me.columnRespiratory_Rate.MaxLength = 10
+            Me.columnTemperature.MaxLength = 10
+            Me.columnHistory_of_Present_Illness.MaxLength = 800
+            Me.columnPast_Medical_History.MaxLength = 300
+            Me.columnPersonal_and_Social_History.MaxLength = 300
+            Me.columnPhysical_Examination.MaxLength = 300
+            Me.columnFinal_Diagnosis.MaxLength = 150
+            Me.columnMedications.MaxLength = 200
+            Me.columnReferral.MaxLength = 100
+            Me.columnSTI_Diagnosis.MaxLength = 100
+            Me.columnConsultation_Type_of_Client.MaxLength = 50
+            Me._columnCervical_Urethral_Smear.MaxLength = 10
+            Me.columnVaginal_Smear.MaxLength = 10
+            Me.columnWet_Mounts.MaxLength = 10
+            Me._columnNumber_of_Contacts_Traced__C_.MaxLength = 100
+            Me._columnVDRL_RPR__C_.MaxLength = 100
+            Me._columnType_of_Visit__C_.MaxLength = 20
+            Me._columnType_of_Client__C_.MaxLength = 30
+            Me._columnTPHA_TPPA__C_.MaxLength = 100
+            Me.columnPertinent_Laboratory_Findings.MaxLength = 150
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function NewConsultationRow() As ConsultationRow
+            Return CType(Me.NewRow,ConsultationRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New ConsultationRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(ConsultationRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.ConsultationRowChangedEvent) Is Nothing) Then
+                RaiseEvent ConsultationRowChanged(Me, New ConsultationRowChangeEvent(CType(e.Row,ConsultationRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.ConsultationRowChangingEvent) Is Nothing) Then
+                RaiseEvent ConsultationRowChanging(Me, New ConsultationRowChangeEvent(CType(e.Row,ConsultationRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.ConsultationRowDeletedEvent) Is Nothing) Then
+                RaiseEvent ConsultationRowDeleted(Me, New ConsultationRowChangeEvent(CType(e.Row,ConsultationRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.ConsultationRowDeletingEvent) Is Nothing) Then
+                RaiseEvent ConsultationRowDeleting(Me, New ConsultationRowChangeEvent(CType(e.Row,ConsultationRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub RemoveConsultationRow(ByVal row As ConsultationRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As Database1DataSet1 = New Database1DataSet1()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "ConsultationDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class HealthCertificateDataTable
+        Inherits Global.System.Data.TypedTableBase(Of HealthCertificateRow)
+        
+        Private columnCertificate_ID As Global.System.Data.DataColumn
+        
+        Private columnID As Global.System.Data.DataColumn
+        
+        Private columnDate_of_Application As Global.System.Data.DataColumn
+        
+        Private columnDate_of_Issued As Global.System.Data.DataColumn
+        
+        Private columnUrine_Color As Global.System.Data.DataColumn
+        
+        Private columnTransparency As Global.System.Data.DataColumn
+        
+        Private columnReaction As Global.System.Data.DataColumn
+        
+        Private columnSpecific_Gravity As Global.System.Data.DataColumn
+        
+        Private columnAlbumin As Global.System.Data.DataColumn
+        
+        Private columnSugar As Global.System.Data.DataColumn
+        
+        Private columnUrine_Pus_Cells As Global.System.Data.DataColumn
+        
+        Private columnUrine_RBC As Global.System.Data.DataColumn
+        
+        Private columnBacteria As Global.System.Data.DataColumn
+        
+        Private columnEpithelial_Cells As Global.System.Data.DataColumn
+        
+        Private columnCrystals As Global.System.Data.DataColumn
+        
+        Private columnCasts As Global.System.Data.DataColumn
+        
+        Private columnUrine_Others_ As Global.System.Data.DataColumn
+        
+        Private columnStool_Color As Global.System.Data.DataColumn
+        
+        Private columnConsistency As Global.System.Data.DataColumn
+        
+        Private columnStool_RBC As Global.System.Data.DataColumn
+        
+        Private columnStool_Pus_Cells As Global.System.Data.DataColumn
+        
+        Private columnAscaris_lumbricoides As Global.System.Data.DataColumn
+        
+        Private columnTrichuris_trichiura As Global.System.Data.DataColumn
+        
+        Private columnHookworms As Global.System.Data.DataColumn
+        
+        Private columnEntamoeba_histolytica As Global.System.Data.DataColumn
+        
+        Private columnEntamoeba_coli As Global.System.Data.DataColumn
+        
+        Private _columnOther_Parasites_Ova As Global.System.Data.DataColumn
+        
+        Private columnGram_Stain As Global.System.Data.DataColumn
+        
+        Private columnNSS As Global.System.Data.DataColumn
+        
+        Private _column10__KOH As Global.System.Data.DataColumn
+        
+        Private columnHepatitis_BsAg As Global.System.Data.DataColumn
+        
+        Private columnAttended_STD_Seminar As Global.System.Data.DataColumn
+        
+        Private columnType_of_Gram_Stain_Smear As Global.System.Data.DataColumn
+        
+        Private _columnType_of_Visit__HC_ As Global.System.Data.DataColumn
+        
+        Private _columnType_of_Client__HC_ As Global.System.Data.DataColumn
+        
+        Private _columnVDRL_RPR__HC_ As Global.System.Data.DataColumn
+        
+        Private _columnTPHA_TPPA__C_ As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "HealthCertificate"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Certificate_IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCertificate_ID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnID
             End Get
         End Property
         
@@ -540,9 +1242,9 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Date_IssuedColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property Date_of_IssuedColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnDate_Issued
+                Return Me.columnDate_of_Issued
             End Get
         End Property
         
@@ -580,6 +1282,22 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property AlbuminColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAlbumin
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SugarColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSugar
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property Urine_Pus_CellsColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnUrine_Pus_Cells
@@ -612,9 +1330,9 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property CrystalColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property CrystalsColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnCrystal
+                Return Me.columnCrystals
             End Get
         End Property
         
@@ -628,17 +1346,17 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Urine_OthersColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property Urine_Others_Column() As Global.System.Data.DataColumn
             Get
-                Return Me.columnUrine_Others
+                Return Me.columnUrine_Others_
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Stool_Color_Column() As Global.System.Data.DataColumn
+        Public ReadOnly Property Stool_ColorColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnStool_Color_
+                Return Me.columnStool_Color
             End Get
         End Property
         
@@ -668,17 +1386,17 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Ascaris_LumbricoidesColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property Ascaris_lumbricoidesColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnAscaris_Lumbricoides
+                Return Me.columnAscaris_lumbricoides
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Trichura_triciuraColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property Trichuris_trichiuraColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnTrichura_triciura
+                Return Me.columnTrichuris_trichiura
             End Get
         End Property
         
@@ -708,41 +1426,9 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Stool_OthersColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property _Other_Parasites_OvaColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnStool_Others
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Health_Cert_IDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnHealth_Cert_ID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property VDRLColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnVDRL
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property RPRColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnRPR
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property HBsAgColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnHBsAg
+                Return Me._columnOther_Parasites_Ova
             End Get
         End Property
         
@@ -772,9 +1458,57 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property _Chest_X_rayColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property Hepatitis_BsAgColumn() As Global.System.Data.DataColumn
             Get
-                Return Me._columnChest_X_ray
+                Return Me.columnHepatitis_BsAg
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Attended_STD_SeminarColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAttended_STD_Seminar
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Type_of_Gram_Stain_SmearColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnType_of_Gram_Stain_Smear
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _Type_of_Visit__HC_Column() As Global.System.Data.DataColumn
+            Get
+                Return Me._columnType_of_Visit__HC_
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _Type_of_Client__HC_Column() As Global.System.Data.DataColumn
+            Get
+                Return Me._columnType_of_Client__HC_
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _VDRL_RPR__HC_Column() As Global.System.Data.DataColumn
+            Get
+                Return Me._columnVDRL_RPR__HC_
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _TPHA_TPPA__C_Column() As Global.System.Data.DataColumn
+            Get
+                Return Me._columnTPHA_TPPA__C_
             End Get
         End Property
         
@@ -789,81 +1523,89 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As Health_Certificate_Application_and_RenewalRow
+        Public Default ReadOnly Property Item(ByVal index As Integer) As HealthCertificateRow
             Get
-                Return CType(Me.Rows(index),Health_Certificate_Application_and_RenewalRow)
+                Return CType(Me.Rows(index),HealthCertificateRow)
             End Get
         End Property
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event Health_Certificate_Application_and_RenewalRowChanging As Health_Certificate_Application_and_RenewalRowChangeEventHandler
+        Public Event HealthCertificateRowChanging As HealthCertificateRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event Health_Certificate_Application_and_RenewalRowChanged As Health_Certificate_Application_and_RenewalRowChangeEventHandler
+        Public Event HealthCertificateRowChanged As HealthCertificateRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event Health_Certificate_Application_and_RenewalRowDeleting As Health_Certificate_Application_and_RenewalRowChangeEventHandler
+        Public Event HealthCertificateRowDeleting As HealthCertificateRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event Health_Certificate_Application_and_RenewalRowDeleted As Health_Certificate_Application_and_RenewalRowChangeEventHandler
+        Public Event HealthCertificateRowDeleted As HealthCertificateRowChangeEventHandler
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub AddHealth_Certificate_Application_and_RenewalRow(ByVal row As Health_Certificate_Application_and_RenewalRow)
+        Public Overloads Sub AddHealthCertificateRow(ByVal row As HealthCertificateRow)
             Me.Rows.Add(row)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddHealth_Certificate_Application_and_RenewalRow( _
-                    ByVal Patient_ID As String,  _
+        Public Overloads Function AddHealthCertificateRow( _
+                    ByVal parentPersonalInformationRowByPersonalInformation_HealthCertificate As PersonalInformationRow,  _
                     ByVal Date_of_Application As Date,  _
-                    ByVal Date_Issued As Date,  _
+                    ByVal Date_of_Issued As Date,  _
                     ByVal Urine_Color As String,  _
                     ByVal Transparency As String,  _
                     ByVal Reaction As String,  _
                     ByVal Specific_Gravity As String,  _
+                    ByVal Albumin As String,  _
+                    ByVal Sugar As String,  _
                     ByVal Urine_Pus_Cells As String,  _
                     ByVal Urine_RBC As String,  _
                     ByVal Bacteria As String,  _
                     ByVal Epithelial_Cells As String,  _
-                    ByVal Crystal As String,  _
+                    ByVal Crystals As String,  _
                     ByVal Casts As String,  _
-                    ByVal Urine_Others As String,  _
-                    ByVal Stool_Color_ As String,  _
+                    ByVal Urine_Others_ As String,  _
+                    ByVal Stool_Color As String,  _
                     ByVal Consistency As String,  _
                     ByVal Stool_RBC As String,  _
                     ByVal Stool_Pus_Cells As String,  _
-                    ByVal Ascaris_Lumbricoides As String,  _
-                    ByVal Trichura_triciura As String,  _
+                    ByVal Ascaris_lumbricoides As String,  _
+                    ByVal Trichuris_trichiura As String,  _
                     ByVal Hookworms As String,  _
                     ByVal Entamoeba_histolytica As String,  _
                     ByVal Entamoeba_coli As String,  _
-                    ByVal Stool_Others As String,  _
-                    ByVal VDRL As String,  _
-                    ByVal RPR As String,  _
-                    ByVal HBsAg As String,  _
+                    ByVal _Other_Parasites_Ova As String,  _
                     ByVal Gram_Stain As String,  _
                     ByVal NSS As String,  _
                     ByVal _10__KOH As String,  _
-                    ByVal _Chest_X_ray As String) As Health_Certificate_Application_and_RenewalRow
-            Dim rowHealth_Certificate_Application_and_RenewalRow As Health_Certificate_Application_and_RenewalRow = CType(Me.NewRow,Health_Certificate_Application_and_RenewalRow)
-            Dim columnValuesArray() As Object = New Object() {Patient_ID, Date_of_Application, Date_Issued, Urine_Color, Transparency, Reaction, Specific_Gravity, Urine_Pus_Cells, Urine_RBC, Bacteria, Epithelial_Cells, Crystal, Casts, Urine_Others, Stool_Color_, Consistency, Stool_RBC, Stool_Pus_Cells, Ascaris_Lumbricoides, Trichura_triciura, Hookworms, Entamoeba_histolytica, Entamoeba_coli, Stool_Others, Nothing, VDRL, RPR, HBsAg, Gram_Stain, NSS, _10__KOH, _Chest_X_ray}
-            rowHealth_Certificate_Application_and_RenewalRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowHealth_Certificate_Application_and_RenewalRow)
-            Return rowHealth_Certificate_Application_and_RenewalRow
+                    ByVal Hepatitis_BsAg As String,  _
+                    ByVal Attended_STD_Seminar As String,  _
+                    ByVal Type_of_Gram_Stain_Smear As String,  _
+                    ByVal _Type_of_Visit__HC_ As String,  _
+                    ByVal _Type_of_Client__HC_ As String,  _
+                    ByVal _VDRL_RPR__HC_ As String,  _
+                    ByVal _TPHA_TPPA__C_ As String) As HealthCertificateRow
+            Dim rowHealthCertificateRow As HealthCertificateRow = CType(Me.NewRow,HealthCertificateRow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, Date_of_Application, Date_of_Issued, Urine_Color, Transparency, Reaction, Specific_Gravity, Albumin, Sugar, Urine_Pus_Cells, Urine_RBC, Bacteria, Epithelial_Cells, Crystals, Casts, Urine_Others_, Stool_Color, Consistency, Stool_RBC, Stool_Pus_Cells, Ascaris_lumbricoides, Trichuris_trichiura, Hookworms, Entamoeba_histolytica, Entamoeba_coli, _Other_Parasites_Ova, Gram_Stain, NSS, _10__KOH, Hepatitis_BsAg, Attended_STD_Seminar, Type_of_Gram_Stain_Smear, _Type_of_Visit__HC_, _Type_of_Client__HC_, _VDRL_RPR__HC_, _TPHA_TPPA__C_}
+            If (Not (parentPersonalInformationRowByPersonalInformation_HealthCertificate) Is Nothing) Then
+                columnValuesArray(1) = parentPersonalInformationRowByPersonalInformation_HealthCertificate(0)
+            End If
+            rowHealthCertificateRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowHealthCertificateRow)
+            Return rowHealthCertificateRow
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function FindByHealth_Cert_ID(ByVal Health_Cert_ID As Long) As Health_Certificate_Application_and_RenewalRow
-            Return CType(Me.Rows.Find(New Object() {Health_Cert_ID}),Health_Certificate_Application_and_RenewalRow)
+        Public Function FindByCertificate_ID(ByVal Certificate_ID As Long) As HealthCertificateRow
+            Return CType(Me.Rows.Find(New Object() {Certificate_ID}),HealthCertificateRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As Health_Certificate_Application_and_RenewalDataTable = CType(MyBase.Clone,Health_Certificate_Application_and_RenewalDataTable)
+            Dim cln As HealthCertificateDataTable = CType(MyBase.Clone,HealthCertificateDataTable)
             cln.InitVars
             Return cln
         End Function
@@ -871,55 +1613,62 @@ Partial Public Class tryshcDataSet1
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New Health_Certificate_Application_and_RenewalDataTable()
+            Return New HealthCertificateDataTable()
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnPatient_ID = MyBase.Columns("Patient ID")
+            Me.columnCertificate_ID = MyBase.Columns("Certificate ID")
+            Me.columnID = MyBase.Columns("ID")
             Me.columnDate_of_Application = MyBase.Columns("Date of Application")
-            Me.columnDate_Issued = MyBase.Columns("Date Issued")
+            Me.columnDate_of_Issued = MyBase.Columns("Date of Issued")
             Me.columnUrine_Color = MyBase.Columns("Urine Color")
             Me.columnTransparency = MyBase.Columns("Transparency")
             Me.columnReaction = MyBase.Columns("Reaction")
             Me.columnSpecific_Gravity = MyBase.Columns("Specific Gravity")
+            Me.columnAlbumin = MyBase.Columns("Albumin")
+            Me.columnSugar = MyBase.Columns("Sugar")
             Me.columnUrine_Pus_Cells = MyBase.Columns("Urine Pus Cells")
             Me.columnUrine_RBC = MyBase.Columns("Urine RBC")
             Me.columnBacteria = MyBase.Columns("Bacteria")
             Me.columnEpithelial_Cells = MyBase.Columns("Epithelial Cells")
-            Me.columnCrystal = MyBase.Columns("Crystal")
+            Me.columnCrystals = MyBase.Columns("Crystals")
             Me.columnCasts = MyBase.Columns("Casts")
-            Me.columnUrine_Others = MyBase.Columns("Urine Others")
-            Me.columnStool_Color_ = MyBase.Columns("Stool Color ")
+            Me.columnUrine_Others_ = MyBase.Columns("Urine Others ")
+            Me.columnStool_Color = MyBase.Columns("Stool Color")
             Me.columnConsistency = MyBase.Columns("Consistency")
             Me.columnStool_RBC = MyBase.Columns("Stool RBC")
             Me.columnStool_Pus_Cells = MyBase.Columns("Stool Pus Cells")
-            Me.columnAscaris_Lumbricoides = MyBase.Columns("Ascaris Lumbricoides")
-            Me.columnTrichura_triciura = MyBase.Columns("Trichura triciura")
+            Me.columnAscaris_lumbricoides = MyBase.Columns("Ascaris lumbricoides")
+            Me.columnTrichuris_trichiura = MyBase.Columns("Trichuris trichiura")
             Me.columnHookworms = MyBase.Columns("Hookworms")
             Me.columnEntamoeba_histolytica = MyBase.Columns("Entamoeba histolytica")
             Me.columnEntamoeba_coli = MyBase.Columns("Entamoeba coli")
-            Me.columnStool_Others = MyBase.Columns("Stool Others")
-            Me.columnHealth_Cert_ID = MyBase.Columns("Health Cert ID")
-            Me.columnVDRL = MyBase.Columns("VDRL")
-            Me.columnRPR = MyBase.Columns("RPR")
-            Me.columnHBsAg = MyBase.Columns("HBsAg")
+            Me._columnOther_Parasites_Ova = MyBase.Columns("Other Parasites/Ova")
             Me.columnGram_Stain = MyBase.Columns("Gram Stain")
             Me.columnNSS = MyBase.Columns("NSS")
             Me._column10__KOH = MyBase.Columns("10% KOH")
-            Me._columnChest_X_ray = MyBase.Columns("Chest X-ray")
+            Me.columnHepatitis_BsAg = MyBase.Columns("Hepatitis BsAg")
+            Me.columnAttended_STD_Seminar = MyBase.Columns("Attended STD Seminar")
+            Me.columnType_of_Gram_Stain_Smear = MyBase.Columns("Type of Gram Stain Smear")
+            Me._columnType_of_Visit__HC_ = MyBase.Columns("Type of Visit (HC)")
+            Me._columnType_of_Client__HC_ = MyBase.Columns("Type of Client (HC)")
+            Me._columnVDRL_RPR__HC_ = MyBase.Columns("VDRL/RPR (HC)")
+            Me._columnTPHA_TPPA__C_ = MyBase.Columns("TPHA/TPPA (C)")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnPatient_ID = New Global.System.Data.DataColumn("Patient ID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPatient_ID)
+            Me.columnCertificate_ID = New Global.System.Data.DataColumn("Certificate ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCertificate_ID)
+            Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnID)
             Me.columnDate_of_Application = New Global.System.Data.DataColumn("Date of Application", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDate_of_Application)
-            Me.columnDate_Issued = New Global.System.Data.DataColumn("Date Issued", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDate_Issued)
+            Me.columnDate_of_Issued = New Global.System.Data.DataColumn("Date of Issued", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDate_of_Issued)
             Me.columnUrine_Color = New Global.System.Data.DataColumn("Urine Color", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnUrine_Color)
             Me.columnTransparency = New Global.System.Data.DataColumn("Transparency", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -928,6 +1677,10 @@ Partial Public Class tryshcDataSet1
             MyBase.Columns.Add(Me.columnReaction)
             Me.columnSpecific_Gravity = New Global.System.Data.DataColumn("Specific Gravity", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSpecific_Gravity)
+            Me.columnAlbumin = New Global.System.Data.DataColumn("Albumin", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAlbumin)
+            Me.columnSugar = New Global.System.Data.DataColumn("Sugar", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSugar)
             Me.columnUrine_Pus_Cells = New Global.System.Data.DataColumn("Urine Pus Cells", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnUrine_Pus_Cells)
             Me.columnUrine_RBC = New Global.System.Data.DataColumn("Urine RBC", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -936,40 +1689,34 @@ Partial Public Class tryshcDataSet1
             MyBase.Columns.Add(Me.columnBacteria)
             Me.columnEpithelial_Cells = New Global.System.Data.DataColumn("Epithelial Cells", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnEpithelial_Cells)
-            Me.columnCrystal = New Global.System.Data.DataColumn("Crystal", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCrystal)
+            Me.columnCrystals = New Global.System.Data.DataColumn("Crystals", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCrystals)
             Me.columnCasts = New Global.System.Data.DataColumn("Casts", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCasts)
-            Me.columnUrine_Others = New Global.System.Data.DataColumn("Urine Others", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnUrine_Others)
-            Me.columnStool_Color_ = New Global.System.Data.DataColumn("Stool Color ", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnStool_Color_)
+            Me.columnUrine_Others_ = New Global.System.Data.DataColumn("Urine Others ", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnUrine_Others_)
+            Me.columnStool_Color = New Global.System.Data.DataColumn("Stool Color", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnStool_Color)
             Me.columnConsistency = New Global.System.Data.DataColumn("Consistency", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnConsistency)
             Me.columnStool_RBC = New Global.System.Data.DataColumn("Stool RBC", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnStool_RBC)
             Me.columnStool_Pus_Cells = New Global.System.Data.DataColumn("Stool Pus Cells", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnStool_Pus_Cells)
-            Me.columnAscaris_Lumbricoides = New Global.System.Data.DataColumn("Ascaris Lumbricoides", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnAscaris_Lumbricoides)
-            Me.columnTrichura_triciura = New Global.System.Data.DataColumn("Trichura triciura", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTrichura_triciura)
+            Me.columnAscaris_lumbricoides = New Global.System.Data.DataColumn("Ascaris lumbricoides", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAscaris_lumbricoides)
+            Me.columnTrichuris_trichiura = New Global.System.Data.DataColumn("Trichuris trichiura", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTrichuris_trichiura)
             Me.columnHookworms = New Global.System.Data.DataColumn("Hookworms", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnHookworms)
             Me.columnEntamoeba_histolytica = New Global.System.Data.DataColumn("Entamoeba histolytica", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnEntamoeba_histolytica)
             Me.columnEntamoeba_coli = New Global.System.Data.DataColumn("Entamoeba coli", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnEntamoeba_coli)
-            Me.columnStool_Others = New Global.System.Data.DataColumn("Stool Others", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnStool_Others)
-            Me.columnHealth_Cert_ID = New Global.System.Data.DataColumn("Health Cert ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnHealth_Cert_ID)
-            Me.columnVDRL = New Global.System.Data.DataColumn("VDRL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnVDRL)
-            Me.columnRPR = New Global.System.Data.DataColumn("RPR", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnRPR)
-            Me.columnHBsAg = New Global.System.Data.DataColumn("HBsAg", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnHBsAg)
+            Me._columnOther_Parasites_Ova = New Global.System.Data.DataColumn("Other Parasites/Ova", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnOther_Parasites_Ova.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnOther_Parasites_Ova")
+            Me._columnOther_Parasites_Ova.ExtendedProperties.Add("Generator_UserColumnName", "Other Parasites/Ova")
+            MyBase.Columns.Add(Me._columnOther_Parasites_Ova)
             Me.columnGram_Stain = New Global.System.Data.DataColumn("Gram Stain", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnGram_Stain)
             Me.columnNSS = New Global.System.Data.DataColumn("NSS", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -978,72 +1725,94 @@ Partial Public Class tryshcDataSet1
             Me._column10__KOH.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_column10__KOH")
             Me._column10__KOH.ExtendedProperties.Add("Generator_UserColumnName", "10% KOH")
             MyBase.Columns.Add(Me._column10__KOH)
-            Me._columnChest_X_ray = New Global.System.Data.DataColumn("Chest X-ray", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            Me._columnChest_X_ray.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnChest_X_ray")
-            Me._columnChest_X_ray.ExtendedProperties.Add("Generator_UserColumnName", "Chest X-ray")
-            MyBase.Columns.Add(Me._columnChest_X_ray)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnHealth_Cert_ID}, true))
-            Me.columnPatient_ID.MaxLength = 100
-            Me.columnUrine_Color.MaxLength = 100
-            Me.columnTransparency.MaxLength = 100
-            Me.columnReaction.MaxLength = 100
-            Me.columnSpecific_Gravity.MaxLength = 100
-            Me.columnUrine_Pus_Cells.MaxLength = 100
-            Me.columnUrine_RBC.MaxLength = 100
-            Me.columnBacteria.MaxLength = 100
-            Me.columnEpithelial_Cells.MaxLength = 100
-            Me.columnCrystal.MaxLength = 100
-            Me.columnCasts.MaxLength = 100
-            Me.columnUrine_Others.MaxLength = 100
-            Me.columnStool_Color_.MaxLength = 100
-            Me.columnConsistency.MaxLength = 100
-            Me.columnStool_RBC.MaxLength = 100
-            Me.columnStool_Pus_Cells.MaxLength = 100
-            Me.columnAscaris_Lumbricoides.MaxLength = 100
-            Me.columnTrichura_triciura.MaxLength = 100
-            Me.columnHookworms.MaxLength = 100
-            Me.columnEntamoeba_histolytica.MaxLength = 100
-            Me.columnEntamoeba_coli.MaxLength = 100
-            Me.columnStool_Others.MaxLength = 100
-            Me.columnHealth_Cert_ID.AutoIncrement = true
-            Me.columnHealth_Cert_ID.AutoIncrementSeed = -1
-            Me.columnHealth_Cert_ID.AutoIncrementStep = -1
-            Me.columnHealth_Cert_ID.AllowDBNull = false
-            Me.columnHealth_Cert_ID.ReadOnly = true
-            Me.columnHealth_Cert_ID.Unique = true
-            Me.columnVDRL.MaxLength = 100
-            Me.columnRPR.MaxLength = 100
-            Me.columnHBsAg.MaxLength = 100
-            Me.columnGram_Stain.MaxLength = 100
+            Me.columnHepatitis_BsAg = New Global.System.Data.DataColumn("Hepatitis BsAg", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnHepatitis_BsAg)
+            Me.columnAttended_STD_Seminar = New Global.System.Data.DataColumn("Attended STD Seminar", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAttended_STD_Seminar)
+            Me.columnType_of_Gram_Stain_Smear = New Global.System.Data.DataColumn("Type of Gram Stain Smear", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnType_of_Gram_Stain_Smear)
+            Me._columnType_of_Visit__HC_ = New Global.System.Data.DataColumn("Type of Visit (HC)", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnType_of_Visit__HC_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnType_of_Visit__HC_")
+            Me._columnType_of_Visit__HC_.ExtendedProperties.Add("Generator_UserColumnName", "Type of Visit (HC)")
+            MyBase.Columns.Add(Me._columnType_of_Visit__HC_)
+            Me._columnType_of_Client__HC_ = New Global.System.Data.DataColumn("Type of Client (HC)", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnType_of_Client__HC_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnType_of_Client__HC_")
+            Me._columnType_of_Client__HC_.ExtendedProperties.Add("Generator_UserColumnName", "Type of Client (HC)")
+            MyBase.Columns.Add(Me._columnType_of_Client__HC_)
+            Me._columnVDRL_RPR__HC_ = New Global.System.Data.DataColumn("VDRL/RPR (HC)", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnVDRL_RPR__HC_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnVDRL_RPR__HC_")
+            Me._columnVDRL_RPR__HC_.ExtendedProperties.Add("Generator_UserColumnName", "VDRL/RPR (HC)")
+            MyBase.Columns.Add(Me._columnVDRL_RPR__HC_)
+            Me._columnTPHA_TPPA__C_ = New Global.System.Data.DataColumn("TPHA/TPPA (C)", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnTPHA_TPPA__C_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnTPHA_TPPA__C_")
+            Me._columnTPHA_TPPA__C_.ExtendedProperties.Add("Generator_UserColumnName", "TPHA/TPPA (C)")
+            MyBase.Columns.Add(Me._columnTPHA_TPPA__C_)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnCertificate_ID}, true))
+            Me.columnCertificate_ID.AutoIncrement = true
+            Me.columnCertificate_ID.AutoIncrementSeed = 1
+            Me.columnCertificate_ID.AllowDBNull = false
+            Me.columnCertificate_ID.ReadOnly = true
+            Me.columnCertificate_ID.Unique = true
+            Me.columnID.AllowDBNull = false
+            Me.columnUrine_Color.MaxLength = 30
+            Me.columnTransparency.MaxLength = 30
+            Me.columnReaction.MaxLength = 30
+            Me.columnSpecific_Gravity.MaxLength = 30
+            Me.columnAlbumin.MaxLength = 20
+            Me.columnSugar.MaxLength = 30
+            Me.columnUrine_Pus_Cells.MaxLength = 30
+            Me.columnUrine_RBC.MaxLength = 30
+            Me.columnBacteria.MaxLength = 20
+            Me.columnEpithelial_Cells.MaxLength = 20
+            Me.columnCrystals.MaxLength = 50
+            Me.columnCasts.MaxLength = 50
+            Me.columnUrine_Others_.MaxLength = 100
+            Me.columnStool_Color.MaxLength = 50
+            Me.columnConsistency.MaxLength = 50
+            Me.columnStool_RBC.MaxLength = 20
+            Me.columnStool_Pus_Cells.MaxLength = 20
+            Me.columnAscaris_lumbricoides.MaxLength = 20
+            Me.columnTrichuris_trichiura.MaxLength = 20
+            Me.columnHookworms.MaxLength = 20
+            Me.columnEntamoeba_histolytica.MaxLength = 20
+            Me.columnEntamoeba_coli.MaxLength = 20
+            Me._columnOther_Parasites_Ova.MaxLength = 50
+            Me.columnGram_Stain.MaxLength = 150
             Me.columnNSS.MaxLength = 100
             Me._column10__KOH.MaxLength = 100
-            Me._columnChest_X_ray.MaxLength = 100
+            Me.columnHepatitis_BsAg.MaxLength = 20
+            Me.columnAttended_STD_Seminar.MaxLength = 20
+            Me.columnType_of_Gram_Stain_Smear.MaxLength = 100
+            Me._columnType_of_Visit__HC_.MaxLength = 20
+            Me._columnType_of_Client__HC_.MaxLength = 30
+            Me._columnVDRL_RPR__HC_.MaxLength = 30
+            Me._columnTPHA_TPPA__C_.MaxLength = 20
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function NewHealth_Certificate_Application_and_RenewalRow() As Health_Certificate_Application_and_RenewalRow
-            Return CType(Me.NewRow,Health_Certificate_Application_and_RenewalRow)
+        Public Function NewHealthCertificateRow() As HealthCertificateRow
+            Return CType(Me.NewRow,HealthCertificateRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New Health_Certificate_Application_and_RenewalRow(builder)
+            Return New HealthCertificateRow(builder)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(Health_Certificate_Application_and_RenewalRow)
+            Return GetType(HealthCertificateRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
-            If (Not (Me.Health_Certificate_Application_and_RenewalRowChangedEvent) Is Nothing) Then
-                RaiseEvent Health_Certificate_Application_and_RenewalRowChanged(Me, New Health_Certificate_Application_and_RenewalRowChangeEvent(CType(e.Row,Health_Certificate_Application_and_RenewalRow), e.Action))
+            If (Not (Me.HealthCertificateRowChangedEvent) Is Nothing) Then
+                RaiseEvent HealthCertificateRowChanged(Me, New HealthCertificateRowChangeEvent(CType(e.Row,HealthCertificateRow), e.Action))
             End If
         End Sub
         
@@ -1051,8 +1820,8 @@ Partial Public Class tryshcDataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
-            If (Not (Me.Health_Certificate_Application_and_RenewalRowChangingEvent) Is Nothing) Then
-                RaiseEvent Health_Certificate_Application_and_RenewalRowChanging(Me, New Health_Certificate_Application_and_RenewalRowChangeEvent(CType(e.Row,Health_Certificate_Application_and_RenewalRow), e.Action))
+            If (Not (Me.HealthCertificateRowChangingEvent) Is Nothing) Then
+                RaiseEvent HealthCertificateRowChanging(Me, New HealthCertificateRowChangeEvent(CType(e.Row,HealthCertificateRow), e.Action))
             End If
         End Sub
         
@@ -1060,8 +1829,8 @@ Partial Public Class tryshcDataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
-            If (Not (Me.Health_Certificate_Application_and_RenewalRowDeletedEvent) Is Nothing) Then
-                RaiseEvent Health_Certificate_Application_and_RenewalRowDeleted(Me, New Health_Certificate_Application_and_RenewalRowChangeEvent(CType(e.Row,Health_Certificate_Application_and_RenewalRow), e.Action))
+            If (Not (Me.HealthCertificateRowDeletedEvent) Is Nothing) Then
+                RaiseEvent HealthCertificateRowDeleted(Me, New HealthCertificateRowChangeEvent(CType(e.Row,HealthCertificateRow), e.Action))
             End If
         End Sub
         
@@ -1069,14 +1838,14 @@ Partial Public Class tryshcDataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
-            If (Not (Me.Health_Certificate_Application_and_RenewalRowDeletingEvent) Is Nothing) Then
-                RaiseEvent Health_Certificate_Application_and_RenewalRowDeleting(Me, New Health_Certificate_Application_and_RenewalRowChangeEvent(CType(e.Row,Health_Certificate_Application_and_RenewalRow), e.Action))
+            If (Not (Me.HealthCertificateRowDeletingEvent) Is Nothing) Then
+                RaiseEvent HealthCertificateRowDeleting(Me, New HealthCertificateRowChangeEvent(CType(e.Row,HealthCertificateRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub RemoveHealth_Certificate_Application_and_RenewalRow(ByVal row As Health_Certificate_Application_and_RenewalRow)
+        Public Sub RemoveHealthCertificateRow(ByVal row As HealthCertificateRow)
             Me.Rows.Remove(row)
         End Sub
         
@@ -1085,7 +1854,7 @@ Partial Public Class tryshcDataSet1
         Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
             Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
             Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As tryshcDataSet1 = New tryshcDataSet1()
+            Dim ds As Database1DataSet1 = New Database1DataSet1()
             Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
             any1.Namespace = "http://www.w3.org/2001/XMLSchema"
             any1.MinOccurs = New Decimal(0)
@@ -1103,7 +1872,7 @@ Partial Public Class tryshcDataSet1
             type.Attributes.Add(attribute1)
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "Health_Certificate_Application_and_RenewalDataTable"
+            attribute2.FixedValue = "HealthCertificateDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -1152,624 +1921,10 @@ Partial Public Class tryshcDataSet1
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class HIV_Voluntary_Counseling_and_TestingDataTable
-        Inherits Global.System.Data.TypedTableBase(Of HIV_Voluntary_Counseling_and_TestingRow)
+    Partial Public Class PersonalInformationDataTable
+        Inherits Global.System.Data.TypedTableBase(Of PersonalInformationRow)
         
-        Private columnHIV_VCT_ID As Global.System.Data.DataColumn
-        
-        Private columnPatient_ID As Global.System.Data.DataColumn
-        
-        Private columnDate_of_Counseling_ As Global.System.Data.DataColumn
-        
-        Private columnHIV_Counseling As Global.System.Data.DataColumn
-        
-        Private columnDate_Blood_Collected As Global.System.Data.DataColumn
-        
-        Private columnHIV_Screening_Test_Result As Global.System.Data.DataColumn
-        
-        Private columnName_of_HIV_Proficient_Medt_Tech As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.TableName = "HIV Voluntary Counseling and Testing"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
-            Me.TableName = table.TableName
-            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
-                Me.CaseSensitive = table.CaseSensitive
-            End If
-            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
-                Me.Locale = table.Locale
-            End If
-            If (table.Namespace <> table.DataSet.Namespace) Then
-                Me.Namespace = table.Namespace
-            End If
-            Me.Prefix = table.Prefix
-            Me.MinimumCapacity = table.MinimumCapacity
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
-            MyBase.New(info, context)
-            Me.InitVars
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property HIV_VCT_IDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnHIV_VCT_ID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Patient_IDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPatient_ID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Date_of_Counseling_Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDate_of_Counseling_
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property HIV_CounselingColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnHIV_Counseling
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Date_Blood_CollectedColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDate_Blood_Collected
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property HIV_Screening_Test_ResultColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnHIV_Screening_Test_Result
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Name_of_HIV_Proficient_Medt_TechColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnName_of_HIV_Proficient_Medt_Tech
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
-        Public ReadOnly Property Count() As Integer
-            Get
-                Return Me.Rows.Count
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As HIV_Voluntary_Counseling_and_TestingRow
-            Get
-                Return CType(Me.Rows(index),HIV_Voluntary_Counseling_and_TestingRow)
-            End Get
-        End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event HIV_Voluntary_Counseling_and_TestingRowChanging As HIV_Voluntary_Counseling_and_TestingRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event HIV_Voluntary_Counseling_and_TestingRowChanged As HIV_Voluntary_Counseling_and_TestingRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event HIV_Voluntary_Counseling_and_TestingRowDeleting As HIV_Voluntary_Counseling_and_TestingRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event HIV_Voluntary_Counseling_and_TestingRowDeleted As HIV_Voluntary_Counseling_and_TestingRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub AddHIV_Voluntary_Counseling_and_TestingRow(ByVal row As HIV_Voluntary_Counseling_and_TestingRow)
-            Me.Rows.Add(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddHIV_Voluntary_Counseling_and_TestingRow(ByVal Patient_ID As String, ByVal Date_of_Counseling_ As Date, ByVal HIV_Counseling As String, ByVal Date_Blood_Collected As Date, ByVal HIV_Screening_Test_Result As String, ByVal Name_of_HIV_Proficient_Medt_Tech As String) As HIV_Voluntary_Counseling_and_TestingRow
-            Dim rowHIV_Voluntary_Counseling_and_TestingRow As HIV_Voluntary_Counseling_and_TestingRow = CType(Me.NewRow,HIV_Voluntary_Counseling_and_TestingRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Patient_ID, Date_of_Counseling_, HIV_Counseling, Date_Blood_Collected, HIV_Screening_Test_Result, Name_of_HIV_Proficient_Medt_Tech}
-            rowHIV_Voluntary_Counseling_and_TestingRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowHIV_Voluntary_Counseling_and_TestingRow)
-            Return rowHIV_Voluntary_Counseling_and_TestingRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function FindByHIV_VCT_ID(ByVal HIV_VCT_ID As Long) As HIV_Voluntary_Counseling_and_TestingRow
-            Return CType(Me.Rows.Find(New Object() {HIV_VCT_ID}),HIV_Voluntary_Counseling_and_TestingRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As HIV_Voluntary_Counseling_and_TestingDataTable = CType(MyBase.Clone,HIV_Voluntary_Counseling_and_TestingDataTable)
-            cln.InitVars
-            Return cln
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New HIV_Voluntary_Counseling_and_TestingDataTable()
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub InitVars()
-            Me.columnHIV_VCT_ID = MyBase.Columns("HIV VCT ID")
-            Me.columnPatient_ID = MyBase.Columns("Patient ID")
-            Me.columnDate_of_Counseling_ = MyBase.Columns("Date of Counseling ")
-            Me.columnHIV_Counseling = MyBase.Columns("HIV Counseling")
-            Me.columnDate_Blood_Collected = MyBase.Columns("Date Blood Collected")
-            Me.columnHIV_Screening_Test_Result = MyBase.Columns("HIV Screening Test Result")
-            Me.columnName_of_HIV_Proficient_Medt_Tech = MyBase.Columns("Name of HIV Proficient Medt Tech")
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitClass()
-            Me.columnHIV_VCT_ID = New Global.System.Data.DataColumn("HIV VCT ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnHIV_VCT_ID)
-            Me.columnPatient_ID = New Global.System.Data.DataColumn("Patient ID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPatient_ID)
-            Me.columnDate_of_Counseling_ = New Global.System.Data.DataColumn("Date of Counseling ", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDate_of_Counseling_)
-            Me.columnHIV_Counseling = New Global.System.Data.DataColumn("HIV Counseling", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnHIV_Counseling)
-            Me.columnDate_Blood_Collected = New Global.System.Data.DataColumn("Date Blood Collected", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDate_Blood_Collected)
-            Me.columnHIV_Screening_Test_Result = New Global.System.Data.DataColumn("HIV Screening Test Result", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnHIV_Screening_Test_Result)
-            Me.columnName_of_HIV_Proficient_Medt_Tech = New Global.System.Data.DataColumn("Name of HIV Proficient Medt Tech", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnName_of_HIV_Proficient_Medt_Tech)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnHIV_VCT_ID}, true))
-            Me.columnHIV_VCT_ID.AutoIncrement = true
-            Me.columnHIV_VCT_ID.AutoIncrementSeed = -1
-            Me.columnHIV_VCT_ID.AutoIncrementStep = -1
-            Me.columnHIV_VCT_ID.AllowDBNull = false
-            Me.columnHIV_VCT_ID.ReadOnly = true
-            Me.columnHIV_VCT_ID.Unique = true
-            Me.columnPatient_ID.MaxLength = 100
-            Me.columnHIV_Counseling.MaxLength = 100
-            Me.columnHIV_Screening_Test_Result.MaxLength = 100
-            Me.columnName_of_HIV_Proficient_Medt_Tech.MaxLength = 100
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function NewHIV_Voluntary_Counseling_and_TestingRow() As HIV_Voluntary_Counseling_and_TestingRow
-            Return CType(Me.NewRow,HIV_Voluntary_Counseling_and_TestingRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New HIV_Voluntary_Counseling_and_TestingRow(builder)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(HIV_Voluntary_Counseling_and_TestingRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanged(e)
-            If (Not (Me.HIV_Voluntary_Counseling_and_TestingRowChangedEvent) Is Nothing) Then
-                RaiseEvent HIV_Voluntary_Counseling_and_TestingRowChanged(Me, New HIV_Voluntary_Counseling_and_TestingRowChangeEvent(CType(e.Row,HIV_Voluntary_Counseling_and_TestingRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanging(e)
-            If (Not (Me.HIV_Voluntary_Counseling_and_TestingRowChangingEvent) Is Nothing) Then
-                RaiseEvent HIV_Voluntary_Counseling_and_TestingRowChanging(Me, New HIV_Voluntary_Counseling_and_TestingRowChangeEvent(CType(e.Row,HIV_Voluntary_Counseling_and_TestingRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleted(e)
-            If (Not (Me.HIV_Voluntary_Counseling_and_TestingRowDeletedEvent) Is Nothing) Then
-                RaiseEvent HIV_Voluntary_Counseling_and_TestingRowDeleted(Me, New HIV_Voluntary_Counseling_and_TestingRowChangeEvent(CType(e.Row,HIV_Voluntary_Counseling_and_TestingRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleting(e)
-            If (Not (Me.HIV_Voluntary_Counseling_and_TestingRowDeletingEvent) Is Nothing) Then
-                RaiseEvent HIV_Voluntary_Counseling_and_TestingRowDeleting(Me, New HIV_Voluntary_Counseling_and_TestingRowChangeEvent(CType(e.Row,HIV_Voluntary_Counseling_and_TestingRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub RemoveHIV_Voluntary_Counseling_and_TestingRow(ByVal row As HIV_Voluntary_Counseling_and_TestingRow)
-            Me.Rows.Remove(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
-            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As tryshcDataSet1 = New tryshcDataSet1()
-            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
-            any1.MinOccurs = New Decimal(0)
-            any1.MaxOccurs = Decimal.MaxValue
-            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any1)
-            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
-            any2.MinOccurs = New Decimal(1)
-            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any2)
-            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute1.Name = "namespace"
-            attribute1.FixedValue = ds.Namespace
-            type.Attributes.Add(attribute1)
-            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "HIV_Voluntary_Counseling_and_TestingDataTable"
-            type.Attributes.Add(attribute2)
-            type.Particle = sequence
-            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
-            If xs.Contains(dsSchema.TargetNamespace) Then
-                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Try 
-                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
-                    dsSchema.Write(s1)
-                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
-                    Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
-                        s2.SetLength(0)
-                        schema.Write(s2)
-                        If (s1.Length = s2.Length) Then
-                            s1.Position = 0
-                            s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
-                                        AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
-                            Loop
-                            If (s1.Position = s1.Length) Then
-                                Return type
-                            End If
-                        End If
-                        
-                    Loop
-                Finally
-                    If (Not (s1) Is Nothing) Then
-                        s1.Close
-                    End If
-                    If (Not (s2) Is Nothing) Then
-                        s2.Close
-                    End If
-                End Try
-            End If
-            xs.Add(dsSchema)
-            Return type
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the strongly named DataTable class.
-    '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class LoginDataTable
-        Inherits Global.System.Data.TypedTableBase(Of LoginRow)
-        
-        Private columnUsername As Global.System.Data.DataColumn
-        
-        Private columnPassword As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.TableName = "Login"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
-            Me.TableName = table.TableName
-            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
-                Me.CaseSensitive = table.CaseSensitive
-            End If
-            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
-                Me.Locale = table.Locale
-            End If
-            If (table.Namespace <> table.DataSet.Namespace) Then
-                Me.Namespace = table.Namespace
-            End If
-            Me.Prefix = table.Prefix
-            Me.MinimumCapacity = table.MinimumCapacity
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
-            MyBase.New(info, context)
-            Me.InitVars
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property UsernameColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnUsername
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property PasswordColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPassword
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
-        Public ReadOnly Property Count() As Integer
-            Get
-                Return Me.Rows.Count
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As LoginRow
-            Get
-                Return CType(Me.Rows(index),LoginRow)
-            End Get
-        End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event LoginRowChanging As LoginRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event LoginRowChanged As LoginRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event LoginRowDeleting As LoginRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event LoginRowDeleted As LoginRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub AddLoginRow(ByVal row As LoginRow)
-            Me.Rows.Add(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddLoginRow(ByVal Username As String, ByVal Password As String) As LoginRow
-            Dim rowLoginRow As LoginRow = CType(Me.NewRow,LoginRow)
-            Dim columnValuesArray() As Object = New Object() {Username, Password}
-            rowLoginRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowLoginRow)
-            Return rowLoginRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As LoginDataTable = CType(MyBase.Clone,LoginDataTable)
-            cln.InitVars
-            Return cln
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New LoginDataTable()
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub InitVars()
-            Me.columnUsername = MyBase.Columns("Username")
-            Me.columnPassword = MyBase.Columns("Password")
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitClass()
-            Me.columnUsername = New Global.System.Data.DataColumn("Username", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnUsername)
-            Me.columnPassword = New Global.System.Data.DataColumn("Password", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPassword)
-            Me.columnUsername.MaxLength = 100
-            Me.columnPassword.MaxLength = 100
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function NewLoginRow() As LoginRow
-            Return CType(Me.NewRow,LoginRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New LoginRow(builder)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(LoginRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanged(e)
-            If (Not (Me.LoginRowChangedEvent) Is Nothing) Then
-                RaiseEvent LoginRowChanged(Me, New LoginRowChangeEvent(CType(e.Row,LoginRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanging(e)
-            If (Not (Me.LoginRowChangingEvent) Is Nothing) Then
-                RaiseEvent LoginRowChanging(Me, New LoginRowChangeEvent(CType(e.Row,LoginRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleted(e)
-            If (Not (Me.LoginRowDeletedEvent) Is Nothing) Then
-                RaiseEvent LoginRowDeleted(Me, New LoginRowChangeEvent(CType(e.Row,LoginRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleting(e)
-            If (Not (Me.LoginRowDeletingEvent) Is Nothing) Then
-                RaiseEvent LoginRowDeleting(Me, New LoginRowChangeEvent(CType(e.Row,LoginRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub RemoveLoginRow(ByVal row As LoginRow)
-            Me.Rows.Remove(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
-            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As tryshcDataSet1 = New tryshcDataSet1()
-            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
-            any1.MinOccurs = New Decimal(0)
-            any1.MaxOccurs = Decimal.MaxValue
-            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any1)
-            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
-            any2.MinOccurs = New Decimal(1)
-            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any2)
-            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute1.Name = "namespace"
-            attribute1.FixedValue = ds.Namespace
-            type.Attributes.Add(attribute1)
-            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "LoginDataTable"
-            type.Attributes.Add(attribute2)
-            type.Particle = sequence
-            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
-            If xs.Contains(dsSchema.TargetNamespace) Then
-                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Try 
-                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
-                    dsSchema.Write(s1)
-                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
-                    Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
-                        s2.SetLength(0)
-                        schema.Write(s2)
-                        If (s1.Length = s2.Length) Then
-                            s1.Position = 0
-                            s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
-                                        AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
-                            Loop
-                            If (s1.Position = s1.Length) Then
-                                Return type
-                            End If
-                        End If
-                        
-                    Loop
-                Finally
-                    If (Not (s1) Is Nothing) Then
-                        s1.Close
-                    End If
-                    If (Not (s2) Is Nothing) Then
-                        s2.Close
-                    End If
-                End Try
-            End If
-            xs.Add(dsSchema)
-            Return type
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the strongly named DataTable class.
-    '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class Personal_InformationDataTable
-        Inherits Global.System.Data.TypedTableBase(Of Personal_InformationRow)
-        
-        Private columnPatient_ID As Global.System.Data.DataColumn
+        Private columnID As Global.System.Data.DataColumn
         
         Private columnDate_of_Registration As Global.System.Data.DataColumn
         
@@ -1801,15 +1956,21 @@ Partial Public Class tryshcDataSet1
         
         Private columnContact_Number As Global.System.Data.DataColumn
         
-        Private columnAddress_of_Establishment As Global.System.Data.DataColumn
+        Private columnEstablishment_Address As Global.System.Data.DataColumn
         
         Private columnBarangay As Global.System.Data.DataColumn
+        
+        Private columnPhoto As Global.System.Data.DataColumn
+        
+        Private columnType_of_MARP As Global.System.Data.DataColumn
+        
+        Private columnAge_Group As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
             MyBase.New
-            Me.TableName = "Personal Information"
+            Me.TableName = "PersonalInformation"
             Me.BeginInit
             Me.InitClass
             Me.EndInit
@@ -1842,9 +2003,9 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Patient_IDColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnPatient_ID
+                Return Me.columnID
             End Get
         End Property
         
@@ -1970,9 +2131,9 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Address_of_EstablishmentColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property Establishment_AddressColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnAddress_of_Establishment
+                Return Me.columnEstablishment_Address
             End Get
         End Property
         
@@ -1981,6 +2142,30 @@ Partial Public Class tryshcDataSet1
         Public ReadOnly Property BarangayColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnBarangay
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PhotoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPhoto
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Type_of_MARPColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnType_of_MARP
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Age_GroupColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAge_Group
             End Get
         End Property
         
@@ -1995,40 +2180,40 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As Personal_InformationRow
+        Public Default ReadOnly Property Item(ByVal index As Integer) As PersonalInformationRow
             Get
-                Return CType(Me.Rows(index),Personal_InformationRow)
+                Return CType(Me.Rows(index),PersonalInformationRow)
             End Get
         End Property
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event Personal_InformationRowChanging As Personal_InformationRowChangeEventHandler
+        Public Event PersonalInformationRowChanging As PersonalInformationRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event Personal_InformationRowChanged As Personal_InformationRowChangeEventHandler
+        Public Event PersonalInformationRowChanged As PersonalInformationRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event Personal_InformationRowDeleting As Personal_InformationRowChangeEventHandler
+        Public Event PersonalInformationRowDeleting As PersonalInformationRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event Personal_InformationRowDeleted As Personal_InformationRowChangeEventHandler
+        Public Event PersonalInformationRowDeleted As PersonalInformationRowChangeEventHandler
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub AddPersonal_InformationRow(ByVal row As Personal_InformationRow)
+        Public Overloads Sub AddPersonalInformationRow(ByVal row As PersonalInformationRow)
             Me.Rows.Add(row)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddPersonal_InformationRow( _
+        Public Overloads Function AddPersonalInformationRow( _
                     ByVal Date_of_Registration As Date,  _
                     ByVal First_Name As String,  _
                     ByVal Middle_Name As String,  _
                     ByVal Last_Name As String,  _
-                    ByVal Gender As Long,  _
+                    ByVal Gender As String,  _
                     ByVal Date_of_Birth As Date,  _
-                    ByVal Age As Long,  _
+                    ByVal Age As Integer,  _
                     ByVal Occupation As String,  _
                     ByVal Address As String,  _
                     ByVal City As String,  _
@@ -2037,25 +2222,28 @@ Partial Public Class tryshcDataSet1
                     ByVal Type_of_Establishment As String,  _
                     ByVal Contact_Person As String,  _
                     ByVal Contact_Number As String,  _
-                    ByVal Address_of_Establishment As String,  _
-                    ByVal Barangay As String) As Personal_InformationRow
-            Dim rowPersonal_InformationRow As Personal_InformationRow = CType(Me.NewRow,Personal_InformationRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Date_of_Registration, First_Name, Middle_Name, Last_Name, Gender, Date_of_Birth, Age, Occupation, Address, City, Telephone_Number, Name_of_Establishment, Type_of_Establishment, Contact_Person, Contact_Number, Address_of_Establishment, Barangay}
-            rowPersonal_InformationRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowPersonal_InformationRow)
-            Return rowPersonal_InformationRow
+                    ByVal Establishment_Address As String,  _
+                    ByVal Barangay As String,  _
+                    ByVal Photo() As Byte,  _
+                    ByVal Type_of_MARP As String,  _
+                    ByVal Age_Group As String) As PersonalInformationRow
+            Dim rowPersonalInformationRow As PersonalInformationRow = CType(Me.NewRow,PersonalInformationRow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, Date_of_Registration, First_Name, Middle_Name, Last_Name, Gender, Date_of_Birth, Age, Occupation, Address, City, Telephone_Number, Name_of_Establishment, Type_of_Establishment, Contact_Person, Contact_Number, Establishment_Address, Barangay, Photo, Type_of_MARP, Age_Group}
+            rowPersonalInformationRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowPersonalInformationRow)
+            Return rowPersonalInformationRow
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function FindByPatient_ID(ByVal Patient_ID As Long) As Personal_InformationRow
-            Return CType(Me.Rows.Find(New Object() {Patient_ID}),Personal_InformationRow)
+        Public Function FindByID(ByVal ID As Long) As PersonalInformationRow
+            Return CType(Me.Rows.Find(New Object() {ID}),PersonalInformationRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As Personal_InformationDataTable = CType(MyBase.Clone,Personal_InformationDataTable)
+            Dim cln As PersonalInformationDataTable = CType(MyBase.Clone,PersonalInformationDataTable)
             cln.InitVars
             Return cln
         End Function
@@ -2063,13 +2251,13 @@ Partial Public Class tryshcDataSet1
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New Personal_InformationDataTable()
+            Return New PersonalInformationDataTable()
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnPatient_ID = MyBase.Columns("Patient ID")
+            Me.columnID = MyBase.Columns("ID")
             Me.columnDate_of_Registration = MyBase.Columns("Date of Registration")
             Me.columnFirst_Name = MyBase.Columns("First Name")
             Me.columnMiddle_Name = MyBase.Columns("Middle Name")
@@ -2085,15 +2273,18 @@ Partial Public Class tryshcDataSet1
             Me.columnType_of_Establishment = MyBase.Columns("Type of Establishment")
             Me.columnContact_Person = MyBase.Columns("Contact Person")
             Me.columnContact_Number = MyBase.Columns("Contact Number")
-            Me.columnAddress_of_Establishment = MyBase.Columns("Address of Establishment")
+            Me.columnEstablishment_Address = MyBase.Columns("Establishment Address")
             Me.columnBarangay = MyBase.Columns("Barangay")
+            Me.columnPhoto = MyBase.Columns("Photo")
+            Me.columnType_of_MARP = MyBase.Columns("Type of MARP")
+            Me.columnAge_Group = MyBase.Columns("Age Group")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnPatient_ID = New Global.System.Data.DataColumn("Patient ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPatient_ID)
+            Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnID)
             Me.columnDate_of_Registration = New Global.System.Data.DataColumn("Date of Registration", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDate_of_Registration)
             Me.columnFirst_Name = New Global.System.Data.DataColumn("First Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -2102,11 +2293,11 @@ Partial Public Class tryshcDataSet1
             MyBase.Columns.Add(Me.columnMiddle_Name)
             Me.columnLast_Name = New Global.System.Data.DataColumn("Last Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLast_Name)
-            Me.columnGender = New Global.System.Data.DataColumn("Gender", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnGender = New Global.System.Data.DataColumn("Gender", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnGender)
             Me.columnDate_of_Birth = New Global.System.Data.DataColumn("Date of Birth", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDate_of_Birth)
-            Me.columnAge = New Global.System.Data.DataColumn("Age", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnAge = New Global.System.Data.DataColumn("Age", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnAge)
             Me.columnOccupation = New Global.System.Data.DataColumn("Occupation", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnOccupation)
@@ -2124,56 +2315,64 @@ Partial Public Class tryshcDataSet1
             MyBase.Columns.Add(Me.columnContact_Person)
             Me.columnContact_Number = New Global.System.Data.DataColumn("Contact Number", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnContact_Number)
-            Me.columnAddress_of_Establishment = New Global.System.Data.DataColumn("Address of Establishment", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnAddress_of_Establishment)
+            Me.columnEstablishment_Address = New Global.System.Data.DataColumn("Establishment Address", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEstablishment_Address)
             Me.columnBarangay = New Global.System.Data.DataColumn("Barangay", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnBarangay)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnPatient_ID}, true))
-            Me.columnPatient_ID.AutoIncrement = true
-            Me.columnPatient_ID.AutoIncrementSeed = -1
-            Me.columnPatient_ID.AutoIncrementStep = -1
-            Me.columnPatient_ID.AllowDBNull = false
-            Me.columnPatient_ID.ReadOnly = true
-            Me.columnPatient_ID.Unique = true
-            Me.columnFirst_Name.MaxLength = 100
-            Me.columnMiddle_Name.MaxLength = 100
-            Me.columnLast_Name.MaxLength = 100
-            Me.columnOccupation.MaxLength = 100
-            Me.columnAddress.MaxLength = 100
-            Me.columnCity.MaxLength = 100
-            Me.columnTelephone_Number.MaxLength = 100
+            Me.columnPhoto = New Global.System.Data.DataColumn("Photo", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPhoto)
+            Me.columnType_of_MARP = New Global.System.Data.DataColumn("Type of MARP", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnType_of_MARP)
+            Me.columnAge_Group = New Global.System.Data.DataColumn("Age Group", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAge_Group)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
+            Me.columnID.AutoIncrement = true
+            Me.columnID.AutoIncrementSeed = 1
+            Me.columnID.AllowDBNull = false
+            Me.columnID.ReadOnly = true
+            Me.columnID.Unique = true
+            Me.columnFirst_Name.MaxLength = 50
+            Me.columnMiddle_Name.MaxLength = 50
+            Me.columnLast_Name.MaxLength = 50
+            Me.columnGender.MaxLength = 20
+            Me.columnOccupation.MaxLength = 50
+            Me.columnAddress.MaxLength = 150
+            Me.columnCity.MaxLength = 50
+            Me.columnTelephone_Number.MaxLength = 20
             Me.columnName_of_Establishment.MaxLength = 100
-            Me.columnType_of_Establishment.MaxLength = 100
-            Me.columnContact_Person.MaxLength = 100
-            Me.columnContact_Number.MaxLength = 100
-            Me.columnAddress_of_Establishment.MaxLength = 100
-            Me.columnBarangay.MaxLength = 100
+            Me.columnType_of_Establishment.MaxLength = 50
+            Me.columnContact_Person.MaxLength = 50
+            Me.columnContact_Number.MaxLength = 50
+            Me.columnEstablishment_Address.MaxLength = 100
+            Me.columnBarangay.MaxLength = 50
+            Me.columnType_of_MARP.MaxLength = 100
+            Me.columnAge_Group.MaxLength = 50
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function NewPersonal_InformationRow() As Personal_InformationRow
-            Return CType(Me.NewRow,Personal_InformationRow)
+        Public Function NewPersonalInformationRow() As PersonalInformationRow
+            Return CType(Me.NewRow,PersonalInformationRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New Personal_InformationRow(builder)
+            Return New PersonalInformationRow(builder)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(Personal_InformationRow)
+            Return GetType(PersonalInformationRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
-            If (Not (Me.Personal_InformationRowChangedEvent) Is Nothing) Then
-                RaiseEvent Personal_InformationRowChanged(Me, New Personal_InformationRowChangeEvent(CType(e.Row,Personal_InformationRow), e.Action))
+            If (Not (Me.PersonalInformationRowChangedEvent) Is Nothing) Then
+                RaiseEvent PersonalInformationRowChanged(Me, New PersonalInformationRowChangeEvent(CType(e.Row,PersonalInformationRow), e.Action))
             End If
         End Sub
         
@@ -2181,8 +2380,8 @@ Partial Public Class tryshcDataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
-            If (Not (Me.Personal_InformationRowChangingEvent) Is Nothing) Then
-                RaiseEvent Personal_InformationRowChanging(Me, New Personal_InformationRowChangeEvent(CType(e.Row,Personal_InformationRow), e.Action))
+            If (Not (Me.PersonalInformationRowChangingEvent) Is Nothing) Then
+                RaiseEvent PersonalInformationRowChanging(Me, New PersonalInformationRowChangeEvent(CType(e.Row,PersonalInformationRow), e.Action))
             End If
         End Sub
         
@@ -2190,8 +2389,8 @@ Partial Public Class tryshcDataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
-            If (Not (Me.Personal_InformationRowDeletedEvent) Is Nothing) Then
-                RaiseEvent Personal_InformationRowDeleted(Me, New Personal_InformationRowChangeEvent(CType(e.Row,Personal_InformationRow), e.Action))
+            If (Not (Me.PersonalInformationRowDeletedEvent) Is Nothing) Then
+                RaiseEvent PersonalInformationRowDeleted(Me, New PersonalInformationRowChangeEvent(CType(e.Row,PersonalInformationRow), e.Action))
             End If
         End Sub
         
@@ -2199,14 +2398,14 @@ Partial Public Class tryshcDataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
-            If (Not (Me.Personal_InformationRowDeletingEvent) Is Nothing) Then
-                RaiseEvent Personal_InformationRowDeleting(Me, New Personal_InformationRowChangeEvent(CType(e.Row,Personal_InformationRow), e.Action))
+            If (Not (Me.PersonalInformationRowDeletingEvent) Is Nothing) Then
+                RaiseEvent PersonalInformationRowDeleting(Me, New PersonalInformationRowChangeEvent(CType(e.Row,PersonalInformationRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub RemovePersonal_InformationRow(ByVal row As Personal_InformationRow)
+        Public Sub RemovePersonalInformationRow(ByVal row As PersonalInformationRow)
             Me.Rows.Remove(row)
         End Sub
         
@@ -2215,7 +2414,7 @@ Partial Public Class tryshcDataSet1
         Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
             Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
             Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As tryshcDataSet1 = New tryshcDataSet1()
+            Dim ds As Database1DataSet1 = New Database1DataSet1()
             Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
             any1.Namespace = "http://www.w3.org/2001/XMLSchema"
             any1.MinOccurs = New Decimal(0)
@@ -2233,7 +2432,7 @@ Partial Public Class tryshcDataSet1
             type.Attributes.Add(attribute1)
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "Personal_InformationDataTable"
+            attribute2.FixedValue = "PersonalInformationDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -2282,50 +2481,18 @@ Partial Public Class tryshcDataSet1
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class STI_CONSULTATIONDataTable
-        Inherits Global.System.Data.TypedTableBase(Of STI_CONSULTATIONRow)
+    Partial Public Class UserDataTable
+        Inherits Global.System.Data.TypedTableBase(Of UserRow)
         
-        Private columnSTI_ID As Global.System.Data.DataColumn
+        Private columnUsername As Global.System.Data.DataColumn
         
-        Private columnPatient_ID As Global.System.Data.DataColumn
-        
-        Private columnDate_of_Consultation As Global.System.Data.DataColumn
-        
-        Private columnBP As Global.System.Data.DataColumn
-        
-        Private columnHeart_rate As Global.System.Data.DataColumn
-        
-        Private columnRespiratory_rate As Global.System.Data.DataColumn
-        
-        Private columnTemperature As Global.System.Data.DataColumn
-        
-        Private columnChief_Complaint As Global.System.Data.DataColumn
-        
-        Private columnHistory_of_Present_Illness As Global.System.Data.DataColumn
-        
-        Private columnPast_Medical_History As Global.System.Data.DataColumn
-        
-        Private columnPersonal_and_Social_History As Global.System.Data.DataColumn
-        
-        Private columnSigns_and_Symptoms As Global.System.Data.DataColumn
-        
-        Private columnInitial_Impression As Global.System.Data.DataColumn
-        
-        Private columnFinal_Diagnosis As Global.System.Data.DataColumn
-        
-        Private columnPrescription As Global.System.Data.DataColumn
-        
-        Private columnLaboratory_request As Global.System.Data.DataColumn
-        
-        Private columnReferral_ As Global.System.Data.DataColumn
-        
-        Private _columnDate_of_Follow_up As Global.System.Data.DataColumn
+        Private columnPassword As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
             MyBase.New
-            Me.TableName = "STI CONSULTATION"
+            Me.TableName = "User"
             Me.BeginInit
             Me.InitClass
             Me.EndInit
@@ -2358,145 +2525,17 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property STI_IDColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property UsernameColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnSTI_ID
+                Return Me.columnUsername
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Patient_IDColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property PasswordColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnPatient_ID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Date_of_ConsultationColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDate_of_Consultation
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property BPColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnBP
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Heart_rateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnHeart_rate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Respiratory_rateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnRespiratory_rate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property TemperatureColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnTemperature
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Chief_ComplaintColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnChief_Complaint
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property History_of_Present_IllnessColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnHistory_of_Present_Illness
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Past_Medical_HistoryColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPast_Medical_History
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Personal_and_Social_HistoryColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPersonal_and_Social_History
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Signs_and_SymptomsColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSigns_and_Symptoms
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Initial_ImpressionColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnInitial_Impression
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Final_DiagnosisColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnFinal_Diagnosis
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property PrescriptionColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPrescription
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Laboratory_requestColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLaboratory_request
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Referral_Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnReferral_
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property _Date_of_Follow_upColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me._columnDate_of_Follow_up
+                Return Me.columnPassword
             End Get
         End Property
         
@@ -2511,67 +2550,44 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As STI_CONSULTATIONRow
+        Public Default ReadOnly Property Item(ByVal index As Integer) As UserRow
             Get
-                Return CType(Me.Rows(index),STI_CONSULTATIONRow)
+                Return CType(Me.Rows(index),UserRow)
             End Get
         End Property
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event STI_CONSULTATIONRowChanging As STI_CONSULTATIONRowChangeEventHandler
+        Public Event UserRowChanging As UserRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event STI_CONSULTATIONRowChanged As STI_CONSULTATIONRowChangeEventHandler
+        Public Event UserRowChanged As UserRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event STI_CONSULTATIONRowDeleting As STI_CONSULTATIONRowChangeEventHandler
+        Public Event UserRowDeleting As UserRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event STI_CONSULTATIONRowDeleted As STI_CONSULTATIONRowChangeEventHandler
+        Public Event UserRowDeleted As UserRowChangeEventHandler
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub AddSTI_CONSULTATIONRow(ByVal row As STI_CONSULTATIONRow)
+        Public Overloads Sub AddUserRow(ByVal row As UserRow)
             Me.Rows.Add(row)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddSTI_CONSULTATIONRow( _
-                    ByVal Patient_ID As Long,  _
-                    ByVal Date_of_Consultation As Date,  _
-                    ByVal BP As String,  _
-                    ByVal Heart_rate As String,  _
-                    ByVal Respiratory_rate As String,  _
-                    ByVal Temperature As String,  _
-                    ByVal Chief_Complaint As String,  _
-                    ByVal History_of_Present_Illness As String,  _
-                    ByVal Past_Medical_History As String,  _
-                    ByVal Personal_and_Social_History As String,  _
-                    ByVal Signs_and_Symptoms As String,  _
-                    ByVal Initial_Impression As String,  _
-                    ByVal Final_Diagnosis As String,  _
-                    ByVal Prescription As String,  _
-                    ByVal Laboratory_request As String,  _
-                    ByVal Referral_ As String,  _
-                    ByVal _Date_of_Follow_up As Date) As STI_CONSULTATIONRow
-            Dim rowSTI_CONSULTATIONRow As STI_CONSULTATIONRow = CType(Me.NewRow,STI_CONSULTATIONRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Patient_ID, Date_of_Consultation, BP, Heart_rate, Respiratory_rate, Temperature, Chief_Complaint, History_of_Present_Illness, Past_Medical_History, Personal_and_Social_History, Signs_and_Symptoms, Initial_Impression, Final_Diagnosis, Prescription, Laboratory_request, Referral_, _Date_of_Follow_up}
-            rowSTI_CONSULTATIONRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowSTI_CONSULTATIONRow)
-            Return rowSTI_CONSULTATIONRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function FindBySTI_ID(ByVal STI_ID As Long) As STI_CONSULTATIONRow
-            Return CType(Me.Rows.Find(New Object() {STI_ID}),STI_CONSULTATIONRow)
+        Public Overloads Function AddUserRow(ByVal Username As String, ByVal Password As String) As UserRow
+            Dim rowUserRow As UserRow = CType(Me.NewRow,UserRow)
+            Dim columnValuesArray() As Object = New Object() {Username, Password}
+            rowUserRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowUserRow)
+            Return rowUserRow
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As STI_CONSULTATIONDataTable = CType(MyBase.Clone,STI_CONSULTATIONDataTable)
+            Dim cln As UserDataTable = CType(MyBase.Clone,UserDataTable)
             cln.InitVars
             Return cln
         End Function
@@ -2579,120 +2595,51 @@ Partial Public Class tryshcDataSet1
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New STI_CONSULTATIONDataTable()
+            Return New UserDataTable()
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnSTI_ID = MyBase.Columns("STI ID")
-            Me.columnPatient_ID = MyBase.Columns("Patient ID")
-            Me.columnDate_of_Consultation = MyBase.Columns("Date of Consultation")
-            Me.columnBP = MyBase.Columns("BP")
-            Me.columnHeart_rate = MyBase.Columns("Heart rate")
-            Me.columnRespiratory_rate = MyBase.Columns("Respiratory rate")
-            Me.columnTemperature = MyBase.Columns("Temperature")
-            Me.columnChief_Complaint = MyBase.Columns("Chief Complaint")
-            Me.columnHistory_of_Present_Illness = MyBase.Columns("History of Present Illness")
-            Me.columnPast_Medical_History = MyBase.Columns("Past Medical History")
-            Me.columnPersonal_and_Social_History = MyBase.Columns("Personal and Social History")
-            Me.columnSigns_and_Symptoms = MyBase.Columns("Signs and Symptoms")
-            Me.columnInitial_Impression = MyBase.Columns("Initial Impression")
-            Me.columnFinal_Diagnosis = MyBase.Columns("Final Diagnosis")
-            Me.columnPrescription = MyBase.Columns("Prescription")
-            Me.columnLaboratory_request = MyBase.Columns("Laboratory request")
-            Me.columnReferral_ = MyBase.Columns("Referral ")
-            Me._columnDate_of_Follow_up = MyBase.Columns("Date of Follow-up")
+            Me.columnUsername = MyBase.Columns("Username")
+            Me.columnPassword = MyBase.Columns("Password")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnSTI_ID = New Global.System.Data.DataColumn("STI ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSTI_ID)
-            Me.columnPatient_ID = New Global.System.Data.DataColumn("Patient ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPatient_ID)
-            Me.columnDate_of_Consultation = New Global.System.Data.DataColumn("Date of Consultation", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDate_of_Consultation)
-            Me.columnBP = New Global.System.Data.DataColumn("BP", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnBP)
-            Me.columnHeart_rate = New Global.System.Data.DataColumn("Heart rate", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnHeart_rate)
-            Me.columnRespiratory_rate = New Global.System.Data.DataColumn("Respiratory rate", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnRespiratory_rate)
-            Me.columnTemperature = New Global.System.Data.DataColumn("Temperature", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTemperature)
-            Me.columnChief_Complaint = New Global.System.Data.DataColumn("Chief Complaint", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnChief_Complaint)
-            Me.columnHistory_of_Present_Illness = New Global.System.Data.DataColumn("History of Present Illness", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnHistory_of_Present_Illness)
-            Me.columnPast_Medical_History = New Global.System.Data.DataColumn("Past Medical History", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPast_Medical_History)
-            Me.columnPersonal_and_Social_History = New Global.System.Data.DataColumn("Personal and Social History", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPersonal_and_Social_History)
-            Me.columnSigns_and_Symptoms = New Global.System.Data.DataColumn("Signs and Symptoms", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSigns_and_Symptoms)
-            Me.columnInitial_Impression = New Global.System.Data.DataColumn("Initial Impression", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnInitial_Impression)
-            Me.columnFinal_Diagnosis = New Global.System.Data.DataColumn("Final Diagnosis", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnFinal_Diagnosis)
-            Me.columnPrescription = New Global.System.Data.DataColumn("Prescription", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPrescription)
-            Me.columnLaboratory_request = New Global.System.Data.DataColumn("Laboratory request", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLaboratory_request)
-            Me.columnReferral_ = New Global.System.Data.DataColumn("Referral ", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnReferral_)
-            Me._columnDate_of_Follow_up = New Global.System.Data.DataColumn("Date of Follow-up", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            Me._columnDate_of_Follow_up.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnDate_of_Follow_up")
-            Me._columnDate_of_Follow_up.ExtendedProperties.Add("Generator_UserColumnName", "Date of Follow-up")
-            MyBase.Columns.Add(Me._columnDate_of_Follow_up)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnSTI_ID}, true))
-            Me.columnSTI_ID.AutoIncrement = true
-            Me.columnSTI_ID.AutoIncrementSeed = -1
-            Me.columnSTI_ID.AutoIncrementStep = -1
-            Me.columnSTI_ID.AllowDBNull = false
-            Me.columnSTI_ID.ReadOnly = true
-            Me.columnSTI_ID.Unique = true
-            Me.columnBP.MaxLength = 100
-            Me.columnHeart_rate.MaxLength = 100
-            Me.columnRespiratory_rate.MaxLength = 100
-            Me.columnTemperature.MaxLength = 100
-            Me.columnChief_Complaint.MaxLength = 100
-            Me.columnHistory_of_Present_Illness.MaxLength = 100
-            Me.columnPast_Medical_History.MaxLength = 100
-            Me.columnPersonal_and_Social_History.MaxLength = 100
-            Me.columnSigns_and_Symptoms.MaxLength = 100
-            Me.columnInitial_Impression.MaxLength = 100
-            Me.columnFinal_Diagnosis.MaxLength = 100
-            Me.columnPrescription.MaxLength = 100
-            Me.columnLaboratory_request.MaxLength = 100
-            Me.columnReferral_.MaxLength = 100
+            Me.columnUsername = New Global.System.Data.DataColumn("Username", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnUsername)
+            Me.columnPassword = New Global.System.Data.DataColumn("Password", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPassword)
+            Me.columnUsername.MaxLength = 50
+            Me.columnPassword.MaxLength = 50
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function NewSTI_CONSULTATIONRow() As STI_CONSULTATIONRow
-            Return CType(Me.NewRow,STI_CONSULTATIONRow)
+        Public Function NewUserRow() As UserRow
+            Return CType(Me.NewRow,UserRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New STI_CONSULTATIONRow(builder)
+            Return New UserRow(builder)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(STI_CONSULTATIONRow)
+            Return GetType(UserRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
-            If (Not (Me.STI_CONSULTATIONRowChangedEvent) Is Nothing) Then
-                RaiseEvent STI_CONSULTATIONRowChanged(Me, New STI_CONSULTATIONRowChangeEvent(CType(e.Row,STI_CONSULTATIONRow), e.Action))
+            If (Not (Me.UserRowChangedEvent) Is Nothing) Then
+                RaiseEvent UserRowChanged(Me, New UserRowChangeEvent(CType(e.Row,UserRow), e.Action))
             End If
         End Sub
         
@@ -2700,8 +2647,8 @@ Partial Public Class tryshcDataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
-            If (Not (Me.STI_CONSULTATIONRowChangingEvent) Is Nothing) Then
-                RaiseEvent STI_CONSULTATIONRowChanging(Me, New STI_CONSULTATIONRowChangeEvent(CType(e.Row,STI_CONSULTATIONRow), e.Action))
+            If (Not (Me.UserRowChangingEvent) Is Nothing) Then
+                RaiseEvent UserRowChanging(Me, New UserRowChangeEvent(CType(e.Row,UserRow), e.Action))
             End If
         End Sub
         
@@ -2709,8 +2656,8 @@ Partial Public Class tryshcDataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
-            If (Not (Me.STI_CONSULTATIONRowDeletedEvent) Is Nothing) Then
-                RaiseEvent STI_CONSULTATIONRowDeleted(Me, New STI_CONSULTATIONRowChangeEvent(CType(e.Row,STI_CONSULTATIONRow), e.Action))
+            If (Not (Me.UserRowDeletedEvent) Is Nothing) Then
+                RaiseEvent UserRowDeleted(Me, New UserRowChangeEvent(CType(e.Row,UserRow), e.Action))
             End If
         End Sub
         
@@ -2718,14 +2665,14 @@ Partial Public Class tryshcDataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
-            If (Not (Me.STI_CONSULTATIONRowDeletingEvent) Is Nothing) Then
-                RaiseEvent STI_CONSULTATIONRowDeleting(Me, New STI_CONSULTATIONRowChangeEvent(CType(e.Row,STI_CONSULTATIONRow), e.Action))
+            If (Not (Me.UserRowDeletingEvent) Is Nothing) Then
+                RaiseEvent UserRowDeleting(Me, New UserRowChangeEvent(CType(e.Row,UserRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub RemoveSTI_CONSULTATIONRow(ByVal row As STI_CONSULTATIONRow)
+        Public Sub RemoveUserRow(ByVal row As UserRow)
             Me.Rows.Remove(row)
         End Sub
         
@@ -2734,7 +2681,7 @@ Partial Public Class tryshcDataSet1
         Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
             Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
             Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As tryshcDataSet1 = New tryshcDataSet1()
+            Dim ds As Database1DataSet1 = New Database1DataSet1()
             Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
             any1.Namespace = "http://www.w3.org/2001/XMLSchema"
             any1.MinOccurs = New Decimal(0)
@@ -2752,7 +2699,651 @@ Partial Public Class tryshcDataSet1
             type.Attributes.Add(attribute1)
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "STI_CONSULTATIONDataTable"
+            attribute2.FixedValue = "UserDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class VCTDataTable
+        Inherits Global.System.Data.TypedTableBase(Of VCTRow)
+        
+        Private columnVCT_ID As Global.System.Data.DataColumn
+        
+        Private columnID As Global.System.Data.DataColumn
+        
+        Private columnHIV_Counseling As Global.System.Data.DataColumn
+        
+        Private columnDate_of_Counseling As Global.System.Data.DataColumn
+        
+        Private columnHIV_Testing As Global.System.Data.DataColumn
+        
+        Private columnDate_of_HIV_Testing As Global.System.Data.DataColumn
+        
+        Private columnHIV_Test_Result As Global.System.Data.DataColumn
+        
+        Private columnResults_Taken_ As Global.System.Data.DataColumn
+        
+        Private columnDate_HIV_Test_Result_Released As Global.System.Data.DataColumn
+        
+        Private columnCD4_Count As Global.System.Data.DataColumn
+        
+        Private _columnAnti_retroviral_Treatment As Global.System.Data.DataColumn
+        
+        Private columnPlace_of_Referral As Global.System.Data.DataColumn
+        
+        Private _columnSchedule_of_follow_up_Visit As Global.System.Data.DataColumn
+        
+        Private columnConfirmatory_Test_Result As Global.System.Data.DataColumn
+        
+        Private columnReferral_to_Treatment_Hub As Global.System.Data.DataColumn
+        
+        Private columnSuccessfully_Accepted_to_Treatment_Hub As Global.System.Data.DataColumn
+        
+        Private columnReceived_Condom As Global.System.Data.DataColumn
+        
+        Private columnReceived_Lubricant As Global.System.Data.DataColumn
+        
+        Private columnNumber_of_Condoms_ As Global.System.Data.DataColumn
+        
+        Private columnNumber_of_Lubricants_ As Global.System.Data.DataColumn
+        
+        Private columnNumber_of_Contacts As Global.System.Data.DataColumn
+        
+        Private columnRecruitment_System As Global.System.Data.DataColumn
+        
+        Private _columnType_of_Visit__V_ As Global.System.Data.DataColumn
+        
+        Private _columnType_of_Client__V_ As Global.System.Data.DataColumn
+        
+        Private columnType_of_Recruitment As Global.System.Data.DataColumn
+        
+        Private columnSetting_of_HIV_Testing As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "VCT"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property VCT_IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnVCT_ID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property HIV_CounselingColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnHIV_Counseling
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Date_of_CounselingColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDate_of_Counseling
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property HIV_TestingColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnHIV_Testing
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Date_of_HIV_TestingColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDate_of_HIV_Testing
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property HIV_Test_ResultColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnHIV_Test_Result
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Results_Taken_Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnResults_Taken_
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Date_HIV_Test_Result_ReleasedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDate_HIV_Test_Result_Released
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CD4_CountColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCD4_Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _Anti_retroviral_TreatmentColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me._columnAnti_retroviral_Treatment
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Place_of_ReferralColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPlace_of_Referral
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _Schedule_of_follow_up_VisitColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me._columnSchedule_of_follow_up_Visit
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Confirmatory_Test_ResultColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnConfirmatory_Test_Result
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Referral_to_Treatment_HubColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnReferral_to_Treatment_Hub
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Successfully_Accepted_to_Treatment_HubColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSuccessfully_Accepted_to_Treatment_Hub
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Received_CondomColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnReceived_Condom
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Received_LubricantColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnReceived_Lubricant
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Number_of_Condoms_Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNumber_of_Condoms_
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Number_of_Lubricants_Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNumber_of_Lubricants_
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Number_of_ContactsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNumber_of_Contacts
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Recruitment_SystemColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRecruitment_System
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _Type_of_Visit__V_Column() As Global.System.Data.DataColumn
+            Get
+                Return Me._columnType_of_Visit__V_
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _Type_of_Client__V_Column() As Global.System.Data.DataColumn
+            Get
+                Return Me._columnType_of_Client__V_
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Type_of_RecruitmentColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnType_of_Recruitment
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Setting_of_HIV_TestingColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSetting_of_HIV_Testing
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As VCTRow
+            Get
+                Return CType(Me.Rows(index),VCTRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event VCTRowChanging As VCTRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event VCTRowChanged As VCTRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event VCTRowDeleting As VCTRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event VCTRowDeleted As VCTRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Sub AddVCTRow(ByVal row As VCTRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Function AddVCTRow( _
+                    ByVal parentPersonalInformationRowByPersonalInformation_VCT As PersonalInformationRow,  _
+                    ByVal HIV_Counseling As String,  _
+                    ByVal Date_of_Counseling As Date,  _
+                    ByVal HIV_Testing As String,  _
+                    ByVal Date_of_HIV_Testing As Date,  _
+                    ByVal HIV_Test_Result As String,  _
+                    ByVal Results_Taken_ As String,  _
+                    ByVal Date_HIV_Test_Result_Released As Date,  _
+                    ByVal CD4_Count As String,  _
+                    ByVal _Anti_retroviral_Treatment As String,  _
+                    ByVal Place_of_Referral As String,  _
+                    ByVal _Schedule_of_follow_up_Visit As String,  _
+                    ByVal Confirmatory_Test_Result As String,  _
+                    ByVal Referral_to_Treatment_Hub As String,  _
+                    ByVal Successfully_Accepted_to_Treatment_Hub As String,  _
+                    ByVal Received_Condom As String,  _
+                    ByVal Received_Lubricant As String,  _
+                    ByVal Number_of_Condoms_ As Long,  _
+                    ByVal Number_of_Lubricants_ As Long,  _
+                    ByVal Number_of_Contacts As Long,  _
+                    ByVal Recruitment_System As String,  _
+                    ByVal _Type_of_Visit__V_ As String,  _
+                    ByVal _Type_of_Client__V_ As String,  _
+                    ByVal Type_of_Recruitment As String,  _
+                    ByVal Setting_of_HIV_Testing As String) As VCTRow
+            Dim rowVCTRow As VCTRow = CType(Me.NewRow,VCTRow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, HIV_Counseling, Date_of_Counseling, HIV_Testing, Date_of_HIV_Testing, HIV_Test_Result, Results_Taken_, Date_HIV_Test_Result_Released, CD4_Count, _Anti_retroviral_Treatment, Place_of_Referral, _Schedule_of_follow_up_Visit, Confirmatory_Test_Result, Referral_to_Treatment_Hub, Successfully_Accepted_to_Treatment_Hub, Received_Condom, Received_Lubricant, Number_of_Condoms_, Number_of_Lubricants_, Number_of_Contacts, Recruitment_System, _Type_of_Visit__V_, _Type_of_Client__V_, Type_of_Recruitment, Setting_of_HIV_Testing}
+            If (Not (parentPersonalInformationRowByPersonalInformation_VCT) Is Nothing) Then
+                columnValuesArray(1) = parentPersonalInformationRowByPersonalInformation_VCT(0)
+            End If
+            rowVCTRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowVCTRow)
+            Return rowVCTRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function FindByVCT_ID(ByVal VCT_ID As Long) As VCTRow
+            Return CType(Me.Rows.Find(New Object() {VCT_ID}),VCTRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As VCTDataTable = CType(MyBase.Clone,VCTDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New VCTDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnVCT_ID = MyBase.Columns("VCT ID")
+            Me.columnID = MyBase.Columns("ID")
+            Me.columnHIV_Counseling = MyBase.Columns("HIV Counseling")
+            Me.columnDate_of_Counseling = MyBase.Columns("Date of Counseling")
+            Me.columnHIV_Testing = MyBase.Columns("HIV Testing")
+            Me.columnDate_of_HIV_Testing = MyBase.Columns("Date of HIV Testing")
+            Me.columnHIV_Test_Result = MyBase.Columns("HIV Test Result")
+            Me.columnResults_Taken_ = MyBase.Columns("Results Taken ")
+            Me.columnDate_HIV_Test_Result_Released = MyBase.Columns("Date HIV Test Result Released")
+            Me.columnCD4_Count = MyBase.Columns("CD4 Count")
+            Me._columnAnti_retroviral_Treatment = MyBase.Columns("Anti-retroviral Treatment")
+            Me.columnPlace_of_Referral = MyBase.Columns("Place of Referral")
+            Me._columnSchedule_of_follow_up_Visit = MyBase.Columns("Schedule of follow-up Visit")
+            Me.columnConfirmatory_Test_Result = MyBase.Columns("Confirmatory Test Result")
+            Me.columnReferral_to_Treatment_Hub = MyBase.Columns("Referral to Treatment Hub")
+            Me.columnSuccessfully_Accepted_to_Treatment_Hub = MyBase.Columns("Successfully Accepted to Treatment Hub")
+            Me.columnReceived_Condom = MyBase.Columns("Received Condom")
+            Me.columnReceived_Lubricant = MyBase.Columns("Received Lubricant")
+            Me.columnNumber_of_Condoms_ = MyBase.Columns("Number of Condoms ")
+            Me.columnNumber_of_Lubricants_ = MyBase.Columns("Number of Lubricants ")
+            Me.columnNumber_of_Contacts = MyBase.Columns("Number of Contacts")
+            Me.columnRecruitment_System = MyBase.Columns("Recruitment System")
+            Me._columnType_of_Visit__V_ = MyBase.Columns("Type of Visit (V)")
+            Me._columnType_of_Client__V_ = MyBase.Columns("Type of Client (V)")
+            Me.columnType_of_Recruitment = MyBase.Columns("Type of Recruitment")
+            Me.columnSetting_of_HIV_Testing = MyBase.Columns("Setting of HIV Testing")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnVCT_ID = New Global.System.Data.DataColumn("VCT ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnVCT_ID)
+            Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnID)
+            Me.columnHIV_Counseling = New Global.System.Data.DataColumn("HIV Counseling", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnHIV_Counseling)
+            Me.columnDate_of_Counseling = New Global.System.Data.DataColumn("Date of Counseling", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDate_of_Counseling)
+            Me.columnHIV_Testing = New Global.System.Data.DataColumn("HIV Testing", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnHIV_Testing)
+            Me.columnDate_of_HIV_Testing = New Global.System.Data.DataColumn("Date of HIV Testing", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDate_of_HIV_Testing)
+            Me.columnHIV_Test_Result = New Global.System.Data.DataColumn("HIV Test Result", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnHIV_Test_Result)
+            Me.columnResults_Taken_ = New Global.System.Data.DataColumn("Results Taken ", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnResults_Taken_)
+            Me.columnDate_HIV_Test_Result_Released = New Global.System.Data.DataColumn("Date HIV Test Result Released", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDate_HIV_Test_Result_Released)
+            Me.columnCD4_Count = New Global.System.Data.DataColumn("CD4 Count", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCD4_Count)
+            Me._columnAnti_retroviral_Treatment = New Global.System.Data.DataColumn("Anti-retroviral Treatment", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnAnti_retroviral_Treatment.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnAnti_retroviral_Treatment")
+            Me._columnAnti_retroviral_Treatment.ExtendedProperties.Add("Generator_UserColumnName", "Anti-retroviral Treatment")
+            MyBase.Columns.Add(Me._columnAnti_retroviral_Treatment)
+            Me.columnPlace_of_Referral = New Global.System.Data.DataColumn("Place of Referral", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPlace_of_Referral)
+            Me._columnSchedule_of_follow_up_Visit = New Global.System.Data.DataColumn("Schedule of follow-up Visit", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnSchedule_of_follow_up_Visit.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnSchedule_of_follow_up_Visit")
+            Me._columnSchedule_of_follow_up_Visit.ExtendedProperties.Add("Generator_UserColumnName", "Schedule of follow-up Visit")
+            MyBase.Columns.Add(Me._columnSchedule_of_follow_up_Visit)
+            Me.columnConfirmatory_Test_Result = New Global.System.Data.DataColumn("Confirmatory Test Result", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnConfirmatory_Test_Result)
+            Me.columnReferral_to_Treatment_Hub = New Global.System.Data.DataColumn("Referral to Treatment Hub", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnReferral_to_Treatment_Hub)
+            Me.columnSuccessfully_Accepted_to_Treatment_Hub = New Global.System.Data.DataColumn("Successfully Accepted to Treatment Hub", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSuccessfully_Accepted_to_Treatment_Hub)
+            Me.columnReceived_Condom = New Global.System.Data.DataColumn("Received Condom", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnReceived_Condom)
+            Me.columnReceived_Lubricant = New Global.System.Data.DataColumn("Received Lubricant", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnReceived_Lubricant)
+            Me.columnNumber_of_Condoms_ = New Global.System.Data.DataColumn("Number of Condoms ", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNumber_of_Condoms_)
+            Me.columnNumber_of_Lubricants_ = New Global.System.Data.DataColumn("Number of Lubricants ", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNumber_of_Lubricants_)
+            Me.columnNumber_of_Contacts = New Global.System.Data.DataColumn("Number of Contacts", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNumber_of_Contacts)
+            Me.columnRecruitment_System = New Global.System.Data.DataColumn("Recruitment System", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRecruitment_System)
+            Me._columnType_of_Visit__V_ = New Global.System.Data.DataColumn("Type of Visit (V)", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnType_of_Visit__V_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnType_of_Visit__V_")
+            Me._columnType_of_Visit__V_.ExtendedProperties.Add("Generator_UserColumnName", "Type of Visit (V)")
+            MyBase.Columns.Add(Me._columnType_of_Visit__V_)
+            Me._columnType_of_Client__V_ = New Global.System.Data.DataColumn("Type of Client (V)", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnType_of_Client__V_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnType_of_Client__V_")
+            Me._columnType_of_Client__V_.ExtendedProperties.Add("Generator_UserColumnName", "Type of Client (V)")
+            MyBase.Columns.Add(Me._columnType_of_Client__V_)
+            Me.columnType_of_Recruitment = New Global.System.Data.DataColumn("Type of Recruitment", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnType_of_Recruitment)
+            Me.columnSetting_of_HIV_Testing = New Global.System.Data.DataColumn("Setting of HIV Testing", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSetting_of_HIV_Testing)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnVCT_ID}, true))
+            Me.columnVCT_ID.AutoIncrement = true
+            Me.columnVCT_ID.AutoIncrementSeed = 1
+            Me.columnVCT_ID.AllowDBNull = false
+            Me.columnVCT_ID.ReadOnly = true
+            Me.columnVCT_ID.Unique = true
+            Me.columnID.AllowDBNull = false
+            Me.columnHIV_Counseling.MaxLength = 10
+            Me.columnHIV_Testing.MaxLength = 10
+            Me.columnHIV_Test_Result.MaxLength = 50
+            Me.columnResults_Taken_.MaxLength = 10
+            Me.columnCD4_Count.MaxLength = 50
+            Me._columnAnti_retroviral_Treatment.MaxLength = 20
+            Me.columnPlace_of_Referral.MaxLength = 100
+            Me._columnSchedule_of_follow_up_Visit.MaxLength = 100
+            Me.columnConfirmatory_Test_Result.MaxLength = 20
+            Me.columnReferral_to_Treatment_Hub.MaxLength = 20
+            Me.columnSuccessfully_Accepted_to_Treatment_Hub.MaxLength = 20
+            Me.columnReceived_Condom.MaxLength = 20
+            Me.columnReceived_Lubricant.MaxLength = 20
+            Me.columnRecruitment_System.MaxLength = 50
+            Me._columnType_of_Visit__V_.MaxLength = 20
+            Me._columnType_of_Client__V_.MaxLength = 30
+            Me.columnType_of_Recruitment.MaxLength = 30
+            Me.columnSetting_of_HIV_Testing.MaxLength = 30
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function NewVCTRow() As VCTRow
+            Return CType(Me.NewRow,VCTRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New VCTRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(VCTRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.VCTRowChangedEvent) Is Nothing) Then
+                RaiseEvent VCTRowChanged(Me, New VCTRowChangeEvent(CType(e.Row,VCTRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.VCTRowChangingEvent) Is Nothing) Then
+                RaiseEvent VCTRowChanging(Me, New VCTRowChangeEvent(CType(e.Row,VCTRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.VCTRowDeletedEvent) Is Nothing) Then
+                RaiseEvent VCTRowDeleted(Me, New VCTRowChangeEvent(CType(e.Row,VCTRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.VCTRowDeletingEvent) Is Nothing) Then
+                RaiseEvent VCTRowDeleting(Me, New VCTRowChangeEvent(CType(e.Row,VCTRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub RemoveVCTRow(ByVal row As VCTRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As Database1DataSet1 = New Database1DataSet1()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "VCTDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -2799,1768 +3390,37 @@ Partial Public Class tryshcDataSet1
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
-    Partial Public Class Health_Certificate_Application_and_RenewalRow
+    Partial Public Class ConsultationRow
         Inherits Global.System.Data.DataRow
         
-        Private tableHealth_Certificate_Application_and_Renewal As Health_Certificate_Application_and_RenewalDataTable
+        Private tableConsultation As ConsultationDataTable
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tableHealth_Certificate_Application_and_Renewal = CType(Me.Table,Health_Certificate_Application_and_RenewalDataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Patient_ID() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Patient_IDColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Patient ID' in table 'Health Certificate Application and Re"& _ 
-                            "newal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Patient_IDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Date_of_Application() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Date_of_ApplicationColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date of Application' in table 'Health Certificate Applicati"& _ 
-                            "on and Renewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Date_of_ApplicationColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Date_Issued() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Date_IssuedColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date Issued' in table 'Health Certificate Application and R"& _ 
-                            "enewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Date_IssuedColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Urine_Color() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Urine_ColorColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Urine Color' in table 'Health Certificate Application and R"& _ 
-                            "enewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Urine_ColorColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Transparency() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.TransparencyColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Transparency' in table 'Health Certificate Application and "& _ 
-                            "Renewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.TransparencyColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Reaction() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.ReactionColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Reaction' in table 'Health Certificate Application and Rene"& _ 
-                            "wal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.ReactionColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Specific_Gravity() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Specific_GravityColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Specific Gravity' in table 'Health Certificate Application "& _ 
-                            "and Renewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Specific_GravityColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Urine_Pus_Cells() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Urine_Pus_CellsColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Urine Pus Cells' in table 'Health Certificate Application a"& _ 
-                            "nd Renewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Urine_Pus_CellsColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Urine_RBC() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Urine_RBCColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Urine RBC' in table 'Health Certificate Application and Ren"& _ 
-                            "ewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Urine_RBCColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Bacteria() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.BacteriaColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Bacteria' in table 'Health Certificate Application and Rene"& _ 
-                            "wal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.BacteriaColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Epithelial_Cells() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Epithelial_CellsColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Epithelial Cells' in table 'Health Certificate Application "& _ 
-                            "and Renewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Epithelial_CellsColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Crystal() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.CrystalColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Crystal' in table 'Health Certificate Application and Renew"& _ 
-                            "al' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.CrystalColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Casts() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.CastsColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Casts' in table 'Health Certificate Application and Renewal"& _ 
-                            "' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.CastsColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Urine_Others() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Urine_OthersColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Urine Others' in table 'Health Certificate Application and "& _ 
-                            "Renewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Urine_OthersColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Stool_Color_() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Stool_Color_Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Stool Color ' in table 'Health Certificate Application and "& _ 
-                            "Renewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Stool_Color_Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Consistency() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.ConsistencyColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Consistency' in table 'Health Certificate Application and R"& _ 
-                            "enewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.ConsistencyColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Stool_RBC() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Stool_RBCColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Stool RBC' in table 'Health Certificate Application and Ren"& _ 
-                            "ewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Stool_RBCColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Stool_Pus_Cells() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Stool_Pus_CellsColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Stool Pus Cells' in table 'Health Certificate Application a"& _ 
-                            "nd Renewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Stool_Pus_CellsColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Ascaris_Lumbricoides() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Ascaris_LumbricoidesColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Ascaris Lumbricoides' in table 'Health Certificate Applicat"& _ 
-                            "ion and Renewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Ascaris_LumbricoidesColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Trichura_triciura() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Trichura_triciuraColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Trichura triciura' in table 'Health Certificate Application"& _ 
-                            " and Renewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Trichura_triciuraColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Hookworms() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.HookwormsColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Hookworms' in table 'Health Certificate Application and Ren"& _ 
-                            "ewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.HookwormsColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Entamoeba_histolytica() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Entamoeba_histolyticaColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Entamoeba histolytica' in table 'Health Certificate Applica"& _ 
-                            "tion and Renewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Entamoeba_histolyticaColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Entamoeba_coli() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Entamoeba_coliColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Entamoeba coli' in table 'Health Certificate Application an"& _ 
-                            "d Renewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Entamoeba_coliColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Stool_Others() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Stool_OthersColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Stool Others' in table 'Health Certificate Application and "& _ 
-                            "Renewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Stool_OthersColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Health_Cert_ID() As Long
-            Get
-                Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Health_Cert_IDColumn),Long)
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Health_Cert_IDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property VDRL() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.VDRLColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'VDRL' in table 'Health Certificate Application and Renewal'"& _ 
-                            " is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.VDRLColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property RPR() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.RPRColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'RPR' in table 'Health Certificate Application and Renewal' "& _ 
-                            "is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.RPRColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property HBsAg() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.HBsAgColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'HBsAg' in table 'Health Certificate Application and Renewal"& _ 
-                            "' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.HBsAgColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Gram_Stain() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.Gram_StainColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Gram Stain' in table 'Health Certificate Application and Re"& _ 
-                            "newal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.Gram_StainColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property NSS() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal.NSSColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'NSS' in table 'Health Certificate Application and Renewal' "& _ 
-                            "is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal.NSSColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property _10__KOH() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal._10__KOHColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column '10% KOH' in table 'Health Certificate Application and Renew"& _ 
-                            "al' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal._10__KOHColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property _Chest_X_ray() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHealth_Certificate_Application_and_Renewal._Chest_X_rayColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Chest X-ray' in table 'Health Certificate Application and R"& _ 
-                            "enewal' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHealth_Certificate_Application_and_Renewal._Chest_X_rayColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsPatient_IDNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Patient_IDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetPatient_IDNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Patient_IDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsDate_of_ApplicationNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Date_of_ApplicationColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetDate_of_ApplicationNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Date_of_ApplicationColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsDate_IssuedNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Date_IssuedColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetDate_IssuedNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Date_IssuedColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsUrine_ColorNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Urine_ColorColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetUrine_ColorNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Urine_ColorColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsTransparencyNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.TransparencyColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetTransparencyNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.TransparencyColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsReactionNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.ReactionColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetReactionNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.ReactionColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsSpecific_GravityNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Specific_GravityColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetSpecific_GravityNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Specific_GravityColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsUrine_Pus_CellsNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Urine_Pus_CellsColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetUrine_Pus_CellsNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Urine_Pus_CellsColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsUrine_RBCNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Urine_RBCColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetUrine_RBCNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Urine_RBCColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsBacteriaNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.BacteriaColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetBacteriaNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.BacteriaColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsEpithelial_CellsNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Epithelial_CellsColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetEpithelial_CellsNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Epithelial_CellsColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsCrystalNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.CrystalColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetCrystalNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.CrystalColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsCastsNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.CastsColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetCastsNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.CastsColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsUrine_OthersNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Urine_OthersColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetUrine_OthersNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Urine_OthersColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsStool_Color_Null() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Stool_Color_Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetStool_Color_Null()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Stool_Color_Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsConsistencyNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.ConsistencyColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetConsistencyNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.ConsistencyColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsStool_RBCNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Stool_RBCColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetStool_RBCNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Stool_RBCColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsStool_Pus_CellsNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Stool_Pus_CellsColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetStool_Pus_CellsNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Stool_Pus_CellsColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsAscaris_LumbricoidesNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Ascaris_LumbricoidesColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetAscaris_LumbricoidesNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Ascaris_LumbricoidesColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsTrichura_triciuraNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Trichura_triciuraColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetTrichura_triciuraNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Trichura_triciuraColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsHookwormsNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.HookwormsColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetHookwormsNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.HookwormsColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsEntamoeba_histolyticaNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Entamoeba_histolyticaColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetEntamoeba_histolyticaNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Entamoeba_histolyticaColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsEntamoeba_coliNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Entamoeba_coliColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetEntamoeba_coliNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Entamoeba_coliColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsStool_OthersNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Stool_OthersColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetStool_OthersNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Stool_OthersColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsVDRLNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.VDRLColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetVDRLNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.VDRLColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsRPRNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.RPRColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetRPRNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.RPRColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsHBsAgNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.HBsAgColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetHBsAgNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.HBsAgColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsGram_StainNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.Gram_StainColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetGram_StainNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.Gram_StainColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsNSSNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal.NSSColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetNSSNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal.NSSColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function Is_10__KOHNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal._10__KOHColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub Set_10__KOHNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal._10__KOHColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function Is_Chest_X_rayNull() As Boolean
-            Return Me.IsNull(Me.tableHealth_Certificate_Application_and_Renewal._Chest_X_rayColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub Set_Chest_X_rayNull()
-            Me(Me.tableHealth_Certificate_Application_and_Renewal._Chest_X_rayColumn) = Global.System.Convert.DBNull
-        End Sub
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
-    Partial Public Class HIV_Voluntary_Counseling_and_TestingRow
-        Inherits Global.System.Data.DataRow
-        
-        Private tableHIV_Voluntary_Counseling_and_Testing As HIV_Voluntary_Counseling_and_TestingDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tableHIV_Voluntary_Counseling_and_Testing = CType(Me.Table,HIV_Voluntary_Counseling_and_TestingDataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property HIV_VCT_ID() As Long
-            Get
-                Return CType(Me(Me.tableHIV_Voluntary_Counseling_and_Testing.HIV_VCT_IDColumn),Long)
-            End Get
-            Set
-                Me(Me.tableHIV_Voluntary_Counseling_and_Testing.HIV_VCT_IDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Patient_ID() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHIV_Voluntary_Counseling_and_Testing.Patient_IDColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Patient ID' in table 'HIV Voluntary Counseling and Testing'"& _ 
-                            " is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHIV_Voluntary_Counseling_and_Testing.Patient_IDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Date_of_Counseling_() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableHIV_Voluntary_Counseling_and_Testing.Date_of_Counseling_Column),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date of Counseling ' in table 'HIV Voluntary Counseling and"& _ 
-                            " Testing' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHIV_Voluntary_Counseling_and_Testing.Date_of_Counseling_Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property HIV_Counseling() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHIV_Voluntary_Counseling_and_Testing.HIV_CounselingColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'HIV Counseling' in table 'HIV Voluntary Counseling and Test"& _ 
-                            "ing' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHIV_Voluntary_Counseling_and_Testing.HIV_CounselingColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Date_Blood_Collected() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableHIV_Voluntary_Counseling_and_Testing.Date_Blood_CollectedColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date Blood Collected' in table 'HIV Voluntary Counseling an"& _ 
-                            "d Testing' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHIV_Voluntary_Counseling_and_Testing.Date_Blood_CollectedColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property HIV_Screening_Test_Result() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHIV_Voluntary_Counseling_and_Testing.HIV_Screening_Test_ResultColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'HIV Screening Test Result' in table 'HIV Voluntary Counseli"& _ 
-                            "ng and Testing' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHIV_Voluntary_Counseling_and_Testing.HIV_Screening_Test_ResultColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Name_of_HIV_Proficient_Medt_Tech() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableHIV_Voluntary_Counseling_and_Testing.Name_of_HIV_Proficient_Medt_TechColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Name of HIV Proficient Medt Tech' in table 'HIV Voluntary C"& _ 
-                            "ounseling and Testing' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableHIV_Voluntary_Counseling_and_Testing.Name_of_HIV_Proficient_Medt_TechColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsPatient_IDNull() As Boolean
-            Return Me.IsNull(Me.tableHIV_Voluntary_Counseling_and_Testing.Patient_IDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetPatient_IDNull()
-            Me(Me.tableHIV_Voluntary_Counseling_and_Testing.Patient_IDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsDate_of_Counseling_Null() As Boolean
-            Return Me.IsNull(Me.tableHIV_Voluntary_Counseling_and_Testing.Date_of_Counseling_Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetDate_of_Counseling_Null()
-            Me(Me.tableHIV_Voluntary_Counseling_and_Testing.Date_of_Counseling_Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsHIV_CounselingNull() As Boolean
-            Return Me.IsNull(Me.tableHIV_Voluntary_Counseling_and_Testing.HIV_CounselingColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetHIV_CounselingNull()
-            Me(Me.tableHIV_Voluntary_Counseling_and_Testing.HIV_CounselingColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsDate_Blood_CollectedNull() As Boolean
-            Return Me.IsNull(Me.tableHIV_Voluntary_Counseling_and_Testing.Date_Blood_CollectedColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetDate_Blood_CollectedNull()
-            Me(Me.tableHIV_Voluntary_Counseling_and_Testing.Date_Blood_CollectedColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsHIV_Screening_Test_ResultNull() As Boolean
-            Return Me.IsNull(Me.tableHIV_Voluntary_Counseling_and_Testing.HIV_Screening_Test_ResultColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetHIV_Screening_Test_ResultNull()
-            Me(Me.tableHIV_Voluntary_Counseling_and_Testing.HIV_Screening_Test_ResultColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsName_of_HIV_Proficient_Medt_TechNull() As Boolean
-            Return Me.IsNull(Me.tableHIV_Voluntary_Counseling_and_Testing.Name_of_HIV_Proficient_Medt_TechColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetName_of_HIV_Proficient_Medt_TechNull()
-            Me(Me.tableHIV_Voluntary_Counseling_and_Testing.Name_of_HIV_Proficient_Medt_TechColumn) = Global.System.Convert.DBNull
-        End Sub
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
-    Partial Public Class LoginRow
-        Inherits Global.System.Data.DataRow
-        
-        Private tableLogin As LoginDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tableLogin = CType(Me.Table,LoginDataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Username() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableLogin.UsernameColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Username' in table 'Login' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableLogin.UsernameColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Password() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableLogin.PasswordColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Password' in table 'Login' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableLogin.PasswordColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsUsernameNull() As Boolean
-            Return Me.IsNull(Me.tableLogin.UsernameColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetUsernameNull()
-            Me(Me.tableLogin.UsernameColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsPasswordNull() As Boolean
-            Return Me.IsNull(Me.tableLogin.PasswordColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetPasswordNull()
-            Me(Me.tableLogin.PasswordColumn) = Global.System.Convert.DBNull
-        End Sub
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
-    Partial Public Class Personal_InformationRow
-        Inherits Global.System.Data.DataRow
-        
-        Private tablePersonal_Information As Personal_InformationDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tablePersonal_Information = CType(Me.Table,Personal_InformationDataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Patient_ID() As Long
-            Get
-                Return CType(Me(Me.tablePersonal_Information.Patient_IDColumn),Long)
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.Patient_IDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Date_of_Registration() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.Date_of_RegistrationColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date of Registration' in table 'Personal Information' is DB"& _ 
-                            "Null.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.Date_of_RegistrationColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property First_Name() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.First_NameColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'First Name' in table 'Personal Information' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.First_NameColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Middle_Name() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.Middle_NameColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Middle Name' in table 'Personal Information' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.Middle_NameColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Last_Name() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.Last_NameColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Last Name' in table 'Personal Information' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.Last_NameColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Gender() As Long
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.GenderColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Gender' in table 'Personal Information' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.GenderColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Date_of_Birth() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.Date_of_BirthColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date of Birth' in table 'Personal Information' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.Date_of_BirthColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Age() As Long
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.AgeColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Age' in table 'Personal Information' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.AgeColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Occupation() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.OccupationColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Occupation' in table 'Personal Information' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.OccupationColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Address() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.AddressColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Address' in table 'Personal Information' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.AddressColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property City() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.CityColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'City' in table 'Personal Information' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.CityColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Telephone_Number() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.Telephone_NumberColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Telephone Number' in table 'Personal Information' is DBNull"& _ 
-                            ".", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.Telephone_NumberColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Name_of_Establishment() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.Name_of_EstablishmentColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Name of Establishment' in table 'Personal Information' is D"& _ 
-                            "BNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.Name_of_EstablishmentColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Type_of_Establishment() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.Type_of_EstablishmentColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Type of Establishment' in table 'Personal Information' is D"& _ 
-                            "BNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.Type_of_EstablishmentColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Contact_Person() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.Contact_PersonColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Contact Person' in table 'Personal Information' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.Contact_PersonColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Contact_Number() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.Contact_NumberColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Contact Number' in table 'Personal Information' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.Contact_NumberColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Address_of_Establishment() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.Address_of_EstablishmentColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Address of Establishment' in table 'Personal Information' i"& _ 
-                            "s DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.Address_of_EstablishmentColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Barangay() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablePersonal_Information.BarangayColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Barangay' in table 'Personal Information' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePersonal_Information.BarangayColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsDate_of_RegistrationNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.Date_of_RegistrationColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetDate_of_RegistrationNull()
-            Me(Me.tablePersonal_Information.Date_of_RegistrationColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsFirst_NameNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.First_NameColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetFirst_NameNull()
-            Me(Me.tablePersonal_Information.First_NameColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsMiddle_NameNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.Middle_NameColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetMiddle_NameNull()
-            Me(Me.tablePersonal_Information.Middle_NameColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsLast_NameNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.Last_NameColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetLast_NameNull()
-            Me(Me.tablePersonal_Information.Last_NameColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsGenderNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.GenderColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetGenderNull()
-            Me(Me.tablePersonal_Information.GenderColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsDate_of_BirthNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.Date_of_BirthColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetDate_of_BirthNull()
-            Me(Me.tablePersonal_Information.Date_of_BirthColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsAgeNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.AgeColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetAgeNull()
-            Me(Me.tablePersonal_Information.AgeColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsOccupationNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.OccupationColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetOccupationNull()
-            Me(Me.tablePersonal_Information.OccupationColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsAddressNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.AddressColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetAddressNull()
-            Me(Me.tablePersonal_Information.AddressColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsCityNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.CityColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetCityNull()
-            Me(Me.tablePersonal_Information.CityColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsTelephone_NumberNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.Telephone_NumberColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetTelephone_NumberNull()
-            Me(Me.tablePersonal_Information.Telephone_NumberColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsName_of_EstablishmentNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.Name_of_EstablishmentColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetName_of_EstablishmentNull()
-            Me(Me.tablePersonal_Information.Name_of_EstablishmentColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsType_of_EstablishmentNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.Type_of_EstablishmentColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetType_of_EstablishmentNull()
-            Me(Me.tablePersonal_Information.Type_of_EstablishmentColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsContact_PersonNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.Contact_PersonColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetContact_PersonNull()
-            Me(Me.tablePersonal_Information.Contact_PersonColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsContact_NumberNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.Contact_NumberColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetContact_NumberNull()
-            Me(Me.tablePersonal_Information.Contact_NumberColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsAddress_of_EstablishmentNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.Address_of_EstablishmentColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetAddress_of_EstablishmentNull()
-            Me(Me.tablePersonal_Information.Address_of_EstablishmentColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsBarangayNull() As Boolean
-            Return Me.IsNull(Me.tablePersonal_Information.BarangayColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetBarangayNull()
-            Me(Me.tablePersonal_Information.BarangayColumn) = Global.System.Convert.DBNull
-        End Sub
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
-    Partial Public Class STI_CONSULTATIONRow
-        Inherits Global.System.Data.DataRow
-        
-        Private tableSTI_CONSULTATION As STI_CONSULTATIONDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tableSTI_CONSULTATION = CType(Me.Table,STI_CONSULTATIONDataTable)
+            Me.tableConsultation = CType(Me.Table,ConsultationDataTable)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property STI_ID() As Long
             Get
-                Return CType(Me(Me.tableSTI_CONSULTATION.STI_IDColumn),Long)
+                Return CType(Me(Me.tableConsultation.STI_IDColumn),Long)
             End Get
             Set
-                Me(Me.tableSTI_CONSULTATION.STI_IDColumn) = value
+                Me(Me.tableConsultation.STI_IDColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Patient_ID() As Long
+        Public Property ID() As Long
             Get
-                Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION.Patient_IDColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Patient ID' in table 'STI CONSULTATION' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tableConsultation.IDColumn),Long)
             End Get
             Set
-                Me(Me.tableSTI_CONSULTATION.Patient_IDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Date_of_Consultation() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION.Date_of_ConsultationColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date of Consultation' in table 'STI CONSULTATION' is DBNull"& _ 
-                            ".", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableSTI_CONSULTATION.Date_of_ConsultationColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property BP() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION.BPColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'BP' in table 'STI CONSULTATION' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableSTI_CONSULTATION.BPColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Heart_rate() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION.Heart_rateColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Heart rate' in table 'STI CONSULTATION' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableSTI_CONSULTATION.Heart_rateColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Respiratory_rate() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION.Respiratory_rateColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Respiratory rate' in table 'STI CONSULTATION' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableSTI_CONSULTATION.Respiratory_rateColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Temperature() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION.TemperatureColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Temperature' in table 'STI CONSULTATION' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableSTI_CONSULTATION.TemperatureColumn) = value
+                Me(Me.tableConsultation.IDColumn) = value
             End Set
         End Property
         
@@ -4569,13 +3429,73 @@ Partial Public Class tryshcDataSet1
         Public Property Chief_Complaint() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION.Chief_ComplaintColumn),String)
+                    Return CType(Me(Me.tableConsultation.Chief_ComplaintColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Chief Complaint' in table 'STI CONSULTATION' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Chief Complaint' in table 'Consultation' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableSTI_CONSULTATION.Chief_ComplaintColumn) = value
+                Me(Me.tableConsultation.Chief_ComplaintColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Blood_Pressure() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableConsultation.Blood_PressureColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Blood Pressure' in table 'Consultation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableConsultation.Blood_PressureColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Heart_Rate() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableConsultation.Heart_RateColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Heart Rate' in table 'Consultation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableConsultation.Heart_RateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Respiratory_Rate() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableConsultation.Respiratory_RateColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Respiratory Rate' in table 'Consultation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableConsultation.Respiratory_RateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Temperature() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableConsultation.TemperatureColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Temperature' in table 'Consultation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableConsultation.TemperatureColumn) = value
             End Set
         End Property
         
@@ -4584,14 +3504,14 @@ Partial Public Class tryshcDataSet1
         Public Property History_of_Present_Illness() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION.History_of_Present_IllnessColumn),String)
+                    Return CType(Me(Me.tableConsultation.History_of_Present_IllnessColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'History of Present Illness' in table 'STI CONSULTATION' is "& _ 
-                            "DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'History of Present Illness' in table 'Consultation' is DBNu"& _ 
+                            "ll.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableSTI_CONSULTATION.History_of_Present_IllnessColumn) = value
+                Me(Me.tableConsultation.History_of_Present_IllnessColumn) = value
             End Set
         End Property
         
@@ -4600,14 +3520,13 @@ Partial Public Class tryshcDataSet1
         Public Property Past_Medical_History() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION.Past_Medical_HistoryColumn),String)
+                    Return CType(Me(Me.tableConsultation.Past_Medical_HistoryColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Past Medical History' in table 'STI CONSULTATION' is DBNull"& _ 
-                            ".", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Past Medical History' in table 'Consultation' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableSTI_CONSULTATION.Past_Medical_HistoryColumn) = value
+                Me(Me.tableConsultation.Past_Medical_HistoryColumn) = value
             End Set
         End Property
         
@@ -4616,44 +3535,29 @@ Partial Public Class tryshcDataSet1
         Public Property Personal_and_Social_History() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION.Personal_and_Social_HistoryColumn),String)
+                    Return CType(Me(Me.tableConsultation.Personal_and_Social_HistoryColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Personal and Social History' in table 'STI CONSULTATION' is"& _ 
-                            " DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Personal and Social History' in table 'Consultation' is DBN"& _ 
+                            "ull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableSTI_CONSULTATION.Personal_and_Social_HistoryColumn) = value
+                Me(Me.tableConsultation.Personal_and_Social_HistoryColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Signs_and_Symptoms() As String
+        Public Property Physical_Examination() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION.Signs_and_SymptomsColumn),String)
+                    Return CType(Me(Me.tableConsultation.Physical_ExaminationColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Signs and Symptoms' in table 'STI CONSULTATION' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Physical Examination' in table 'Consultation' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableSTI_CONSULTATION.Signs_and_SymptomsColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Initial_Impression() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION.Initial_ImpressionColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Initial Impression' in table 'STI CONSULTATION' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableSTI_CONSULTATION.Initial_ImpressionColumn) = value
+                Me(Me.tableConsultation.Physical_ExaminationColumn) = value
             End Set
         End Property
         
@@ -4662,58 +3566,43 @@ Partial Public Class tryshcDataSet1
         Public Property Final_Diagnosis() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION.Final_DiagnosisColumn),String)
+                    Return CType(Me(Me.tableConsultation.Final_DiagnosisColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Final Diagnosis' in table 'STI CONSULTATION' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Final Diagnosis' in table 'Consultation' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableSTI_CONSULTATION.Final_DiagnosisColumn) = value
+                Me(Me.tableConsultation.Final_DiagnosisColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Prescription() As String
+        Public Property Medications() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION.PrescriptionColumn),String)
+                    Return CType(Me(Me.tableConsultation.MedicationsColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Prescription' in table 'STI CONSULTATION' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Medications' in table 'Consultation' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableSTI_CONSULTATION.PrescriptionColumn) = value
+                Me(Me.tableConsultation.MedicationsColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Laboratory_request() As String
+        Public Property Referral() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION.Laboratory_requestColumn),String)
+                    Return CType(Me(Me.tableConsultation.ReferralColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Laboratory request' in table 'STI CONSULTATION' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Referral' in table 'Consultation' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableSTI_CONSULTATION.Laboratory_requestColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Referral_() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION.Referral_Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Referral ' in table 'STI CONSULTATION' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableSTI_CONSULTATION.Referral_Column) = value
+                Me(Me.tableConsultation.ReferralColumn) = value
             End Set
         End Property
         
@@ -4722,218 +3611,2882 @@ Partial Public Class tryshcDataSet1
         Public Property _Date_of_Follow_up() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tableSTI_CONSULTATION._Date_of_Follow_upColumn),Date)
+                    Return CType(Me(Me.tableConsultation._Date_of_Follow_upColumn),Date)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date of Follow-up' in table 'STI CONSULTATION' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date of Follow-up' in table 'Consultation' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableSTI_CONSULTATION._Date_of_Follow_upColumn) = value
+                Me(Me.tableConsultation._Date_of_Follow_upColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsPatient_IDNull() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION.Patient_IDColumn)
-        End Function
+        Public Property Date_of_Consultation() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableConsultation.Date_of_ConsultationColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date of Consultation' in table 'Consultation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableConsultation.Date_of_ConsultationColumn) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetPatient_IDNull()
-            Me(Me.tableSTI_CONSULTATION.Patient_IDColumn) = Global.System.Convert.DBNull
-        End Sub
+        Public Property STI_Diagnosis() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableConsultation.STI_DiagnosisColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'STI Diagnosis' in table 'Consultation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableConsultation.STI_DiagnosisColumn) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsDate_of_ConsultationNull() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION.Date_of_ConsultationColumn)
-        End Function
+        Public Property Consultation_Type_of_Client() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableConsultation.Consultation_Type_of_ClientColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Consultation Type of Client' in table 'Consultation' is DBN"& _ 
+                            "ull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableConsultation.Consultation_Type_of_ClientColumn) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetDate_of_ConsultationNull()
-            Me(Me.tableSTI_CONSULTATION.Date_of_ConsultationColumn) = Global.System.Convert.DBNull
-        End Sub
+        Public Property _Cervical_Urethral_Smear() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableConsultation._Cervical_Urethral_SmearColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Cervical/Urethral Smear' in table 'Consultation' is DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableConsultation._Cervical_Urethral_SmearColumn) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsBPNull() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION.BPColumn)
-        End Function
+        Public Property Vaginal_Smear() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableConsultation.Vaginal_SmearColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Vaginal Smear' in table 'Consultation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableConsultation.Vaginal_SmearColumn) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetBPNull()
-            Me(Me.tableSTI_CONSULTATION.BPColumn) = Global.System.Convert.DBNull
-        End Sub
+        Public Property Wet_Mounts() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableConsultation.Wet_MountsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Wet Mounts' in table 'Consultation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableConsultation.Wet_MountsColumn) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsHeart_rateNull() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION.Heart_rateColumn)
-        End Function
+        Public Property _Number_of_Contacts_Traced__C_() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableConsultation._Number_of_Contacts_Traced__C_Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Number of Contacts Traced (C)' in table 'Consultation' is D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableConsultation._Number_of_Contacts_Traced__C_Column) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetHeart_rateNull()
-            Me(Me.tableSTI_CONSULTATION.Heart_rateColumn) = Global.System.Convert.DBNull
-        End Sub
+        Public Property _VDRL_RPR__C_() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableConsultation._VDRL_RPR__C_Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'VDRL/RPR (C)' in table 'Consultation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableConsultation._VDRL_RPR__C_Column) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsRespiratory_rateNull() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION.Respiratory_rateColumn)
-        End Function
+        Public Property _Type_of_Visit__C_() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableConsultation._Type_of_Visit__C_Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Type of Visit (C)' in table 'Consultation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableConsultation._Type_of_Visit__C_Column) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetRespiratory_rateNull()
-            Me(Me.tableSTI_CONSULTATION.Respiratory_rateColumn) = Global.System.Convert.DBNull
-        End Sub
+        Public Property _Type_of_Client__C_() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableConsultation._Type_of_Client__C_Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Type of Client (C)' in table 'Consultation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableConsultation._Type_of_Client__C_Column) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsTemperatureNull() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION.TemperatureColumn)
-        End Function
+        Public Property _TPHA_TPPA__C_() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableConsultation._TPHA_TPPA__C_Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TPHA/TPPA (C)' in table 'Consultation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableConsultation._TPHA_TPPA__C_Column) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetTemperatureNull()
-            Me(Me.tableSTI_CONSULTATION.TemperatureColumn) = Global.System.Convert.DBNull
-        End Sub
+        Public Property Pertinent_Laboratory_Findings() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableConsultation.Pertinent_Laboratory_FindingsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Pertinent Laboratory Findings' in table 'Consultation' is D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableConsultation.Pertinent_Laboratory_FindingsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PersonalInformationRow() As PersonalInformationRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("PersonalInformation_Consultation")),PersonalInformationRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("PersonalInformation_Consultation"))
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsChief_ComplaintNull() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION.Chief_ComplaintColumn)
+            Return Me.IsNull(Me.tableConsultation.Chief_ComplaintColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetChief_ComplaintNull()
-            Me(Me.tableSTI_CONSULTATION.Chief_ComplaintColumn) = Global.System.Convert.DBNull
+            Me(Me.tableConsultation.Chief_ComplaintColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBlood_PressureNull() As Boolean
+            Return Me.IsNull(Me.tableConsultation.Blood_PressureColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBlood_PressureNull()
+            Me(Me.tableConsultation.Blood_PressureColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsHeart_RateNull() As Boolean
+            Return Me.IsNull(Me.tableConsultation.Heart_RateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetHeart_RateNull()
+            Me(Me.tableConsultation.Heart_RateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsRespiratory_RateNull() As Boolean
+            Return Me.IsNull(Me.tableConsultation.Respiratory_RateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetRespiratory_RateNull()
+            Me(Me.tableConsultation.Respiratory_RateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsTemperatureNull() As Boolean
+            Return Me.IsNull(Me.tableConsultation.TemperatureColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetTemperatureNull()
+            Me(Me.tableConsultation.TemperatureColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsHistory_of_Present_IllnessNull() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION.History_of_Present_IllnessColumn)
+            Return Me.IsNull(Me.tableConsultation.History_of_Present_IllnessColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetHistory_of_Present_IllnessNull()
-            Me(Me.tableSTI_CONSULTATION.History_of_Present_IllnessColumn) = Global.System.Convert.DBNull
+            Me(Me.tableConsultation.History_of_Present_IllnessColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsPast_Medical_HistoryNull() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION.Past_Medical_HistoryColumn)
+            Return Me.IsNull(Me.tableConsultation.Past_Medical_HistoryColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetPast_Medical_HistoryNull()
-            Me(Me.tableSTI_CONSULTATION.Past_Medical_HistoryColumn) = Global.System.Convert.DBNull
+            Me(Me.tableConsultation.Past_Medical_HistoryColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsPersonal_and_Social_HistoryNull() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION.Personal_and_Social_HistoryColumn)
+            Return Me.IsNull(Me.tableConsultation.Personal_and_Social_HistoryColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetPersonal_and_Social_HistoryNull()
-            Me(Me.tableSTI_CONSULTATION.Personal_and_Social_HistoryColumn) = Global.System.Convert.DBNull
+            Me(Me.tableConsultation.Personal_and_Social_HistoryColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsSigns_and_SymptomsNull() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION.Signs_and_SymptomsColumn)
+        Public Function IsPhysical_ExaminationNull() As Boolean
+            Return Me.IsNull(Me.tableConsultation.Physical_ExaminationColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetSigns_and_SymptomsNull()
-            Me(Me.tableSTI_CONSULTATION.Signs_and_SymptomsColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsInitial_ImpressionNull() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION.Initial_ImpressionColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetInitial_ImpressionNull()
-            Me(Me.tableSTI_CONSULTATION.Initial_ImpressionColumn) = Global.System.Convert.DBNull
+        Public Sub SetPhysical_ExaminationNull()
+            Me(Me.tableConsultation.Physical_ExaminationColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsFinal_DiagnosisNull() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION.Final_DiagnosisColumn)
+            Return Me.IsNull(Me.tableConsultation.Final_DiagnosisColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetFinal_DiagnosisNull()
-            Me(Me.tableSTI_CONSULTATION.Final_DiagnosisColumn) = Global.System.Convert.DBNull
+            Me(Me.tableConsultation.Final_DiagnosisColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsPrescriptionNull() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION.PrescriptionColumn)
+        Public Function IsMedicationsNull() As Boolean
+            Return Me.IsNull(Me.tableConsultation.MedicationsColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetPrescriptionNull()
-            Me(Me.tableSTI_CONSULTATION.PrescriptionColumn) = Global.System.Convert.DBNull
+        Public Sub SetMedicationsNull()
+            Me(Me.tableConsultation.MedicationsColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsLaboratory_requestNull() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION.Laboratory_requestColumn)
+        Public Function IsReferralNull() As Boolean
+            Return Me.IsNull(Me.tableConsultation.ReferralColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetLaboratory_requestNull()
-            Me(Me.tableSTI_CONSULTATION.Laboratory_requestColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsReferral_Null() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION.Referral_Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetReferral_Null()
-            Me(Me.tableSTI_CONSULTATION.Referral_Column) = Global.System.Convert.DBNull
+        Public Sub SetReferralNull()
+            Me(Me.tableConsultation.ReferralColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function Is_Date_of_Follow_upNull() As Boolean
-            Return Me.IsNull(Me.tableSTI_CONSULTATION._Date_of_Follow_upColumn)
+            Return Me.IsNull(Me.tableConsultation._Date_of_Follow_upColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub Set_Date_of_Follow_upNull()
-            Me(Me.tableSTI_CONSULTATION._Date_of_Follow_upColumn) = Global.System.Convert.DBNull
+            Me(Me.tableConsultation._Date_of_Follow_upColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsDate_of_ConsultationNull() As Boolean
+            Return Me.IsNull(Me.tableConsultation.Date_of_ConsultationColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetDate_of_ConsultationNull()
+            Me(Me.tableConsultation.Date_of_ConsultationColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSTI_DiagnosisNull() As Boolean
+            Return Me.IsNull(Me.tableConsultation.STI_DiagnosisColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSTI_DiagnosisNull()
+            Me(Me.tableConsultation.STI_DiagnosisColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsConsultation_Type_of_ClientNull() As Boolean
+            Return Me.IsNull(Me.tableConsultation.Consultation_Type_of_ClientColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetConsultation_Type_of_ClientNull()
+            Me(Me.tableConsultation.Consultation_Type_of_ClientColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_Cervical_Urethral_SmearNull() As Boolean
+            Return Me.IsNull(Me.tableConsultation._Cervical_Urethral_SmearColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_Cervical_Urethral_SmearNull()
+            Me(Me.tableConsultation._Cervical_Urethral_SmearColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsVaginal_SmearNull() As Boolean
+            Return Me.IsNull(Me.tableConsultation.Vaginal_SmearColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetVaginal_SmearNull()
+            Me(Me.tableConsultation.Vaginal_SmearColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsWet_MountsNull() As Boolean
+            Return Me.IsNull(Me.tableConsultation.Wet_MountsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetWet_MountsNull()
+            Me(Me.tableConsultation.Wet_MountsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_Number_of_Contacts_Traced__C_Null() As Boolean
+            Return Me.IsNull(Me.tableConsultation._Number_of_Contacts_Traced__C_Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_Number_of_Contacts_Traced__C_Null()
+            Me(Me.tableConsultation._Number_of_Contacts_Traced__C_Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_VDRL_RPR__C_Null() As Boolean
+            Return Me.IsNull(Me.tableConsultation._VDRL_RPR__C_Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_VDRL_RPR__C_Null()
+            Me(Me.tableConsultation._VDRL_RPR__C_Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_Type_of_Visit__C_Null() As Boolean
+            Return Me.IsNull(Me.tableConsultation._Type_of_Visit__C_Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_Type_of_Visit__C_Null()
+            Me(Me.tableConsultation._Type_of_Visit__C_Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_Type_of_Client__C_Null() As Boolean
+            Return Me.IsNull(Me.tableConsultation._Type_of_Client__C_Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_Type_of_Client__C_Null()
+            Me(Me.tableConsultation._Type_of_Client__C_Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_TPHA_TPPA__C_Null() As Boolean
+            Return Me.IsNull(Me.tableConsultation._TPHA_TPPA__C_Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_TPHA_TPPA__C_Null()
+            Me(Me.tableConsultation._TPHA_TPPA__C_Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPertinent_Laboratory_FindingsNull() As Boolean
+            Return Me.IsNull(Me.tableConsultation.Pertinent_Laboratory_FindingsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPertinent_Laboratory_FindingsNull()
+            Me(Me.tableConsultation.Pertinent_Laboratory_FindingsColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class HealthCertificateRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableHealthCertificate As HealthCertificateDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableHealthCertificate = CType(Me.Table,HealthCertificateDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Certificate_ID() As Long
+            Get
+                Return CType(Me(Me.tableHealthCertificate.Certificate_IDColumn),Long)
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Certificate_IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ID() As Long
+            Get
+                Return CType(Me(Me.tableHealthCertificate.IDColumn),Long)
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Date_of_Application() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Date_of_ApplicationColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date of Application' in table 'HealthCertificate' is DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Date_of_ApplicationColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Date_of_Issued() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Date_of_IssuedColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date of Issued' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Date_of_IssuedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Urine_Color() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Urine_ColorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Urine Color' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Urine_ColorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Transparency() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.TransparencyColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Transparency' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.TransparencyColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Reaction() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.ReactionColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Reaction' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.ReactionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Specific_Gravity() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Specific_GravityColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Specific Gravity' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Specific_GravityColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Albumin() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.AlbuminColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Albumin' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.AlbuminColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Sugar() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.SugarColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Sugar' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.SugarColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Urine_Pus_Cells() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Urine_Pus_CellsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Urine Pus Cells' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Urine_Pus_CellsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Urine_RBC() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Urine_RBCColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Urine RBC' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Urine_RBCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Bacteria() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.BacteriaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Bacteria' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.BacteriaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Epithelial_Cells() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Epithelial_CellsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Epithelial Cells' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Epithelial_CellsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Crystals() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.CrystalsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Crystals' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.CrystalsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Casts() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.CastsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Casts' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.CastsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Urine_Others_() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Urine_Others_Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Urine Others ' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Urine_Others_Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Stool_Color() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Stool_ColorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Stool Color' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Stool_ColorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Consistency() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.ConsistencyColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Consistency' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.ConsistencyColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Stool_RBC() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Stool_RBCColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Stool RBC' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Stool_RBCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Stool_Pus_Cells() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Stool_Pus_CellsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Stool Pus Cells' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Stool_Pus_CellsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Ascaris_lumbricoides() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Ascaris_lumbricoidesColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Ascaris lumbricoides' in table 'HealthCertificate' is DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Ascaris_lumbricoidesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Trichuris_trichiura() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Trichuris_trichiuraColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Trichuris trichiura' in table 'HealthCertificate' is DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Trichuris_trichiuraColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Hookworms() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.HookwormsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Hookworms' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.HookwormsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Entamoeba_histolytica() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Entamoeba_histolyticaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Entamoeba histolytica' in table 'HealthCertificate' is DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Entamoeba_histolyticaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Entamoeba_coli() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Entamoeba_coliColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Entamoeba coli' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Entamoeba_coliColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _Other_Parasites_Ova() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate._Other_Parasites_OvaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Other Parasites/Ova' in table 'HealthCertificate' is DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate._Other_Parasites_OvaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Gram_Stain() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Gram_StainColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Gram Stain' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Gram_StainColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property NSS() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.NSSColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'NSS' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.NSSColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _10__KOH() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate._10__KOHColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column '10% KOH' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate._10__KOHColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Hepatitis_BsAg() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Hepatitis_BsAgColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Hepatitis BsAg' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Hepatitis_BsAgColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Attended_STD_Seminar() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Attended_STD_SeminarColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Attended STD Seminar' in table 'HealthCertificate' is DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Attended_STD_SeminarColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Type_of_Gram_Stain_Smear() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate.Type_of_Gram_Stain_SmearColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Type of Gram Stain Smear' in table 'HealthCertificate' is D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate.Type_of_Gram_Stain_SmearColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _Type_of_Visit__HC_() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate._Type_of_Visit__HC_Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Type of Visit (HC)' in table 'HealthCertificate' is DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate._Type_of_Visit__HC_Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _Type_of_Client__HC_() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate._Type_of_Client__HC_Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Type of Client (HC)' in table 'HealthCertificate' is DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate._Type_of_Client__HC_Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _VDRL_RPR__HC_() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate._VDRL_RPR__HC_Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'VDRL/RPR (HC)' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate._VDRL_RPR__HC_Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _TPHA_TPPA__C_() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableHealthCertificate._TPHA_TPPA__C_Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TPHA/TPPA (C)' in table 'HealthCertificate' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableHealthCertificate._TPHA_TPPA__C_Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PersonalInformationRow() As PersonalInformationRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("PersonalInformation_HealthCertificate")),PersonalInformationRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("PersonalInformation_HealthCertificate"))
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsDate_of_ApplicationNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Date_of_ApplicationColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetDate_of_ApplicationNull()
+            Me(Me.tableHealthCertificate.Date_of_ApplicationColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsDate_of_IssuedNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Date_of_IssuedColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetDate_of_IssuedNull()
+            Me(Me.tableHealthCertificate.Date_of_IssuedColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsUrine_ColorNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Urine_ColorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetUrine_ColorNull()
+            Me(Me.tableHealthCertificate.Urine_ColorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsTransparencyNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.TransparencyColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetTransparencyNull()
+            Me(Me.tableHealthCertificate.TransparencyColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsReactionNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.ReactionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetReactionNull()
+            Me(Me.tableHealthCertificate.ReactionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSpecific_GravityNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Specific_GravityColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSpecific_GravityNull()
+            Me(Me.tableHealthCertificate.Specific_GravityColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsAlbuminNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.AlbuminColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetAlbuminNull()
+            Me(Me.tableHealthCertificate.AlbuminColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSugarNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.SugarColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSugarNull()
+            Me(Me.tableHealthCertificate.SugarColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsUrine_Pus_CellsNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Urine_Pus_CellsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetUrine_Pus_CellsNull()
+            Me(Me.tableHealthCertificate.Urine_Pus_CellsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsUrine_RBCNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Urine_RBCColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetUrine_RBCNull()
+            Me(Me.tableHealthCertificate.Urine_RBCColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBacteriaNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.BacteriaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBacteriaNull()
+            Me(Me.tableHealthCertificate.BacteriaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsEpithelial_CellsNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Epithelial_CellsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetEpithelial_CellsNull()
+            Me(Me.tableHealthCertificate.Epithelial_CellsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCrystalsNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.CrystalsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCrystalsNull()
+            Me(Me.tableHealthCertificate.CrystalsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCastsNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.CastsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCastsNull()
+            Me(Me.tableHealthCertificate.CastsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsUrine_Others_Null() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Urine_Others_Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetUrine_Others_Null()
+            Me(Me.tableHealthCertificate.Urine_Others_Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsStool_ColorNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Stool_ColorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetStool_ColorNull()
+            Me(Me.tableHealthCertificate.Stool_ColorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsConsistencyNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.ConsistencyColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetConsistencyNull()
+            Me(Me.tableHealthCertificate.ConsistencyColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsStool_RBCNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Stool_RBCColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetStool_RBCNull()
+            Me(Me.tableHealthCertificate.Stool_RBCColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsStool_Pus_CellsNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Stool_Pus_CellsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetStool_Pus_CellsNull()
+            Me(Me.tableHealthCertificate.Stool_Pus_CellsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsAscaris_lumbricoidesNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Ascaris_lumbricoidesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetAscaris_lumbricoidesNull()
+            Me(Me.tableHealthCertificate.Ascaris_lumbricoidesColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsTrichuris_trichiuraNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Trichuris_trichiuraColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetTrichuris_trichiuraNull()
+            Me(Me.tableHealthCertificate.Trichuris_trichiuraColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsHookwormsNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.HookwormsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetHookwormsNull()
+            Me(Me.tableHealthCertificate.HookwormsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsEntamoeba_histolyticaNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Entamoeba_histolyticaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetEntamoeba_histolyticaNull()
+            Me(Me.tableHealthCertificate.Entamoeba_histolyticaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsEntamoeba_coliNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Entamoeba_coliColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetEntamoeba_coliNull()
+            Me(Me.tableHealthCertificate.Entamoeba_coliColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_Other_Parasites_OvaNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate._Other_Parasites_OvaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_Other_Parasites_OvaNull()
+            Me(Me.tableHealthCertificate._Other_Parasites_OvaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsGram_StainNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Gram_StainColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetGram_StainNull()
+            Me(Me.tableHealthCertificate.Gram_StainColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNSSNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.NSSColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNSSNull()
+            Me(Me.tableHealthCertificate.NSSColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_10__KOHNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate._10__KOHColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_10__KOHNull()
+            Me(Me.tableHealthCertificate._10__KOHColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsHepatitis_BsAgNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Hepatitis_BsAgColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetHepatitis_BsAgNull()
+            Me(Me.tableHealthCertificate.Hepatitis_BsAgColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsAttended_STD_SeminarNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Attended_STD_SeminarColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetAttended_STD_SeminarNull()
+            Me(Me.tableHealthCertificate.Attended_STD_SeminarColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsType_of_Gram_Stain_SmearNull() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate.Type_of_Gram_Stain_SmearColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetType_of_Gram_Stain_SmearNull()
+            Me(Me.tableHealthCertificate.Type_of_Gram_Stain_SmearColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_Type_of_Visit__HC_Null() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate._Type_of_Visit__HC_Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_Type_of_Visit__HC_Null()
+            Me(Me.tableHealthCertificate._Type_of_Visit__HC_Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_Type_of_Client__HC_Null() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate._Type_of_Client__HC_Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_Type_of_Client__HC_Null()
+            Me(Me.tableHealthCertificate._Type_of_Client__HC_Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_VDRL_RPR__HC_Null() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate._VDRL_RPR__HC_Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_VDRL_RPR__HC_Null()
+            Me(Me.tableHealthCertificate._VDRL_RPR__HC_Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_TPHA_TPPA__C_Null() As Boolean
+            Return Me.IsNull(Me.tableHealthCertificate._TPHA_TPPA__C_Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_TPHA_TPPA__C_Null()
+            Me(Me.tableHealthCertificate._TPHA_TPPA__C_Column) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class PersonalInformationRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tablePersonalInformation As PersonalInformationDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tablePersonalInformation = CType(Me.Table,PersonalInformationDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ID() As Long
+            Get
+                Return CType(Me(Me.tablePersonalInformation.IDColumn),Long)
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Date_of_Registration() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.Date_of_RegistrationColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date of Registration' in table 'PersonalInformation' is DBN"& _ 
+                            "ull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.Date_of_RegistrationColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property First_Name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.First_NameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'First Name' in table 'PersonalInformation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.First_NameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Middle_Name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.Middle_NameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Middle Name' in table 'PersonalInformation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.Middle_NameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Last_Name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.Last_NameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Last Name' in table 'PersonalInformation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.Last_NameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Gender() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.GenderColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Gender' in table 'PersonalInformation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.GenderColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Date_of_Birth() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.Date_of_BirthColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date of Birth' in table 'PersonalInformation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.Date_of_BirthColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Age() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.AgeColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Age' in table 'PersonalInformation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.AgeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Occupation() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.OccupationColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Occupation' in table 'PersonalInformation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.OccupationColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Address() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.AddressColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Address' in table 'PersonalInformation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.AddressColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property City() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.CityColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'City' in table 'PersonalInformation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.CityColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Telephone_Number() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.Telephone_NumberColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Telephone Number' in table 'PersonalInformation' is DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.Telephone_NumberColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Name_of_Establishment() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.Name_of_EstablishmentColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Name of Establishment' in table 'PersonalInformation' is DB"& _ 
+                            "Null.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.Name_of_EstablishmentColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Type_of_Establishment() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.Type_of_EstablishmentColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Type of Establishment' in table 'PersonalInformation' is DB"& _ 
+                            "Null.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.Type_of_EstablishmentColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Contact_Person() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.Contact_PersonColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Contact Person' in table 'PersonalInformation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.Contact_PersonColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Contact_Number() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.Contact_NumberColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Contact Number' in table 'PersonalInformation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.Contact_NumberColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Establishment_Address() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.Establishment_AddressColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Establishment Address' in table 'PersonalInformation' is DB"& _ 
+                            "Null.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.Establishment_AddressColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Barangay() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.BarangayColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Barangay' in table 'PersonalInformation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.BarangayColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Photo() As Byte()
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.PhotoColumn),Byte())
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Photo' in table 'PersonalInformation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.PhotoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Type_of_MARP() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.Type_of_MARPColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Type of MARP' in table 'PersonalInformation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.Type_of_MARPColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Age_Group() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePersonalInformation.Age_GroupColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Age Group' in table 'PersonalInformation' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePersonalInformation.Age_GroupColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsDate_of_RegistrationNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.Date_of_RegistrationColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetDate_of_RegistrationNull()
+            Me(Me.tablePersonalInformation.Date_of_RegistrationColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsFirst_NameNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.First_NameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetFirst_NameNull()
+            Me(Me.tablePersonalInformation.First_NameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsMiddle_NameNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.Middle_NameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetMiddle_NameNull()
+            Me(Me.tablePersonalInformation.Middle_NameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsLast_NameNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.Last_NameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetLast_NameNull()
+            Me(Me.tablePersonalInformation.Last_NameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsGenderNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.GenderColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetGenderNull()
+            Me(Me.tablePersonalInformation.GenderColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsDate_of_BirthNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.Date_of_BirthColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetDate_of_BirthNull()
+            Me(Me.tablePersonalInformation.Date_of_BirthColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsAgeNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.AgeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetAgeNull()
+            Me(Me.tablePersonalInformation.AgeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsOccupationNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.OccupationColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetOccupationNull()
+            Me(Me.tablePersonalInformation.OccupationColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsAddressNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.AddressColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetAddressNull()
+            Me(Me.tablePersonalInformation.AddressColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCityNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.CityColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCityNull()
+            Me(Me.tablePersonalInformation.CityColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsTelephone_NumberNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.Telephone_NumberColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetTelephone_NumberNull()
+            Me(Me.tablePersonalInformation.Telephone_NumberColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsName_of_EstablishmentNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.Name_of_EstablishmentColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetName_of_EstablishmentNull()
+            Me(Me.tablePersonalInformation.Name_of_EstablishmentColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsType_of_EstablishmentNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.Type_of_EstablishmentColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetType_of_EstablishmentNull()
+            Me(Me.tablePersonalInformation.Type_of_EstablishmentColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsContact_PersonNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.Contact_PersonColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetContact_PersonNull()
+            Me(Me.tablePersonalInformation.Contact_PersonColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsContact_NumberNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.Contact_NumberColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetContact_NumberNull()
+            Me(Me.tablePersonalInformation.Contact_NumberColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsEstablishment_AddressNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.Establishment_AddressColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetEstablishment_AddressNull()
+            Me(Me.tablePersonalInformation.Establishment_AddressColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBarangayNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.BarangayColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBarangayNull()
+            Me(Me.tablePersonalInformation.BarangayColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPhotoNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.PhotoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPhotoNull()
+            Me(Me.tablePersonalInformation.PhotoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsType_of_MARPNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.Type_of_MARPColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetType_of_MARPNull()
+            Me(Me.tablePersonalInformation.Type_of_MARPColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsAge_GroupNull() As Boolean
+            Return Me.IsNull(Me.tablePersonalInformation.Age_GroupColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetAge_GroupNull()
+            Me(Me.tablePersonalInformation.Age_GroupColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function GetConsultationRows() As ConsultationRow()
+            If (Me.Table.ChildRelations("PersonalInformation_Consultation") Is Nothing) Then
+                Return New ConsultationRow(-1) {}
+            Else
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("PersonalInformation_Consultation")),ConsultationRow())
+            End If
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function GetHealthCertificateRows() As HealthCertificateRow()
+            If (Me.Table.ChildRelations("PersonalInformation_HealthCertificate") Is Nothing) Then
+                Return New HealthCertificateRow(-1) {}
+            Else
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("PersonalInformation_HealthCertificate")),HealthCertificateRow())
+            End If
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function GetVCTRows() As VCTRow()
+            If (Me.Table.ChildRelations("PersonalInformation_VCT") Is Nothing) Then
+                Return New VCTRow(-1) {}
+            Else
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("PersonalInformation_VCT")),VCTRow())
+            End If
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class UserRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableUser As UserDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableUser = CType(Me.Table,UserDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Username() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableUser.UsernameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Username' in table 'User' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableUser.UsernameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Password() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableUser.PasswordColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Password' in table 'User' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableUser.PasswordColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsUsernameNull() As Boolean
+            Return Me.IsNull(Me.tableUser.UsernameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetUsernameNull()
+            Me(Me.tableUser.UsernameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPasswordNull() As Boolean
+            Return Me.IsNull(Me.tableUser.PasswordColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPasswordNull()
+            Me(Me.tableUser.PasswordColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class VCTRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableVCT As VCTDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableVCT = CType(Me.Table,VCTDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property VCT_ID() As Long
+            Get
+                Return CType(Me(Me.tableVCT.VCT_IDColumn),Long)
+            End Get
+            Set
+                Me(Me.tableVCT.VCT_IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ID() As Long
+            Get
+                Return CType(Me(Me.tableVCT.IDColumn),Long)
+            End Get
+            Set
+                Me(Me.tableVCT.IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property HIV_Counseling() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.HIV_CounselingColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'HIV Counseling' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.HIV_CounselingColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Date_of_Counseling() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.Date_of_CounselingColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date of Counseling' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.Date_of_CounselingColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property HIV_Testing() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.HIV_TestingColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'HIV Testing' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.HIV_TestingColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Date_of_HIV_Testing() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.Date_of_HIV_TestingColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date of HIV Testing' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.Date_of_HIV_TestingColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property HIV_Test_Result() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.HIV_Test_ResultColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'HIV Test Result' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.HIV_Test_ResultColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Results_Taken_() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.Results_Taken_Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Results Taken ' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.Results_Taken_Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Date_HIV_Test_Result_Released() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.Date_HIV_Test_Result_ReleasedColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Date HIV Test Result Released' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.Date_HIV_Test_Result_ReleasedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property CD4_Count() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.CD4_CountColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CD4 Count' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.CD4_CountColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _Anti_retroviral_Treatment() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT._Anti_retroviral_TreatmentColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Anti-retroviral Treatment' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT._Anti_retroviral_TreatmentColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Place_of_Referral() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.Place_of_ReferralColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Place of Referral' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.Place_of_ReferralColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _Schedule_of_follow_up_Visit() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT._Schedule_of_follow_up_VisitColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Schedule of follow-up Visit' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT._Schedule_of_follow_up_VisitColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Confirmatory_Test_Result() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.Confirmatory_Test_ResultColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Confirmatory Test Result' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.Confirmatory_Test_ResultColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Referral_to_Treatment_Hub() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.Referral_to_Treatment_HubColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Referral to Treatment Hub' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.Referral_to_Treatment_HubColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Successfully_Accepted_to_Treatment_Hub() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.Successfully_Accepted_to_Treatment_HubColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Successfully Accepted to Treatment Hub' in table 'VCT' is D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.Successfully_Accepted_to_Treatment_HubColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Received_Condom() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.Received_CondomColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Received Condom' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.Received_CondomColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Received_Lubricant() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.Received_LubricantColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Received Lubricant' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.Received_LubricantColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Number_of_Condoms_() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.Number_of_Condoms_Column),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Number of Condoms ' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.Number_of_Condoms_Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Number_of_Lubricants_() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.Number_of_Lubricants_Column),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Number of Lubricants ' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.Number_of_Lubricants_Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Number_of_Contacts() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.Number_of_ContactsColumn),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Number of Contacts' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.Number_of_ContactsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Recruitment_System() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.Recruitment_SystemColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Recruitment System' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.Recruitment_SystemColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _Type_of_Visit__V_() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT._Type_of_Visit__V_Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Type of Visit (V)' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT._Type_of_Visit__V_Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _Type_of_Client__V_() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT._Type_of_Client__V_Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Type of Client (V)' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT._Type_of_Client__V_Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Type_of_Recruitment() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.Type_of_RecruitmentColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Type of Recruitment' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.Type_of_RecruitmentColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Setting_of_HIV_Testing() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCT.Setting_of_HIV_TestingColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Setting of HIV Testing' in table 'VCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCT.Setting_of_HIV_TestingColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PersonalInformationRow() As PersonalInformationRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("PersonalInformation_VCT")),PersonalInformationRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("PersonalInformation_VCT"))
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsHIV_CounselingNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.HIV_CounselingColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetHIV_CounselingNull()
+            Me(Me.tableVCT.HIV_CounselingColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsDate_of_CounselingNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.Date_of_CounselingColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetDate_of_CounselingNull()
+            Me(Me.tableVCT.Date_of_CounselingColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsHIV_TestingNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.HIV_TestingColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetHIV_TestingNull()
+            Me(Me.tableVCT.HIV_TestingColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsDate_of_HIV_TestingNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.Date_of_HIV_TestingColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetDate_of_HIV_TestingNull()
+            Me(Me.tableVCT.Date_of_HIV_TestingColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsHIV_Test_ResultNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.HIV_Test_ResultColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetHIV_Test_ResultNull()
+            Me(Me.tableVCT.HIV_Test_ResultColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsResults_Taken_Null() As Boolean
+            Return Me.IsNull(Me.tableVCT.Results_Taken_Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetResults_Taken_Null()
+            Me(Me.tableVCT.Results_Taken_Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsDate_HIV_Test_Result_ReleasedNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.Date_HIV_Test_Result_ReleasedColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetDate_HIV_Test_Result_ReleasedNull()
+            Me(Me.tableVCT.Date_HIV_Test_Result_ReleasedColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCD4_CountNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.CD4_CountColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCD4_CountNull()
+            Me(Me.tableVCT.CD4_CountColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_Anti_retroviral_TreatmentNull() As Boolean
+            Return Me.IsNull(Me.tableVCT._Anti_retroviral_TreatmentColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_Anti_retroviral_TreatmentNull()
+            Me(Me.tableVCT._Anti_retroviral_TreatmentColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPlace_of_ReferralNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.Place_of_ReferralColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPlace_of_ReferralNull()
+            Me(Me.tableVCT.Place_of_ReferralColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_Schedule_of_follow_up_VisitNull() As Boolean
+            Return Me.IsNull(Me.tableVCT._Schedule_of_follow_up_VisitColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_Schedule_of_follow_up_VisitNull()
+            Me(Me.tableVCT._Schedule_of_follow_up_VisitColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsConfirmatory_Test_ResultNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.Confirmatory_Test_ResultColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetConfirmatory_Test_ResultNull()
+            Me(Me.tableVCT.Confirmatory_Test_ResultColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsReferral_to_Treatment_HubNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.Referral_to_Treatment_HubColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetReferral_to_Treatment_HubNull()
+            Me(Me.tableVCT.Referral_to_Treatment_HubColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSuccessfully_Accepted_to_Treatment_HubNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.Successfully_Accepted_to_Treatment_HubColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSuccessfully_Accepted_to_Treatment_HubNull()
+            Me(Me.tableVCT.Successfully_Accepted_to_Treatment_HubColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsReceived_CondomNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.Received_CondomColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetReceived_CondomNull()
+            Me(Me.tableVCT.Received_CondomColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsReceived_LubricantNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.Received_LubricantColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetReceived_LubricantNull()
+            Me(Me.tableVCT.Received_LubricantColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNumber_of_Condoms_Null() As Boolean
+            Return Me.IsNull(Me.tableVCT.Number_of_Condoms_Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNumber_of_Condoms_Null()
+            Me(Me.tableVCT.Number_of_Condoms_Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNumber_of_Lubricants_Null() As Boolean
+            Return Me.IsNull(Me.tableVCT.Number_of_Lubricants_Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNumber_of_Lubricants_Null()
+            Me(Me.tableVCT.Number_of_Lubricants_Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNumber_of_ContactsNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.Number_of_ContactsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNumber_of_ContactsNull()
+            Me(Me.tableVCT.Number_of_ContactsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsRecruitment_SystemNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.Recruitment_SystemColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetRecruitment_SystemNull()
+            Me(Me.tableVCT.Recruitment_SystemColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_Type_of_Visit__V_Null() As Boolean
+            Return Me.IsNull(Me.tableVCT._Type_of_Visit__V_Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_Type_of_Visit__V_Null()
+            Me(Me.tableVCT._Type_of_Visit__V_Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_Type_of_Client__V_Null() As Boolean
+            Return Me.IsNull(Me.tableVCT._Type_of_Client__V_Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_Type_of_Client__V_Null()
+            Me(Me.tableVCT._Type_of_Client__V_Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsType_of_RecruitmentNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.Type_of_RecruitmentColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetType_of_RecruitmentNull()
+            Me(Me.tableVCT.Type_of_RecruitmentColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSetting_of_HIV_TestingNull() As Boolean
+            Return Me.IsNull(Me.tableVCT.Setting_of_HIV_TestingColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSetting_of_HIV_TestingNull()
+            Me(Me.tableVCT.Setting_of_HIV_TestingColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -4941,16 +6494,16 @@ Partial Public Class tryshcDataSet1
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class Health_Certificate_Application_and_RenewalRowChangeEvent
+    Public Class ConsultationRowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As Health_Certificate_Application_and_RenewalRow
+        Private eventRow As ConsultationRow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As Health_Certificate_Application_and_RenewalRow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As ConsultationRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
@@ -4958,7 +6511,7 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As Health_Certificate_Application_and_RenewalRow
+        Public ReadOnly Property Row() As ConsultationRow
             Get
                 Return Me.eventRow
             End Get
@@ -4977,16 +6530,16 @@ Partial Public Class tryshcDataSet1
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class HIV_Voluntary_Counseling_and_TestingRowChangeEvent
+    Public Class HealthCertificateRowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As HIV_Voluntary_Counseling_and_TestingRow
+        Private eventRow As HealthCertificateRow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As HIV_Voluntary_Counseling_and_TestingRow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As HealthCertificateRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
@@ -4994,7 +6547,7 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As HIV_Voluntary_Counseling_and_TestingRow
+        Public ReadOnly Property Row() As HealthCertificateRow
             Get
                 Return Me.eventRow
             End Get
@@ -5013,16 +6566,16 @@ Partial Public Class tryshcDataSet1
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class LoginRowChangeEvent
+    Public Class PersonalInformationRowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As LoginRow
+        Private eventRow As PersonalInformationRow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As LoginRow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As PersonalInformationRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
@@ -5030,7 +6583,7 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As LoginRow
+        Public ReadOnly Property Row() As PersonalInformationRow
             Get
                 Return Me.eventRow
             End Get
@@ -5049,16 +6602,16 @@ Partial Public Class tryshcDataSet1
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class Personal_InformationRowChangeEvent
+    Public Class UserRowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As Personal_InformationRow
+        Private eventRow As UserRow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As Personal_InformationRow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As UserRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
@@ -5066,7 +6619,7 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As Personal_InformationRow
+        Public ReadOnly Property Row() As UserRow
             Get
                 Return Me.eventRow
             End Get
@@ -5085,16 +6638,16 @@ Partial Public Class tryshcDataSet1
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class STI_CONSULTATIONRowChangeEvent
+    Public Class VCTRowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As STI_CONSULTATIONRow
+        Private eventRow As VCTRow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As STI_CONSULTATIONRow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As VCTRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
@@ -5102,7 +6655,7 @@ Partial Public Class tryshcDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As STI_CONSULTATIONRow
+        Public ReadOnly Property Row() As VCTRow
             Get
                 Return Me.eventRow
             End Get
@@ -5118,7 +6671,7 @@ Partial Public Class tryshcDataSet1
     End Class
 End Class
 
-Namespace tryshcDataSet1TableAdapters
+Namespace Database1DataSet1TableAdapters
     
     '''<summary>
     '''Represents the connection and commands used to retrieve and save data.
@@ -5129,7 +6682,7 @@ Namespace tryshcDataSet1TableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class Health_Certificate_Application_and_RenewalTableAdapter
+    Partial Public Class ConsultationTableAdapter
         Inherits Global.System.ComponentModel.Component
         
         Private WithEvents _adapter As Global.System.Data.SqlServerCe.SqlCeDataAdapter
@@ -5246,141 +6799,126 @@ Namespace tryshcDataSet1TableAdapters
             Me._adapter = New Global.System.Data.SqlServerCe.SqlCeDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "Health Certificate Application and Renewal"
-            tableMapping.ColumnMappings.Add("Patient ID", "Patient ID")
-            tableMapping.ColumnMappings.Add("Date of Application", "Date of Application")
-            tableMapping.ColumnMappings.Add("Date Issued", "Date Issued")
-            tableMapping.ColumnMappings.Add("Urine Color", "Urine Color")
-            tableMapping.ColumnMappings.Add("Transparency", "Transparency")
-            tableMapping.ColumnMappings.Add("Reaction", "Reaction")
-            tableMapping.ColumnMappings.Add("Specific Gravity", "Specific Gravity")
-            tableMapping.ColumnMappings.Add("Urine Pus Cells", "Urine Pus Cells")
-            tableMapping.ColumnMappings.Add("Urine RBC", "Urine RBC")
-            tableMapping.ColumnMappings.Add("Bacteria", "Bacteria")
-            tableMapping.ColumnMappings.Add("Epithelial Cells", "Epithelial Cells")
-            tableMapping.ColumnMappings.Add("Crystal", "Crystal")
-            tableMapping.ColumnMappings.Add("Casts", "Casts")
-            tableMapping.ColumnMappings.Add("Urine Others", "Urine Others")
-            tableMapping.ColumnMappings.Add("Stool Color ", "Stool Color ")
-            tableMapping.ColumnMappings.Add("Consistency", "Consistency")
-            tableMapping.ColumnMappings.Add("Stool RBC", "Stool RBC")
-            tableMapping.ColumnMappings.Add("Stool Pus Cells", "Stool Pus Cells")
-            tableMapping.ColumnMappings.Add("Ascaris Lumbricoides", "Ascaris Lumbricoides")
-            tableMapping.ColumnMappings.Add("Trichura triciura", "Trichura triciura")
-            tableMapping.ColumnMappings.Add("Hookworms", "Hookworms")
-            tableMapping.ColumnMappings.Add("Entamoeba histolytica", "Entamoeba histolytica")
-            tableMapping.ColumnMappings.Add("Entamoeba coli", "Entamoeba coli")
-            tableMapping.ColumnMappings.Add("Stool Others", "Stool Others")
-            tableMapping.ColumnMappings.Add("Health Cert ID", "Health Cert ID")
-            tableMapping.ColumnMappings.Add("VDRL", "VDRL")
-            tableMapping.ColumnMappings.Add("RPR", "RPR")
-            tableMapping.ColumnMappings.Add("HBsAg", "HBsAg")
-            tableMapping.ColumnMappings.Add("Gram Stain", "Gram Stain")
-            tableMapping.ColumnMappings.Add("NSS", "NSS")
-            tableMapping.ColumnMappings.Add("10% KOH", "10% KOH")
-            tableMapping.ColumnMappings.Add("Chest X-ray", "Chest X-ray")
+            tableMapping.DataSetTable = "Consultation"
+            tableMapping.ColumnMappings.Add("STI ID", "STI ID")
+            tableMapping.ColumnMappings.Add("ID", "ID")
+            tableMapping.ColumnMappings.Add("Chief Complaint", "Chief Complaint")
+            tableMapping.ColumnMappings.Add("Blood Pressure", "Blood Pressure")
+            tableMapping.ColumnMappings.Add("Heart Rate", "Heart Rate")
+            tableMapping.ColumnMappings.Add("Respiratory Rate", "Respiratory Rate")
+            tableMapping.ColumnMappings.Add("Temperature", "Temperature")
+            tableMapping.ColumnMappings.Add("History of Present Illness", "History of Present Illness")
+            tableMapping.ColumnMappings.Add("Past Medical History", "Past Medical History")
+            tableMapping.ColumnMappings.Add("Personal and Social History", "Personal and Social History")
+            tableMapping.ColumnMappings.Add("Physical Examination", "Physical Examination")
+            tableMapping.ColumnMappings.Add("Final Diagnosis", "Final Diagnosis")
+            tableMapping.ColumnMappings.Add("Medications", "Medications")
+            tableMapping.ColumnMappings.Add("Referral", "Referral")
+            tableMapping.ColumnMappings.Add("Date of Follow-up", "Date of Follow-up")
+            tableMapping.ColumnMappings.Add("Date of Consultation", "Date of Consultation")
+            tableMapping.ColumnMappings.Add("STI Diagnosis", "STI Diagnosis")
+            tableMapping.ColumnMappings.Add("Consultation Type of Client", "Consultation Type of Client")
+            tableMapping.ColumnMappings.Add("Cervical/Urethral Smear", "Cervical/Urethral Smear")
+            tableMapping.ColumnMappings.Add("Vaginal Smear", "Vaginal Smear")
+            tableMapping.ColumnMappings.Add("Wet Mounts", "Wet Mounts")
+            tableMapping.ColumnMappings.Add("Number of Contacts Traced (C)", "Number of Contacts Traced (C)")
+            tableMapping.ColumnMappings.Add("VDRL/RPR (C)", "VDRL/RPR (C)")
+            tableMapping.ColumnMappings.Add("Type of Visit (C)", "Type of Visit (C)")
+            tableMapping.ColumnMappings.Add("Type of Client (C)", "Type of Client (C)")
+            tableMapping.ColumnMappings.Add("TPHA/TPPA (C)", "TPHA/TPPA (C)")
+            tableMapping.ColumnMappings.Add("Pertinent Laboratory Findings", "Pertinent Laboratory Findings")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlServerCe.SqlCeCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [Health Certificate Application and Renewal] WHERE (([Health Cert ID]"& _ 
-                " = @p1))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [Consultation] WHERE (([STI ID] = @p1))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Health Cert ID", Global.System.Data.DataRowVersion.Original, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "STI ID", Global.System.Data.DataRowVersion.Original, Nothing))
             Me._adapter.InsertCommand = New Global.System.Data.SqlServerCe.SqlCeCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [Health Certificate Application and Renewal] ([Patient ID], [Date of "& _ 
-                "Application], [Date Issued], [Urine Color], [Transparency], [Reaction], [Specifi"& _ 
-                "c Gravity], [Urine Pus Cells], [Urine RBC], [Bacteria], [Epithelial Cells], [Cry"& _ 
-                "stal], [Casts], [Urine Others], [Stool Color ], [Consistency], [Stool RBC], [Sto"& _ 
-                "ol Pus Cells], [Ascaris Lumbricoides], [Trichura triciura], [Hookworms], [Entamo"& _ 
-                "eba histolytica], [Entamoeba coli], [Stool Others], [VDRL], [RPR], [HBsAg], [Gra"& _ 
-                "m Stain], [NSS], [10% KOH], [Chest X-ray]) VALUES (@p1, @p2, @p3, @p4, @p5, @p6,"& _ 
-                " @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20"& _ 
-                ", @p21, @p22, @p23, @p24, @p25, @p26, @p27, @p28, @p29, @p30, @p31)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [Consultation] ([ID], [Chief Complaint], [Blood Pressure], [Heart Rat"& _ 
+                "e], [Respiratory Rate], [Temperature], [History of Present Illness], [Past Medic"& _ 
+                "al History], [Personal and Social History], [Physical Examination], [Final Diagn"& _ 
+                "osis], [Medications], [Referral], [Date of Follow-up], [Date of Consultation], ["& _ 
+                "STI Diagnosis], [Consultation Type of Client], [Cervical/Urethral Smear], [Vagin"& _ 
+                "al Smear], [Wet Mounts], [Number of Contacts Traced (C)], [VDRL/RPR (C)], [Type "& _ 
+                "of Visit (C)], [Type of Client (C)], [TPHA/TPPA (C)], [Pertinent Laboratory Find"& _ 
+                "ings]) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p"& _ 
+                "13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26"& _ 
+                ")"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Patient ID", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Application", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p3", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date Issued", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p4", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Urine Color", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p5", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Transparency", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p6", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Reaction", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p7", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Specific Gravity", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p8", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Urine Pus Cells", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p9", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Urine RBC", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p10", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Bacteria", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p11", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Epithelial Cells", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p12", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Crystal", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p13", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Casts", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p14", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Urine Others", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p15", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Stool Color ", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p16", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Consistency", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p17", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Stool RBC", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p18", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Stool Pus Cells", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p19", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Ascaris Lumbricoides", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p20", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Trichura triciura", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p21", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Hookworms", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p22", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Entamoeba histolytica", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p23", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Entamoeba coli", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p24", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Stool Others", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p25", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "VDRL", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p26", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "RPR", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p27", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "HBsAg", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p28", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Gram Stain", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p29", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "NSS", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p30", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "10% KOH", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p31", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Chest X-ray", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Chief Complaint", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p3", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Blood Pressure", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p4", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Heart Rate", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p5", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Respiratory Rate", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p6", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Temperature", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p7", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "History of Present Illness", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p8", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Past Medical History", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p9", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Personal and Social History", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p10", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Physical Examination", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p11", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Final Diagnosis", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p12", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Medications", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p13", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Referral", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p14", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Follow-up", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p15", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Consultation", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p16", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "STI Diagnosis", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p17", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Consultation Type of Client", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p18", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Cervical/Urethral Smear", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p19", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Vaginal Smear", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p20", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Wet Mounts", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p21", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Number of Contacts Traced (C)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p22", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "VDRL/RPR (C)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p23", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Visit (C)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p24", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Client (C)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p25", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "TPHA/TPPA (C)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p26", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Pertinent Laboratory Findings", Global.System.Data.DataRowVersion.Current, Nothing))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlServerCe.SqlCeCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [Health Certificate Application and Renewal] SET [Patient ID] = @p1, [Date"& _ 
-                " of Application] = @p2, [Date Issued] = @p3, [Urine Color] = @p4, [Transparency]"& _ 
-                " = @p5, [Reaction] = @p6, [Specific Gravity] = @p7, [Urine Pus Cells] = @p8, [Ur"& _ 
-                "ine RBC] = @p9, [Bacteria] = @p10, [Epithelial Cells] = @p11, [Crystal] = @p12, "& _ 
-                "[Casts] = @p13, [Urine Others] = @p14, [Stool Color ] = @p15, [Consistency] = @p"& _ 
-                "16, [Stool RBC] = @p17, [Stool Pus Cells] = @p18, [Ascaris Lumbricoides] = @p19,"& _ 
-                " [Trichura triciura] = @p20, [Hookworms] = @p21, [Entamoeba histolytica] = @p22,"& _ 
-                " [Entamoeba coli] = @p23, [Stool Others] = @p24, [VDRL] = @p25, [RPR] = @p26, [H"& _ 
-                "BsAg] = @p27, [Gram Stain] = @p28, [NSS] = @p29, [10% KOH] = @p30, [Chest X-ray]"& _ 
-                " = @p31 WHERE (([Health Cert ID] = @p32))"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [Consultation] SET [ID] = @p1, [Chief Complaint] = @p2, [Blood Pressure] ="& _ 
+                " @p3, [Heart Rate] = @p4, [Respiratory Rate] = @p5, [Temperature] = @p6, [Histor"& _ 
+                "y of Present Illness] = @p7, [Past Medical History] = @p8, [Personal and Social "& _ 
+                "History] = @p9, [Physical Examination] = @p10, [Final Diagnosis] = @p11, [Medica"& _ 
+                "tions] = @p12, [Referral] = @p13, [Date of Follow-up] = @p14, [Date of Consultat"& _ 
+                "ion] = @p15, [STI Diagnosis] = @p16, [Consultation Type of Client] = @p17, [Cerv"& _ 
+                "ical/Urethral Smear] = @p18, [Vaginal Smear] = @p19, [Wet Mounts] = @p20, [Numbe"& _ 
+                "r of Contacts Traced (C)] = @p21, [VDRL/RPR (C)] = @p22, [Type of Visit (C)] = @"& _ 
+                "p23, [Type of Client (C)] = @p24, [TPHA/TPPA (C)] = @p25, [Pertinent Laboratory "& _ 
+                "Findings] = @p26 WHERE (([STI ID] = @p27))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Patient ID", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Application", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p3", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date Issued", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p4", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Urine Color", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p5", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Transparency", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p6", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Reaction", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p7", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Specific Gravity", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p8", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Urine Pus Cells", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p9", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Urine RBC", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p10", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Bacteria", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p11", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Epithelial Cells", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p12", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Crystal", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p13", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Casts", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p14", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Urine Others", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p15", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Stool Color ", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p16", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Consistency", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p17", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Stool RBC", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p18", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Stool Pus Cells", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p19", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Ascaris Lumbricoides", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p20", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Trichura triciura", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p21", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Hookworms", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p22", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Entamoeba histolytica", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p23", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Entamoeba coli", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p24", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Stool Others", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p25", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "VDRL", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p26", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "RPR", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p27", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "HBsAg", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p28", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Gram Stain", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p29", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "NSS", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p30", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "10% KOH", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p31", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Chest X-ray", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p32", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Health Cert ID", Global.System.Data.DataRowVersion.Original, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Chief Complaint", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p3", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Blood Pressure", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p4", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Heart Rate", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p5", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Respiratory Rate", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p6", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Temperature", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p7", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "History of Present Illness", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p8", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Past Medical History", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p9", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Personal and Social History", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p10", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Physical Examination", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p11", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Final Diagnosis", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p12", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Medications", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p13", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Referral", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p14", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Follow-up", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p15", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Consultation", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p16", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "STI Diagnosis", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p17", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Consultation Type of Client", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p18", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Cervical/Urethral Smear", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p19", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Vaginal Smear", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p20", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Wet Mounts", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p21", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Number of Contacts Traced (C)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p22", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "VDRL/RPR (C)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p23", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Visit (C)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p24", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Client (C)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p25", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "TPHA/TPPA (C)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p26", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Pertinent Laboratory Findings", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p27", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "STI ID", Global.System.Data.DataRowVersion.Original, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.SqlServerCe.SqlCeConnection()
-            Me._connection.ConnectionString = Global.TRYSHC.My.MySettings.Default.tryshcConnectionString
+            Me._connection.ConnectionString = Global.eSHC.My.MySettings.Default.Database1ConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5389,13 +6927,14 @@ Namespace tryshcDataSet1TableAdapters
             Me._commandCollection = New Global.System.Data.SqlServerCe.SqlCeCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlServerCe.SqlCeCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT [Patient ID], [Date of Application], [Date Issued], [Urine Color], [Transp"& _ 
-                "arency], [Reaction], [Specific Gravity], [Urine Pus Cells], [Urine RBC], [Bacter"& _ 
-                "ia], [Epithelial Cells], [Crystal], [Casts], [Urine Others], [Stool Color ], [Co"& _ 
-                "nsistency], [Stool RBC], [Stool Pus Cells], [Ascaris Lumbricoides], [Trichura tr"& _ 
-                "iciura], [Hookworms], [Entamoeba histolytica], [Entamoeba coli], [Stool Others],"& _ 
-                " [Health Cert ID], [VDRL], [RPR], [HBsAg], [Gram Stain], [NSS], [10% KOH], [Ches"& _ 
-                "t X-ray] FROM [Health Certificate Application and Renewal]"
+            Me._commandCollection(0).CommandText = "SELECT [STI ID], [ID], [Chief Complaint], [Blood Pressure], [Heart Rate], [Respir"& _ 
+                "atory Rate], [Temperature], [History of Present Illness], [Past Medical History]"& _ 
+                ", [Personal and Social History], [Physical Examination], [Final Diagnosis], [Med"& _ 
+                "ications], [Referral], [Date of Follow-up], [Date of Consultation], [STI Diagnos"& _ 
+                "is], [Consultation Type of Client], [Cervical/Urethral Smear], [Vaginal Smear], "& _ 
+                "[Wet Mounts], [Number of Contacts Traced (C)], [VDRL/RPR (C)], [Type of Visit (C"& _ 
+                ")], [Type of Client (C)], [TPHA/TPPA (C)], [Pertinent Laboratory Findings] FROM "& _ 
+                "[Consultation]"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -5403,7 +6942,7 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As tryshcDataSet1.Health_Certificate_Application_and_RenewalDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As Database1DataSet1.ConsultationDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -5416,9 +6955,9 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As tryshcDataSet1.Health_Certificate_Application_and_RenewalDataTable
+        Public Overloads Overridable Function GetData() As Database1DataSet1.ConsultationDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As tryshcDataSet1.Health_Certificate_Application_and_RenewalDataTable = New tryshcDataSet1.Health_Certificate_Application_and_RenewalDataTable()
+            Dim dataTable As Database1DataSet1.ConsultationDataTable = New Database1DataSet1.ConsultationDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
@@ -5426,15 +6965,15 @@ Namespace tryshcDataSet1TableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As tryshcDataSet1.Health_Certificate_Application_and_RenewalDataTable) As Integer
+        Public Overloads Overridable Function Update(ByVal dataTable As Database1DataSet1.ConsultationDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As tryshcDataSet1) As Integer
-            Return Me.Adapter.Update(dataSet, "Health Certificate Application and Renewal")
+        Public Overloads Overridable Function Update(ByVal dataSet As Database1DataSet1) As Integer
+            Return Me.Adapter.Update(dataSet, "Consultation")
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5477,7 +7016,726 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
         Public Overloads Overridable Function Insert( _
-                    ByVal p1 As String,  _
+                    ByVal p1 As Long,  _
+                    ByVal p2 As String,  _
+                    ByVal p3 As String,  _
+                    ByVal p4 As String,  _
+                    ByVal p5 As String,  _
+                    ByVal p6 As String,  _
+                    ByVal p7 As String,  _
+                    ByVal p8 As String,  _
+                    ByVal p9 As String,  _
+                    ByVal p10 As String,  _
+                    ByVal p11 As String,  _
+                    ByVal p12 As String,  _
+                    ByVal p13 As String,  _
+                    ByVal p14 As Global.System.Nullable(Of Date),  _
+                    ByVal p15 As Global.System.Nullable(Of Date),  _
+                    ByVal p16 As String,  _
+                    ByVal p17 As String,  _
+                    ByVal p18 As String,  _
+                    ByVal p19 As String,  _
+                    ByVal p20 As String,  _
+                    ByVal p21 As String,  _
+                    ByVal p22 As String,  _
+                    ByVal p23 As String,  _
+                    ByVal p24 As String,  _
+                    ByVal p25 As String,  _
+                    ByVal p26 As String) As Integer
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(p1,Long)
+            If (p2 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(p2,String)
+            End If
+            If (p3 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(p3,String)
+            End If
+            If (p4 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(p4,String)
+            End If
+            If (p5 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(p5,String)
+            End If
+            If (p6 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(p6,String)
+            End If
+            If (p7 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(p7,String)
+            End If
+            If (p8 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(p8,String)
+            End If
+            If (p9 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(p9,String)
+            End If
+            If (p10 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(p10,String)
+            End If
+            If (p11 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(p11,String)
+            End If
+            If (p12 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(p12,String)
+            End If
+            If (p13 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(p13,String)
+            End If
+            If (p14.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(p14.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
+            End If
+            If (p15.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(14).Value = CType(p15.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
+            End If
+            If (p16 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(15).Value = CType(p16,String)
+            End If
+            If (p17 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(16).Value = CType(p17,String)
+            End If
+            If (p18 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(17).Value = CType(p18,String)
+            End If
+            If (p19 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(18).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(18).Value = CType(p19,String)
+            End If
+            If (p20 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(19).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(19).Value = CType(p20,String)
+            End If
+            If (p21 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(20).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(20).Value = CType(p21,String)
+            End If
+            If (p22 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(21).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(21).Value = CType(p22,String)
+            End If
+            If (p23 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(22).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(22).Value = CType(p23,String)
+            End If
+            If (p24 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(23).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(23).Value = CType(p24,String)
+            End If
+            If (p25 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(24).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(24).Value = CType(p25,String)
+            End If
+            If (p26 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(25).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(25).Value = CType(p26,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
+            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.InsertCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.InsertCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update( _
+                    ByVal p1 As Long,  _
+                    ByVal p2 As String,  _
+                    ByVal p3 As String,  _
+                    ByVal p4 As String,  _
+                    ByVal p5 As String,  _
+                    ByVal p6 As String,  _
+                    ByVal p7 As String,  _
+                    ByVal p8 As String,  _
+                    ByVal p9 As String,  _
+                    ByVal p10 As String,  _
+                    ByVal p11 As String,  _
+                    ByVal p12 As String,  _
+                    ByVal p13 As String,  _
+                    ByVal p14 As Global.System.Nullable(Of Date),  _
+                    ByVal p15 As Global.System.Nullable(Of Date),  _
+                    ByVal p16 As String,  _
+                    ByVal p17 As String,  _
+                    ByVal p18 As String,  _
+                    ByVal p19 As String,  _
+                    ByVal p20 As String,  _
+                    ByVal p21 As String,  _
+                    ByVal p22 As String,  _
+                    ByVal p23 As String,  _
+                    ByVal p24 As String,  _
+                    ByVal p25 As String,  _
+                    ByVal p26 As String,  _
+                    ByVal p27 As Long) As Integer
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(p1,Long)
+            If (p2 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(p2,String)
+            End If
+            If (p3 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(p3,String)
+            End If
+            If (p4 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(p4,String)
+            End If
+            If (p5 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(p5,String)
+            End If
+            If (p6 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(p6,String)
+            End If
+            If (p7 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(p7,String)
+            End If
+            If (p8 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(p8,String)
+            End If
+            If (p9 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(p9,String)
+            End If
+            If (p10 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(p10,String)
+            End If
+            If (p11 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(p11,String)
+            End If
+            If (p12 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(p12,String)
+            End If
+            If (p13 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(p13,String)
+            End If
+            If (p14.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(p14.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
+            End If
+            If (p15.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(p15.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
+            End If
+            If (p16 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(p16,String)
+            End If
+            If (p17 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(p17,String)
+            End If
+            If (p18 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(p18,String)
+            End If
+            If (p19 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(p19,String)
+            End If
+            If (p20 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(p20,String)
+            End If
+            If (p21 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(p21,String)
+            End If
+            If (p22 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(p22,String)
+            End If
+            If (p23 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(p23,String)
+            End If
+            If (p24 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(p24,String)
+            End If
+            If (p25 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(p25,String)
+            End If
+            If (p26 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(p26,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(26).Value = CType(p27,Long)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.UpdateCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.UpdateCommand.Connection.Close
+                End If
+            End Try
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class HealthCertificateTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SqlServerCe.SqlCeDataAdapter
+        
+        Private _connection As Global.System.Data.SqlServerCe.SqlCeConnection
+        
+        Private _transaction As Global.System.Data.SqlServerCe.SqlCeTransaction
+        
+        Private _commandCollection() As Global.System.Data.SqlServerCe.SqlCeCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlServerCe.SqlCeDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.SqlServerCe.SqlCeConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SqlServerCe.SqlCeCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.SqlServerCe.SqlCeTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlServerCe.SqlCeCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SqlServerCe.SqlCeDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "HealthCertificate"
+            tableMapping.ColumnMappings.Add("Certificate ID", "Certificate ID")
+            tableMapping.ColumnMappings.Add("ID", "ID")
+            tableMapping.ColumnMappings.Add("Date of Application", "Date of Application")
+            tableMapping.ColumnMappings.Add("Date of Issued", "Date of Issued")
+            tableMapping.ColumnMappings.Add("Urine Color", "Urine Color")
+            tableMapping.ColumnMappings.Add("Transparency", "Transparency")
+            tableMapping.ColumnMappings.Add("Reaction", "Reaction")
+            tableMapping.ColumnMappings.Add("Specific Gravity", "Specific Gravity")
+            tableMapping.ColumnMappings.Add("Albumin", "Albumin")
+            tableMapping.ColumnMappings.Add("Sugar", "Sugar")
+            tableMapping.ColumnMappings.Add("Urine Pus Cells", "Urine Pus Cells")
+            tableMapping.ColumnMappings.Add("Urine RBC", "Urine RBC")
+            tableMapping.ColumnMappings.Add("Bacteria", "Bacteria")
+            tableMapping.ColumnMappings.Add("Epithelial Cells", "Epithelial Cells")
+            tableMapping.ColumnMappings.Add("Crystals", "Crystals")
+            tableMapping.ColumnMappings.Add("Casts", "Casts")
+            tableMapping.ColumnMappings.Add("Urine Others ", "Urine Others ")
+            tableMapping.ColumnMappings.Add("Stool Color", "Stool Color")
+            tableMapping.ColumnMappings.Add("Consistency", "Consistency")
+            tableMapping.ColumnMappings.Add("Stool RBC", "Stool RBC")
+            tableMapping.ColumnMappings.Add("Stool Pus Cells", "Stool Pus Cells")
+            tableMapping.ColumnMappings.Add("Ascaris lumbricoides", "Ascaris lumbricoides")
+            tableMapping.ColumnMappings.Add("Trichuris trichiura", "Trichuris trichiura")
+            tableMapping.ColumnMappings.Add("Hookworms", "Hookworms")
+            tableMapping.ColumnMappings.Add("Entamoeba histolytica", "Entamoeba histolytica")
+            tableMapping.ColumnMappings.Add("Entamoeba coli", "Entamoeba coli")
+            tableMapping.ColumnMappings.Add("Other Parasites/Ova", "Other Parasites/Ova")
+            tableMapping.ColumnMappings.Add("Gram Stain", "Gram Stain")
+            tableMapping.ColumnMappings.Add("NSS", "NSS")
+            tableMapping.ColumnMappings.Add("10% KOH", "10% KOH")
+            tableMapping.ColumnMappings.Add("Hepatitis BsAg", "Hepatitis BsAg")
+            tableMapping.ColumnMappings.Add("Attended STD Seminar", "Attended STD Seminar")
+            tableMapping.ColumnMappings.Add("Type of Gram Stain Smear", "Type of Gram Stain Smear")
+            tableMapping.ColumnMappings.Add("Type of Visit (HC)", "Type of Visit (HC)")
+            tableMapping.ColumnMappings.Add("Type of Client (HC)", "Type of Client (HC)")
+            tableMapping.ColumnMappings.Add("VDRL/RPR (HC)", "VDRL/RPR (HC)")
+            tableMapping.ColumnMappings.Add("TPHA/TPPA (C)", "TPHA/TPPA (C)")
+            Me._adapter.TableMappings.Add(tableMapping)
+            Me._adapter.DeleteCommand = New Global.System.Data.SqlServerCe.SqlCeCommand()
+            Me._adapter.DeleteCommand.Connection = Me.Connection
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [HealthCertificate] WHERE (([Certificate ID] = @p1))"
+            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Certificate ID", Global.System.Data.DataRowVersion.Original, Nothing))
+            Me._adapter.InsertCommand = New Global.System.Data.SqlServerCe.SqlCeCommand()
+            Me._adapter.InsertCommand.Connection = Me.Connection
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [HealthCertificate] ([ID], [Date of Application], [Date of Issued], ["& _ 
+                "Urine Color], [Transparency], [Reaction], [Specific Gravity], [Albumin], [Sugar]"& _ 
+                ", [Urine Pus Cells], [Urine RBC], [Bacteria], [Epithelial Cells], [Crystals], [C"& _ 
+                "asts], [Urine Others ], [Stool Color], [Consistency], [Stool RBC], [Stool Pus Ce"& _ 
+                "lls], [Ascaris lumbricoides], [Trichuris trichiura], [Hookworms], [Entamoeba his"& _ 
+                "tolytica], [Entamoeba coli], [Other Parasites/Ova], [Gram Stain], [NSS], [10% KO"& _ 
+                "H], [Hepatitis BsAg], [Attended STD Seminar], [Type of Gram Stain Smear], [Type "& _ 
+                "of Visit (HC)], [Type of Client (HC)], [VDRL/RPR (HC)], [TPHA/TPPA (C)]) VALUES "& _ 
+                "(@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15"& _ 
+                ", @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27, @p28, "& _ 
+                "@p29, @p30, @p31, @p32, @p33, @p34, @p35, @p36)"
+            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Application", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p3", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Issued", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p4", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Urine Color", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p5", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Transparency", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p6", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Reaction", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p7", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Specific Gravity", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p8", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Albumin", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p9", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Sugar", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p10", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Urine Pus Cells", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p11", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Urine RBC", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p12", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Bacteria", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p13", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Epithelial Cells", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p14", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Crystals", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p15", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Casts", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p16", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Urine Others ", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p17", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Stool Color", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p18", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Consistency", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p19", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Stool RBC", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p20", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Stool Pus Cells", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p21", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Ascaris lumbricoides", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p22", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Trichuris trichiura", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p23", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Hookworms", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p24", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Entamoeba histolytica", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p25", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Entamoeba coli", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p26", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Other Parasites/Ova", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p27", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Gram Stain", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p28", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "NSS", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p29", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "10% KOH", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p30", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Hepatitis BsAg", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p31", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Attended STD Seminar", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p32", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Gram Stain Smear", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p33", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Visit (HC)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p34", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Client (HC)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p35", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "VDRL/RPR (HC)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p36", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "TPHA/TPPA (C)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand = New Global.System.Data.SqlServerCe.SqlCeCommand()
+            Me._adapter.UpdateCommand.Connection = Me.Connection
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [HealthCertificate] SET [ID] = @p1, [Date of Application] = @p2, [Date of "& _ 
+                "Issued] = @p3, [Urine Color] = @p4, [Transparency] = @p5, [Reaction] = @p6, [Spe"& _ 
+                "cific Gravity] = @p7, [Albumin] = @p8, [Sugar] = @p9, [Urine Pus Cells] = @p10, "& _ 
+                "[Urine RBC] = @p11, [Bacteria] = @p12, [Epithelial Cells] = @p13, [Crystals] = @"& _ 
+                "p14, [Casts] = @p15, [Urine Others ] = @p16, [Stool Color] = @p17, [Consistency]"& _ 
+                " = @p18, [Stool RBC] = @p19, [Stool Pus Cells] = @p20, [Ascaris lumbricoides] = "& _ 
+                "@p21, [Trichuris trichiura] = @p22, [Hookworms] = @p23, [Entamoeba histolytica] "& _ 
+                "= @p24, [Entamoeba coli] = @p25, [Other Parasites/Ova] = @p26, [Gram Stain] = @p"& _ 
+                "27, [NSS] = @p28, [10% KOH] = @p29, [Hepatitis BsAg] = @p30, [Attended STD Semin"& _ 
+                "ar] = @p31, [Type of Gram Stain Smear] = @p32, [Type of Visit (HC)] = @p33, [Typ"& _ 
+                "e of Client (HC)] = @p34, [VDRL/RPR (HC)] = @p35, [TPHA/TPPA (C)] = @p36 WHERE ("& _ 
+                "([Certificate ID] = @p37))"
+            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Application", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p3", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Issued", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p4", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Urine Color", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p5", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Transparency", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p6", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Reaction", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p7", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Specific Gravity", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p8", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Albumin", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p9", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Sugar", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p10", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Urine Pus Cells", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p11", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Urine RBC", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p12", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Bacteria", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p13", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Epithelial Cells", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p14", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Crystals", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p15", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Casts", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p16", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Urine Others ", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p17", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Stool Color", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p18", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Consistency", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p19", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Stool RBC", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p20", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Stool Pus Cells", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p21", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Ascaris lumbricoides", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p22", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Trichuris trichiura", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p23", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Hookworms", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p24", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Entamoeba histolytica", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p25", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Entamoeba coli", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p26", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Other Parasites/Ova", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p27", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Gram Stain", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p28", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "NSS", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p29", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "10% KOH", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p30", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Hepatitis BsAg", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p31", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Attended STD Seminar", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p32", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Gram Stain Smear", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p33", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Visit (HC)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p34", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Client (HC)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p35", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "VDRL/RPR (HC)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p36", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "TPHA/TPPA (C)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p37", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Certificate ID", Global.System.Data.DataRowVersion.Original, Nothing))
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SqlServerCe.SqlCeConnection()
+            Me._connection.ConnectionString = Global.eSHC.My.MySettings.Default.Database1ConnectionString
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SqlServerCe.SqlCeCommand(0) {}
+            Me._commandCollection(0) = New Global.System.Data.SqlServerCe.SqlCeCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT [Certificate ID], [ID], [Date of Application], [Date of Issued], [Urine Co"& _ 
+                "lor], [Transparency], [Reaction], [Specific Gravity], [Albumin], [Sugar], [Urine"& _ 
+                " Pus Cells], [Urine RBC], [Bacteria], [Epithelial Cells], [Crystals], [Casts], ["& _ 
+                "Urine Others ], [Stool Color], [Consistency], [Stool RBC], [Stool Pus Cells], [A"& _ 
+                "scaris lumbricoides], [Trichuris trichiura], [Hookworms], [Entamoeba histolytica"& _ 
+                "], [Entamoeba coli], [Other Parasites/Ova], [Gram Stain], [NSS], [10% KOH], [Hep"& _ 
+                "atitis BsAg], [Attended STD Seminar], [Type of Gram Stain Smear], [Type of Visit"& _ 
+                " (HC)], [Type of Client (HC)], [VDRL/RPR (HC)], [TPHA/TPPA (C)] FROM [HealthCert"& _ 
+                "ificate]"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As Database1DataSet1.HealthCertificateDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As Database1DataSet1.HealthCertificateDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As Database1DataSet1.HealthCertificateDataTable = New Database1DataSet1.HealthCertificateDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataTable As Database1DataSet1.HealthCertificateDataTable) As Integer
+            Return Me.Adapter.Update(dataTable)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataSet As Database1DataSet1) As Integer
+            Return Me.Adapter.Update(dataSet, "HealthCertificate")
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(dataRows)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
+        Public Overloads Overridable Function Delete(ByVal p1 As Long) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(p1,Long)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.DeleteCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.DeleteCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
+        Public Overloads Overridable Function Insert( _
+                    ByVal p1 As Long,  _
                     ByVal p2 As Global.System.Nullable(Of Date),  _
                     ByVal p3 As Global.System.Nullable(Of Date),  _
                     ByVal p4 As String,  _
@@ -5507,12 +7765,13 @@ Namespace tryshcDataSet1TableAdapters
                     ByVal p28 As String,  _
                     ByVal p29 As String,  _
                     ByVal p30 As String,  _
-                    ByVal p31 As String) As Integer
-            If (p1 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(0).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(p1,String)
-            End If
+                    ByVal p31 As String,  _
+                    ByVal p32 As String,  _
+                    ByVal p33 As String,  _
+                    ByVal p34 As String,  _
+                    ByVal p35 As String,  _
+                    ByVal p36 As String) As Integer
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(p1,Long)
             If (p2.HasValue = true) Then
                 Me.Adapter.InsertCommand.Parameters(1).Value = CType(p2.Value,Date)
             Else
@@ -5663,6 +7922,31 @@ Namespace tryshcDataSet1TableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(30).Value = CType(p31,String)
             End If
+            If (p32 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(31).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(31).Value = CType(p32,String)
+            End If
+            If (p33 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(32).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(32).Value = CType(p33,String)
+            End If
+            If (p34 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(33).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(33).Value = CType(p34,String)
+            End If
+            If (p35 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(34).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(34).Value = CType(p35,String)
+            End If
+            If (p36 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(35).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(35).Value = CType(p36,String)
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -5683,7 +7967,7 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
         Public Overloads Overridable Function Update( _
-                    ByVal p1 As String,  _
+                    ByVal p1 As Long,  _
                     ByVal p2 As Global.System.Nullable(Of Date),  _
                     ByVal p3 As Global.System.Nullable(Of Date),  _
                     ByVal p4 As String,  _
@@ -5714,12 +7998,13 @@ Namespace tryshcDataSet1TableAdapters
                     ByVal p29 As String,  _
                     ByVal p30 As String,  _
                     ByVal p31 As String,  _
-                    ByVal p32 As Long) As Integer
-            If (p1 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(p1,String)
-            End If
+                    ByVal p32 As String,  _
+                    ByVal p33 As String,  _
+                    ByVal p34 As String,  _
+                    ByVal p35 As String,  _
+                    ByVal p36 As String,  _
+                    ByVal p37 As Long) As Integer
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(p1,Long)
             If (p2.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(1).Value = CType(p2.Value,Date)
             Else
@@ -5870,7 +8155,32 @@ Namespace tryshcDataSet1TableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(30).Value = CType(p31,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(31).Value = CType(p32,Long)
+            If (p32 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(p32,String)
+            End If
+            If (p33 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(p33,String)
+            End If
+            If (p34 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(33).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(p34,String)
+            End If
+            If (p35 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(34).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(p35,String)
+            End If
+            If (p36 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(35).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(p36,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(36).Value = CType(p37,Long)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -5896,7 +8206,7 @@ Namespace tryshcDataSet1TableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class HIV_Voluntary_Counseling_and_TestingTableAdapter
+    Partial Public Class PersonalInformationTableAdapter
         Inherits Global.System.ComponentModel.Component
         
         Private WithEvents _adapter As Global.System.Data.SqlServerCe.SqlCeDataAdapter
@@ -6013,72 +8323,152 @@ Namespace tryshcDataSet1TableAdapters
             Me._adapter = New Global.System.Data.SqlServerCe.SqlCeDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "HIV Voluntary Counseling and Testing"
-            tableMapping.ColumnMappings.Add("HIV VCT ID", "HIV VCT ID")
-            tableMapping.ColumnMappings.Add("Patient ID", "Patient ID")
-            tableMapping.ColumnMappings.Add("Date of Counseling ", "Date of Counseling ")
-            tableMapping.ColumnMappings.Add("HIV Counseling", "HIV Counseling")
-            tableMapping.ColumnMappings.Add("Date Blood Collected", "Date Blood Collected")
-            tableMapping.ColumnMappings.Add("HIV Screening Test Result", "HIV Screening Test Result")
-            tableMapping.ColumnMappings.Add("Name of HIV Proficient Medt Tech", "Name of HIV Proficient Medt Tech")
+            tableMapping.DataSetTable = "PersonalInformation"
+            tableMapping.ColumnMappings.Add("ID", "ID")
+            tableMapping.ColumnMappings.Add("Date of Registration", "Date of Registration")
+            tableMapping.ColumnMappings.Add("First Name", "First Name")
+            tableMapping.ColumnMappings.Add("Middle Name", "Middle Name")
+            tableMapping.ColumnMappings.Add("Last Name", "Last Name")
+            tableMapping.ColumnMappings.Add("Gender", "Gender")
+            tableMapping.ColumnMappings.Add("Date of Birth", "Date of Birth")
+            tableMapping.ColumnMappings.Add("Age", "Age")
+            tableMapping.ColumnMappings.Add("Occupation", "Occupation")
+            tableMapping.ColumnMappings.Add("Address", "Address")
+            tableMapping.ColumnMappings.Add("City", "City")
+            tableMapping.ColumnMappings.Add("Telephone Number", "Telephone Number")
+            tableMapping.ColumnMappings.Add("Name of Establishment", "Name of Establishment")
+            tableMapping.ColumnMappings.Add("Type of Establishment", "Type of Establishment")
+            tableMapping.ColumnMappings.Add("Contact Person", "Contact Person")
+            tableMapping.ColumnMappings.Add("Contact Number", "Contact Number")
+            tableMapping.ColumnMappings.Add("Establishment Address", "Establishment Address")
+            tableMapping.ColumnMappings.Add("Barangay", "Barangay")
+            tableMapping.ColumnMappings.Add("Photo", "Photo")
+            tableMapping.ColumnMappings.Add("Type of MARP", "Type of MARP")
+            tableMapping.ColumnMappings.Add("Age Group", "Age Group")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlServerCe.SqlCeCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [HIV Voluntary Counseling and Testing] WHERE (([HIV VCT ID] = @p1))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [PersonalInformation] WHERE (([ID] = @p1))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "HIV VCT ID", Global.System.Data.DataRowVersion.Original, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "ID", Global.System.Data.DataRowVersion.Original, Nothing))
             Me._adapter.InsertCommand = New Global.System.Data.SqlServerCe.SqlCeCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [HIV Voluntary Counseling and Testing] ([Patient ID], [Date of Counse"& _ 
-                "ling ], [HIV Counseling], [Date Blood Collected], [HIV Screening Test Result], ["& _ 
-                "Name of HIV Proficient Medt Tech]) VALUES (@p1, @p2, @p3, @p4, @p5, @p6)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [PersonalInformation] ([Date of Registration], [First Name], [Middle "& _ 
+                "Name], [Last Name], [Gender], [Date of Birth], [Age], [Occupation], [Address], ["& _ 
+                "City], [Telephone Number], [Name of Establishment], [Type of Establishment], [Co"& _ 
+                "ntact Person], [Contact Number], [Establishment Address], [Barangay], [Photo], ["& _ 
+                "Type of MARP], [Age Group]) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9,"& _ 
+                " @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Patient ID", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Counseling ", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p3", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "HIV Counseling", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p4", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date Blood Collected", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p5", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "HIV Screening Test Result", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p6", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Name of HIV Proficient Medt Tech", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Registration", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "First Name", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p3", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Middle Name", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p4", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Last Name", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p5", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Gender", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p6", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Birth", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p7", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Age", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p8", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Occupation", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p9", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Address", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p10", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "City", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p11", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Telephone Number", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p12", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Name of Establishment", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p13", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Establishment", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p14", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Contact Person", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p15", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Contact Number", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p16", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Establishment Address", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p17", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Barangay", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p18", Global.System.Data.SqlDbType.Image, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Photo", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p19", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of MARP", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p20", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Age Group", Global.System.Data.DataRowVersion.Current, Nothing))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlServerCe.SqlCeCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [HIV Voluntary Counseling and Testing] SET [Patient ID] = @p1, [Date of Co"& _ 
-                "unseling ] = @p2, [HIV Counseling] = @p3, [Date Blood Collected] = @p4, [HIV Scr"& _ 
-                "eening Test Result] = @p5, [Name of HIV Proficient Medt Tech] = @p6 WHERE (([HIV"& _ 
-                " VCT ID] = @p7))"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [PersonalInformation] SET [Date of Registration] = @p1, [First Name] = @p2"& _ 
+                ", [Middle Name] = @p3, [Last Name] = @p4, [Gender] = @p5, [Date of Birth] = @p6,"& _ 
+                " [Age] = @p7, [Occupation] = @p8, [Address] = @p9, [City] = @p10, [Telephone Num"& _ 
+                "ber] = @p11, [Name of Establishment] = @p12, [Type of Establishment] = @p13, [Co"& _ 
+                "ntact Person] = @p14, [Contact Number] = @p15, [Establishment Address] = @p16, ["& _ 
+                "Barangay] = @p17, [Photo] = @p18, [Type of MARP] = @p19, [Age Group] = @p20 WHER"& _ 
+                "E (([ID] = @p21))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Patient ID", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Counseling ", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p3", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "HIV Counseling", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p4", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date Blood Collected", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p5", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "HIV Screening Test Result", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p6", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Name of HIV Proficient Medt Tech", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p7", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "HIV VCT ID", Global.System.Data.DataRowVersion.Original, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Registration", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "First Name", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p3", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Middle Name", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p4", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Last Name", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p5", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Gender", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p6", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Birth", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p7", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Age", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p8", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Occupation", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p9", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Address", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p10", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "City", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p11", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Telephone Number", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p12", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Name of Establishment", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p13", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Establishment", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p14", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Contact Person", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p15", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Contact Number", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p16", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Establishment Address", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p17", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Barangay", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p18", Global.System.Data.SqlDbType.Image, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Photo", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p19", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of MARP", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p20", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Age Group", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p21", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "ID", Global.System.Data.DataRowVersion.Original, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.SqlServerCe.SqlCeConnection()
-            Me._connection.ConnectionString = Global.TRYSHC.My.MySettings.Default.tryshcConnectionString
+            Me._connection.ConnectionString = Global.eSHC.My.MySettings.Default.Database1ConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlServerCe.SqlCeCommand(0) {}
+            Me._commandCollection = New Global.System.Data.SqlServerCe.SqlCeCommand(3) {}
             Me._commandCollection(0) = New Global.System.Data.SqlServerCe.SqlCeCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT [HIV VCT ID], [Patient ID], [Date of Counseling ], [HIV Counseling], [Date"& _ 
-                " Blood Collected], [HIV Screening Test Result], [Name of HIV Proficient Medt Tec"& _ 
-                "h] FROM [HIV Voluntary Counseling and Testing]"
+            Me._commandCollection(0).CommandText = "SELECT [ID], [Date of Registration], [First Name], [Middle Name], [Last Name], [G"& _ 
+                "ender], [Date of Birth], [Age], [Occupation], [Address], [City], [Telephone Numb"& _ 
+                "er], [Name of Establishment], [Type of Establishment], [Contact Person], [Contac"& _ 
+                "t Number], [Establishment Address], [Barangay], [Photo], [Type of MARP], [Age Gr"& _ 
+                "oup] FROM [PersonalInformation]"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SqlServerCe.SqlCeCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT        ID, [Date of Registration], [First Name], [Middle Name], [Last Name"& _ 
+                "], Gender, [Date of Birth], Age, Occupation, Address, City, [Telephone Number], "& _ 
+                "[Name of Establishment], [Type of Establishment], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [Co"& _ 
+                "ntact Person], [Contact Number], [Establishment Address], Barangay, Photo, [Type"& _ 
+                " of MARP], [Age Group]"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            PersonalInformation"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([Firs"& _ 
+                "t Name] LIKE @Firstname + '%')"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@Firstname", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, true, 0, 0, "First Name", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._commandCollection(2) = New Global.System.Data.SqlServerCe.SqlCeCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "SELECT        ID, [Date of Registration], [First Name], [Middle Name], [Last Name"& _ 
+                "], Gender, [Date of Birth], Age, Occupation, Address, City, [Telephone Number], "& _ 
+                "[Name of Establishment], [Type of Establishment], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [Co"& _ 
+                "ntact Person], [Contact Number], [Establishment Address], Barangay, Photo, [Type"& _ 
+                " of MARP], [Age Group]"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            PersonalInformation"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([Last"& _ 
+                " Name] LIKE @Lastname + '%')"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@Lastname", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Last Name", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._commandCollection(3) = New Global.System.Data.SqlServerCe.SqlCeCommand()
+            Me._commandCollection(3).Connection = Me.Connection
+            Me._commandCollection(3).CommandText = "SELECT        ID, [Date of Registration], [First Name], [Middle Name], [Last Name"& _ 
+                "], Gender, [Date of Birth], Age, Occupation, Address, City, [Telephone Number], "& _ 
+                "[Name of Establishment], [Type of Establishment], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [Co"& _ 
+                "ntact Person], [Contact Number], [Establishment Address], Barangay, Photo, [Type"& _ 
+                " of MARP], [Age Group]"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            PersonalInformation"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([Name"& _ 
+                " of Establishment] LIKE @NameofEstablishment + '%')"
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@NameofEstablishment", Global.System.Data.SqlDbType.NVarChar, 100, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Name of Establishment", Global.System.Data.DataRowVersion.Current, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As tryshcDataSet1.HIV_Voluntary_Counseling_and_TestingDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As Database1DataSet1.PersonalInformationDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -6091,25 +8481,79 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As tryshcDataSet1.HIV_Voluntary_Counseling_and_TestingDataTable
+        Public Overloads Overridable Function GetData() As Database1DataSet1.PersonalInformationDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As tryshcDataSet1.HIV_Voluntary_Counseling_and_TestingDataTable = New tryshcDataSet1.HIV_Voluntary_Counseling_and_TestingDataTable()
+            Dim dataTable As Database1DataSet1.PersonalInformationDataTable = New Database1DataSet1.PersonalInformationDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByFirstname(ByVal dataTable As Database1DataSet1.PersonalInformationDataTable, ByVal Firstname As String) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (Firstname Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(Firstname,String)
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByLastname(ByVal dataTable As Database1DataSet1.PersonalInformationDataTable, ByVal Lastname As String) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            If (Lastname Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(Lastname,String)
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByNameofEstablishment(ByVal dataTable As Database1DataSet1.PersonalInformationDataTable, ByVal NameofEstablishment As String) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            If (NameofEstablishment Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(NameofEstablishment,String)
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As tryshcDataSet1.HIV_Voluntary_Counseling_and_TestingDataTable) As Integer
+        Public Overloads Overridable Function Update(ByVal dataTable As Database1DataSet1.PersonalInformationDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As tryshcDataSet1) As Integer
-            Return Me.Adapter.Update(dataSet, "HIV Voluntary Counseling and Testing")
+        Public Overloads Overridable Function Update(ByVal dataSet As Database1DataSet1) As Integer
+            Return Me.Adapter.Update(dataSet, "PersonalInformation")
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6151,36 +8595,126 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal p1 As String, ByVal p2 As Global.System.Nullable(Of Date), ByVal p3 As String, ByVal p4 As Global.System.Nullable(Of Date), ByVal p5 As String, ByVal p6 As String) As Integer
-            If (p1 Is Nothing) Then
+        Public Overloads Overridable Function Insert( _
+                    ByVal p1 As Global.System.Nullable(Of Date),  _
+                    ByVal p2 As String,  _
+                    ByVal p3 As String,  _
+                    ByVal p4 As String,  _
+                    ByVal p5 As String,  _
+                    ByVal p6 As Global.System.Nullable(Of Date),  _
+                    ByVal p7 As Global.System.Nullable(Of Integer),  _
+                    ByVal p8 As String,  _
+                    ByVal p9 As String,  _
+                    ByVal p10 As String,  _
+                    ByVal p11 As String,  _
+                    ByVal p12 As String,  _
+                    ByVal p13 As String,  _
+                    ByVal p14 As String,  _
+                    ByVal p15 As String,  _
+                    ByVal p16 As String,  _
+                    ByVal p17 As String,  _
+                    ByVal p18() As Byte,  _
+                    ByVal p19 As String,  _
+                    ByVal p20 As String) As Integer
+            If (p1.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(0).Value = CType(p1.Value,Date)
+            Else
                 Me.Adapter.InsertCommand.Parameters(0).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(p1,String)
             End If
-            If (p2.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(p2.Value,Date)
-            Else
+            If (p2 Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(p2,String)
             End If
             If (p3 Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.InsertCommand.Parameters(2).Value = CType(p3,String)
             End If
-            If (p4.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(p4.Value,Date)
-            Else
+            If (p4 Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(p4,String)
             End If
             If (p5 Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.InsertCommand.Parameters(4).Value = CType(p5,String)
             End If
-            If (p6 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
+            If (p6.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(p6.Value,Date)
             Else
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(p6,String)
+                Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
+            End If
+            If (p7.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(p7.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
+            End If
+            If (p8 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(p8,String)
+            End If
+            If (p9 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(p9,String)
+            End If
+            If (p10 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(p10,String)
+            End If
+            If (p11 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(p11,String)
+            End If
+            If (p12 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(p12,String)
+            End If
+            If (p13 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(p13,String)
+            End If
+            If (p14 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(p14,String)
+            End If
+            If (p15 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(14).Value = CType(p15,String)
+            End If
+            If (p16 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(15).Value = CType(p16,String)
+            End If
+            If (p17 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(16).Value = CType(p17,String)
+            End If
+            If (p18 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(17).Value = CType(p18,Byte())
+            End If
+            If (p19 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(18).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(18).Value = CType(p19,String)
+            End If
+            If (p20 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(19).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(19).Value = CType(p20,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -6201,38 +8735,129 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal p1 As String, ByVal p2 As Global.System.Nullable(Of Date), ByVal p3 As String, ByVal p4 As Global.System.Nullable(Of Date), ByVal p5 As String, ByVal p6 As String, ByVal p7 As Long) As Integer
-            If (p1 Is Nothing) Then
+        Public Overloads Overridable Function Update( _
+                    ByVal p1 As Global.System.Nullable(Of Date),  _
+                    ByVal p2 As String,  _
+                    ByVal p3 As String,  _
+                    ByVal p4 As String,  _
+                    ByVal p5 As String,  _
+                    ByVal p6 As Global.System.Nullable(Of Date),  _
+                    ByVal p7 As Global.System.Nullable(Of Integer),  _
+                    ByVal p8 As String,  _
+                    ByVal p9 As String,  _
+                    ByVal p10 As String,  _
+                    ByVal p11 As String,  _
+                    ByVal p12 As String,  _
+                    ByVal p13 As String,  _
+                    ByVal p14 As String,  _
+                    ByVal p15 As String,  _
+                    ByVal p16 As String,  _
+                    ByVal p17 As String,  _
+                    ByVal p18() As Byte,  _
+                    ByVal p19 As String,  _
+                    ByVal p20 As String,  _
+                    ByVal p21 As Long) As Integer
+            If (p1.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(p1.Value,Date)
+            Else
                 Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(p1,String)
             End If
-            If (p2.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(p2.Value,Date)
-            Else
+            If (p2 Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(p2,String)
             End If
             If (p3 Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(2).Value = CType(p3,String)
             End If
-            If (p4.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(p4.Value,Date)
-            Else
+            If (p4 Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(p4,String)
             End If
             If (p5 Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(4).Value = CType(p5,String)
             End If
-            If (p6 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
+            If (p6.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(p6.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(p6,String)
+                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(p7,Long)
+            If (p7.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(p7.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
+            End If
+            If (p8 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(p8,String)
+            End If
+            If (p9 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(p9,String)
+            End If
+            If (p10 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(p10,String)
+            End If
+            If (p11 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(p11,String)
+            End If
+            If (p12 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(p12,String)
+            End If
+            If (p13 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(p13,String)
+            End If
+            If (p14 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(p14,String)
+            End If
+            If (p15 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(p15,String)
+            End If
+            If (p16 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(p16,String)
+            End If
+            If (p17 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(p17,String)
+            End If
+            If (p18 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(p18,Byte())
+            End If
+            If (p19 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(p19,String)
+            End If
+            If (p20 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(p20,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(20).Value = CType(p21,Long)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -6258,7 +8883,7 @@ Namespace tryshcDataSet1TableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class LoginTableAdapter
+    Partial Public Class UserTableAdapter
         Inherits Global.System.ComponentModel.Component
         
         Private WithEvents _adapter As Global.System.Data.SqlServerCe.SqlCeDataAdapter
@@ -6375,13 +9000,13 @@ Namespace tryshcDataSet1TableAdapters
             Me._adapter = New Global.System.Data.SqlServerCe.SqlCeDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "Login"
+            tableMapping.DataSetTable = "User"
             tableMapping.ColumnMappings.Add("Username", "Username")
             tableMapping.ColumnMappings.Add("Password", "Password")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.InsertCommand = New Global.System.Data.SqlServerCe.SqlCeCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [Login] ([Username], [Password]) VALUES (@p1, @p2)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [User] ([Username], [Password]) VALUES (@p1, @p2)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Username", Global.System.Data.DataRowVersion.Current, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Password", Global.System.Data.DataRowVersion.Current, Nothing))
@@ -6391,7 +9016,7 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.SqlServerCe.SqlCeConnection()
-            Me._connection.ConnectionString = Global.TRYSHC.My.MySettings.Default.tryshcConnectionString
+            Me._connection.ConnectionString = Global.eSHC.My.MySettings.Default.Database1ConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6400,7 +9025,7 @@ Namespace tryshcDataSet1TableAdapters
             Me._commandCollection = New Global.System.Data.SqlServerCe.SqlCeCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlServerCe.SqlCeCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT [Username], [Password] FROM [Login]"
+            Me._commandCollection(0).CommandText = "SELECT [Username], [Password] FROM [User]"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -6408,7 +9033,7 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As tryshcDataSet1.LoginDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As Database1DataSet1.UserDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -6421,9 +9046,9 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As tryshcDataSet1.LoginDataTable
+        Public Overloads Overridable Function GetData() As Database1DataSet1.UserDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As tryshcDataSet1.LoginDataTable = New tryshcDataSet1.LoginDataTable()
+            Dim dataTable As Database1DataSet1.UserDataTable = New Database1DataSet1.UserDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
@@ -6431,15 +9056,15 @@ Namespace tryshcDataSet1TableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As tryshcDataSet1.LoginDataTable) As Integer
+        Public Overloads Overridable Function Update(ByVal dataTable As Database1DataSet1.UserDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As tryshcDataSet1) As Integer
-            Return Me.Adapter.Update(dataSet, "Login")
+        Public Overloads Overridable Function Update(ByVal dataSet As Database1DataSet1) As Integer
+            Return Me.Adapter.Update(dataSet, "User")
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6496,7 +9121,7 @@ Namespace tryshcDataSet1TableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class Personal_InformationTableAdapter
+    Partial Public Class VCTTableAdapter
         Inherits Global.System.ComponentModel.Component
         
         Private WithEvents _adapter As Global.System.Data.SqlServerCe.SqlCeDataAdapter
@@ -6613,91 +9238,123 @@ Namespace tryshcDataSet1TableAdapters
             Me._adapter = New Global.System.Data.SqlServerCe.SqlCeDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "Personal Information"
-            tableMapping.ColumnMappings.Add("Patient ID", "Patient ID")
-            tableMapping.ColumnMappings.Add("Date of Registration", "Date of Registration")
-            tableMapping.ColumnMappings.Add("First Name", "First Name")
-            tableMapping.ColumnMappings.Add("Middle Name", "Middle Name")
-            tableMapping.ColumnMappings.Add("Last Name", "Last Name")
-            tableMapping.ColumnMappings.Add("Gender", "Gender")
-            tableMapping.ColumnMappings.Add("Date of Birth", "Date of Birth")
-            tableMapping.ColumnMappings.Add("Age", "Age")
-            tableMapping.ColumnMappings.Add("Occupation", "Occupation")
-            tableMapping.ColumnMappings.Add("Address", "Address")
-            tableMapping.ColumnMappings.Add("City", "City")
-            tableMapping.ColumnMappings.Add("Telephone Number", "Telephone Number")
-            tableMapping.ColumnMappings.Add("Name of Establishment", "Name of Establishment")
-            tableMapping.ColumnMappings.Add("Type of Establishment", "Type of Establishment")
-            tableMapping.ColumnMappings.Add("Contact Person", "Contact Person")
-            tableMapping.ColumnMappings.Add("Contact Number", "Contact Number")
-            tableMapping.ColumnMappings.Add("Address of Establishment", "Address of Establishment")
-            tableMapping.ColumnMappings.Add("Barangay", "Barangay")
+            tableMapping.DataSetTable = "VCT"
+            tableMapping.ColumnMappings.Add("VCT ID", "VCT ID")
+            tableMapping.ColumnMappings.Add("ID", "ID")
+            tableMapping.ColumnMappings.Add("HIV Counseling", "HIV Counseling")
+            tableMapping.ColumnMappings.Add("Date of Counseling", "Date of Counseling")
+            tableMapping.ColumnMappings.Add("HIV Testing", "HIV Testing")
+            tableMapping.ColumnMappings.Add("Date of HIV Testing", "Date of HIV Testing")
+            tableMapping.ColumnMappings.Add("HIV Test Result", "HIV Test Result")
+            tableMapping.ColumnMappings.Add("Results Taken ", "Results Taken ")
+            tableMapping.ColumnMappings.Add("Date HIV Test Result Released", "Date HIV Test Result Released")
+            tableMapping.ColumnMappings.Add("CD4 Count", "CD4 Count")
+            tableMapping.ColumnMappings.Add("Anti-retroviral Treatment", "Anti-retroviral Treatment")
+            tableMapping.ColumnMappings.Add("Place of Referral", "Place of Referral")
+            tableMapping.ColumnMappings.Add("Schedule of follow-up Visit", "Schedule of follow-up Visit")
+            tableMapping.ColumnMappings.Add("Confirmatory Test Result", "Confirmatory Test Result")
+            tableMapping.ColumnMappings.Add("Referral to Treatment Hub", "Referral to Treatment Hub")
+            tableMapping.ColumnMappings.Add("Successfully Accepted to Treatment Hub", "Successfully Accepted to Treatment Hub")
+            tableMapping.ColumnMappings.Add("Received Condom", "Received Condom")
+            tableMapping.ColumnMappings.Add("Received Lubricant", "Received Lubricant")
+            tableMapping.ColumnMappings.Add("Number of Condoms ", "Number of Condoms ")
+            tableMapping.ColumnMappings.Add("Number of Lubricants ", "Number of Lubricants ")
+            tableMapping.ColumnMappings.Add("Number of Contacts", "Number of Contacts")
+            tableMapping.ColumnMappings.Add("Recruitment System", "Recruitment System")
+            tableMapping.ColumnMappings.Add("Type of Visit (V)", "Type of Visit (V)")
+            tableMapping.ColumnMappings.Add("Type of Client (V)", "Type of Client (V)")
+            tableMapping.ColumnMappings.Add("Type of Recruitment", "Type of Recruitment")
+            tableMapping.ColumnMappings.Add("Setting of HIV Testing", "Setting of HIV Testing")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlServerCe.SqlCeCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [Personal Information] WHERE (([Patient ID] = @p1))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [VCT] WHERE (([VCT ID] = @p1))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Patient ID", Global.System.Data.DataRowVersion.Original, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "VCT ID", Global.System.Data.DataRowVersion.Original, Nothing))
             Me._adapter.InsertCommand = New Global.System.Data.SqlServerCe.SqlCeCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [Personal Information] ([Date of Registration], [First Name], [Middle"& _ 
-                " Name], [Last Name], [Gender], [Date of Birth], [Age], [Occupation], [Address], "& _ 
-                "[City], [Telephone Number], [Name of Establishment], [Type of Establishment], [C"& _ 
-                "ontact Person], [Contact Number], [Address of Establishment], [Barangay]) VALUES"& _ 
-                " (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p1"& _ 
-                "5, @p16, @p17)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [VCT] ([ID], [HIV Counseling], [Date of Counseling], [HIV Testing], ["& _ 
+                "Date of HIV Testing], [HIV Test Result], [Results Taken ], [Date HIV Test Result"& _ 
+                " Released], [CD4 Count], [Anti-retroviral Treatment], [Place of Referral], [Sche"& _ 
+                "dule of follow-up Visit], [Confirmatory Test Result], [Referral to Treatment Hub"& _ 
+                "], [Successfully Accepted to Treatment Hub], [Received Condom], [Received Lubric"& _ 
+                "ant], [Number of Condoms ], [Number of Lubricants ], [Number of Contacts], [Recr"& _ 
+                "uitment System], [Type of Visit (V)], [Type of Client (V)], [Type of Recruitment"& _ 
+                "], [Setting of HIV Testing]) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9"& _ 
+                ", @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, "& _ 
+                "@p23, @p24, @p25)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Registration", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "First Name", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p3", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Middle Name", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p4", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Last Name", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p5", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Gender", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p6", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Birth", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p7", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Age", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p8", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Occupation", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p9", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Address", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p10", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "City", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p11", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Telephone Number", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p12", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Name of Establishment", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p13", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Establishment", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p14", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Contact Person", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p15", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Contact Number", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p16", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Address of Establishment", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p17", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Barangay", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "HIV Counseling", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p3", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Counseling", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p4", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "HIV Testing", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p5", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of HIV Testing", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p6", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "HIV Test Result", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p7", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Results Taken ", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p8", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date HIV Test Result Released", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p9", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "CD4 Count", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p10", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Anti-retroviral Treatment", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p11", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Place of Referral", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p12", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Schedule of follow-up Visit", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p13", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Confirmatory Test Result", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p14", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Referral to Treatment Hub", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p15", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Successfully Accepted to Treatment Hub", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p16", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Received Condom", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p17", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Received Lubricant", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p18", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Number of Condoms ", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p19", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Number of Lubricants ", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p20", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Number of Contacts", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p21", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Recruitment System", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p22", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Visit (V)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p23", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Client (V)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p24", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Recruitment", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p25", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Setting of HIV Testing", Global.System.Data.DataRowVersion.Current, Nothing))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlServerCe.SqlCeCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [Personal Information] SET [Date of Registration] = @p1, [First Name] = @p"& _ 
-                "2, [Middle Name] = @p3, [Last Name] = @p4, [Gender] = @p5, [Date of Birth] = @p6"& _ 
-                ", [Age] = @p7, [Occupation] = @p8, [Address] = @p9, [City] = @p10, [Telephone Nu"& _ 
-                "mber] = @p11, [Name of Establishment] = @p12, [Type of Establishment] = @p13, [C"& _ 
-                "ontact Person] = @p14, [Contact Number] = @p15, [Address of Establishment] = @p1"& _ 
-                "6, [Barangay] = @p17 WHERE (([Patient ID] = @p18))"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [VCT] SET [ID] = @p1, [HIV Counseling] = @p2, [Date of Counseling] = @p3, "& _ 
+                "[HIV Testing] = @p4, [Date of HIV Testing] = @p5, [HIV Test Result] = @p6, [Resu"& _ 
+                "lts Taken ] = @p7, [Date HIV Test Result Released] = @p8, [CD4 Count] = @p9, [An"& _ 
+                "ti-retroviral Treatment] = @p10, [Place of Referral] = @p11, [Schedule of follow"& _ 
+                "-up Visit] = @p12, [Confirmatory Test Result] = @p13, [Referral to Treatment Hub"& _ 
+                "] = @p14, [Successfully Accepted to Treatment Hub] = @p15, [Received Condom] = @"& _ 
+                "p16, [Received Lubricant] = @p17, [Number of Condoms ] = @p18, [Number of Lubric"& _ 
+                "ants ] = @p19, [Number of Contacts] = @p20, [Recruitment System] = @p21, [Type o"& _ 
+                "f Visit (V)] = @p22, [Type of Client (V)] = @p23, [Type of Recruitment] = @p24, "& _ 
+                "[Setting of HIV Testing] = @p25 WHERE (([VCT ID] = @p26))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Registration", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "First Name", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p3", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Middle Name", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p4", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Last Name", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p5", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Gender", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p6", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Birth", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p7", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Age", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p8", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Occupation", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p9", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Address", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p10", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "City", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p11", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Telephone Number", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p12", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Name of Establishment", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p13", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Establishment", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p14", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Contact Person", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p15", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Contact Number", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p16", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Address of Establishment", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p17", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Barangay", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p18", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Patient ID", Global.System.Data.DataRowVersion.Original, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "HIV Counseling", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p3", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Counseling", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p4", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "HIV Testing", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p5", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of HIV Testing", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p6", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "HIV Test Result", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p7", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Results Taken ", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p8", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date HIV Test Result Released", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p9", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "CD4 Count", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p10", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Anti-retroviral Treatment", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p11", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Place of Referral", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p12", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Schedule of follow-up Visit", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p13", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Confirmatory Test Result", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p14", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Referral to Treatment Hub", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p15", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Successfully Accepted to Treatment Hub", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p16", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Received Condom", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p17", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Received Lubricant", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p18", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Number of Condoms ", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p19", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Number of Lubricants ", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p20", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Number of Contacts", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p21", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Recruitment System", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p22", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Visit (V)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p23", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Client (V)", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p24", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Type of Recruitment", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p25", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Setting of HIV Testing", Global.System.Data.DataRowVersion.Current, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p26", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "VCT ID", Global.System.Data.DataRowVersion.Original, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.SqlServerCe.SqlCeConnection()
-            Me._connection.ConnectionString = Global.TRYSHC.My.MySettings.Default.tryshcConnectionString
+            Me._connection.ConnectionString = Global.eSHC.My.MySettings.Default.Database1ConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6706,11 +9363,14 @@ Namespace tryshcDataSet1TableAdapters
             Me._commandCollection = New Global.System.Data.SqlServerCe.SqlCeCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlServerCe.SqlCeCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT [Patient ID], [Date of Registration], [First Name], [Middle Name], [Last N"& _ 
-                "ame], [Gender], [Date of Birth], [Age], [Occupation], [Address], [City], [Teleph"& _ 
-                "one Number], [Name of Establishment], [Type of Establishment], [Contact Person],"& _ 
-                " [Contact Number], [Address of Establishment], [Barangay] FROM [Personal Informa"& _ 
-                "tion]"
+            Me._commandCollection(0).CommandText = "SELECT [VCT ID], [ID], [HIV Counseling], [Date of Counseling], [HIV Testing], [Da"& _ 
+                "te of HIV Testing], [HIV Test Result], [Results Taken ], [Date HIV Test Result R"& _ 
+                "eleased], [CD4 Count], [Anti-retroviral Treatment], [Place of Referral], [Schedu"& _ 
+                "le of follow-up Visit], [Confirmatory Test Result], [Referral to Treatment Hub],"& _ 
+                " [Successfully Accepted to Treatment Hub], [Received Condom], [Received Lubrican"& _ 
+                "t], [Number of Condoms ], [Number of Lubricants ], [Number of Contacts], [Recrui"& _ 
+                "tment System], [Type of Visit (V)], [Type of Client (V)], [Type of Recruitment],"& _ 
+                " [Setting of HIV Testing] FROM [VCT]"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -6718,7 +9378,7 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As tryshcDataSet1.Personal_InformationDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As Database1DataSet1.VCTDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -6731,9 +9391,9 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As tryshcDataSet1.Personal_InformationDataTable
+        Public Overloads Overridable Function GetData() As Database1DataSet1.VCTDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As tryshcDataSet1.Personal_InformationDataTable = New tryshcDataSet1.Personal_InformationDataTable()
+            Dim dataTable As Database1DataSet1.VCTDataTable = New Database1DataSet1.VCTDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
@@ -6741,15 +9401,15 @@ Namespace tryshcDataSet1TableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As tryshcDataSet1.Personal_InformationDataTable) As Integer
+        Public Overloads Overridable Function Update(ByVal dataTable As Database1DataSet1.VCTDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As tryshcDataSet1) As Integer
-            Return Me.Adapter.Update(dataSet, "Personal Information")
+        Public Overloads Overridable Function Update(ByVal dataSet As Database1DataSet1) As Integer
+            Return Me.Adapter.Update(dataSet, "VCT")
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6792,14 +9452,14 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
         Public Overloads Overridable Function Insert( _
-                    ByVal p1 As Global.System.Nullable(Of Date),  _
+                    ByVal p1 As Long,  _
                     ByVal p2 As String,  _
-                    ByVal p3 As String,  _
+                    ByVal p3 As Global.System.Nullable(Of Date),  _
                     ByVal p4 As String,  _
-                    ByVal p5 As Global.System.Nullable(Of Long),  _
-                    ByVal p6 As Global.System.Nullable(Of Date),  _
-                    ByVal p7 As Global.System.Nullable(Of Long),  _
-                    ByVal p8 As String,  _
+                    ByVal p5 As Global.System.Nullable(Of Date),  _
+                    ByVal p6 As String,  _
+                    ByVal p7 As String,  _
+                    ByVal p8 As Global.System.Nullable(Of Date),  _
                     ByVal p9 As String,  _
                     ByVal p10 As String,  _
                     ByVal p11 As String,  _
@@ -6808,21 +9468,25 @@ Namespace tryshcDataSet1TableAdapters
                     ByVal p14 As String,  _
                     ByVal p15 As String,  _
                     ByVal p16 As String,  _
-                    ByVal p17 As String) As Integer
-            If (p1.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(p1.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = Global.System.DBNull.Value
-            End If
+                    ByVal p17 As String,  _
+                    ByVal p18 As Global.System.Nullable(Of Long),  _
+                    ByVal p19 As Global.System.Nullable(Of Long),  _
+                    ByVal p20 As Global.System.Nullable(Of Long),  _
+                    ByVal p21 As String,  _
+                    ByVal p22 As String,  _
+                    ByVal p23 As String,  _
+                    ByVal p24 As String,  _
+                    ByVal p25 As String) As Integer
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(p1,Long)
             If (p2 Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.InsertCommand.Parameters(1).Value = CType(p2,String)
             End If
-            If (p3 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
+            If (p3.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(p3.Value,Date)
             Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(p3,String)
+                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
             If (p4 Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
@@ -6830,24 +9494,24 @@ Namespace tryshcDataSet1TableAdapters
                 Me.Adapter.InsertCommand.Parameters(3).Value = CType(p4,String)
             End If
             If (p5.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(p5.Value,Long)
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(p5.Value,Date)
             Else
                 Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
             End If
-            If (p6.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(p6.Value,Date)
-            Else
+            If (p6 Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
-            End If
-            If (p7.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(p7.Value,Long)
             Else
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(p6,String)
+            End If
+            If (p7 Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            If (p8 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(p8,String)
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(p7,String)
+            End If
+            If (p8.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(p8.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
             If (p9 Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
@@ -6894,6 +9558,46 @@ Namespace tryshcDataSet1TableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(16).Value = CType(p17,String)
             End If
+            If (p18.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(17).Value = CType(p18.Value,Long)
+            Else
+                Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
+            End If
+            If (p19.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(18).Value = CType(p19.Value,Long)
+            Else
+                Me.Adapter.InsertCommand.Parameters(18).Value = Global.System.DBNull.Value
+            End If
+            If (p20.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(19).Value = CType(p20.Value,Long)
+            Else
+                Me.Adapter.InsertCommand.Parameters(19).Value = Global.System.DBNull.Value
+            End If
+            If (p21 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(20).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(20).Value = CType(p21,String)
+            End If
+            If (p22 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(21).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(21).Value = CType(p22,String)
+            End If
+            If (p23 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(22).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(22).Value = CType(p23,String)
+            End If
+            If (p24 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(23).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(23).Value = CType(p24,String)
+            End If
+            If (p25 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(24).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(24).Value = CType(p25,String)
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -6914,14 +9618,14 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
         Public Overloads Overridable Function Update( _
-                    ByVal p1 As Global.System.Nullable(Of Date),  _
+                    ByVal p1 As Long,  _
                     ByVal p2 As String,  _
-                    ByVal p3 As String,  _
+                    ByVal p3 As Global.System.Nullable(Of Date),  _
                     ByVal p4 As String,  _
-                    ByVal p5 As Global.System.Nullable(Of Long),  _
-                    ByVal p6 As Global.System.Nullable(Of Date),  _
-                    ByVal p7 As Global.System.Nullable(Of Long),  _
-                    ByVal p8 As String,  _
+                    ByVal p5 As Global.System.Nullable(Of Date),  _
+                    ByVal p6 As String,  _
+                    ByVal p7 As String,  _
+                    ByVal p8 As Global.System.Nullable(Of Date),  _
                     ByVal p9 As String,  _
                     ByVal p10 As String,  _
                     ByVal p11 As String,  _
@@ -6931,21 +9635,25 @@ Namespace tryshcDataSet1TableAdapters
                     ByVal p15 As String,  _
                     ByVal p16 As String,  _
                     ByVal p17 As String,  _
-                    ByVal p18 As Long) As Integer
-            If (p1.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(p1.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
-            End If
+                    ByVal p18 As Global.System.Nullable(Of Long),  _
+                    ByVal p19 As Global.System.Nullable(Of Long),  _
+                    ByVal p20 As Global.System.Nullable(Of Long),  _
+                    ByVal p21 As String,  _
+                    ByVal p22 As String,  _
+                    ByVal p23 As String,  _
+                    ByVal p24 As String,  _
+                    ByVal p25 As String,  _
+                    ByVal p26 As Long) As Integer
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(p1,Long)
             If (p2 Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(1).Value = CType(p2,String)
             End If
-            If (p3 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
+            If (p3.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(p3.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(p3,String)
+                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
             If (p4 Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
@@ -6953,24 +9661,24 @@ Namespace tryshcDataSet1TableAdapters
                 Me.Adapter.UpdateCommand.Parameters(3).Value = CType(p4,String)
             End If
             If (p5.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(p5.Value,Long)
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(p5.Value,Date)
             Else
                 Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
             End If
-            If (p6.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(p6.Value,Date)
-            Else
+            If (p6 Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
-            End If
-            If (p7.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(p7.Value,Long)
             Else
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(p6,String)
+            End If
+            If (p7 Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            If (p8 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(p8,String)
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(p7,String)
+            End If
+            If (p8.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(p8.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
             If (p9 Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
@@ -7017,555 +9725,47 @@ Namespace tryshcDataSet1TableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(16).Value = CType(p17,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(17).Value = CType(p18,Long)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
-                End If
-            End Try
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the connection and commands used to retrieve and save data.
-    '''</summary>
-    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     Global.System.ComponentModel.ToolboxItem(true),  _
-     Global.System.ComponentModel.DataObjectAttribute(true),  _
-     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
-     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class STI_CONSULTATIONTableAdapter
-        Inherits Global.System.ComponentModel.Component
-        
-        Private WithEvents _adapter As Global.System.Data.SqlServerCe.SqlCeDataAdapter
-        
-        Private _connection As Global.System.Data.SqlServerCe.SqlCeConnection
-        
-        Private _transaction As Global.System.Data.SqlServerCe.SqlCeTransaction
-        
-        Private _commandCollection() As Global.System.Data.SqlServerCe.SqlCeCommand
-        
-        Private _clearBeforeFill As Boolean
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.ClearBeforeFill = true
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlServerCe.SqlCeDataAdapter
-            Get
-                If (Me._adapter Is Nothing) Then
-                    Me.InitAdapter
-                End If
-                Return Me._adapter
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SqlServerCe.SqlCeConnection
-            Get
-                If (Me._connection Is Nothing) Then
-                    Me.InitConnection
-                End If
-                Return Me._connection
-            End Get
-            Set
-                Me._connection = value
-                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = value
-                End If
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.SqlServerCe.SqlCeCommand).Connection = value
-                    End If
-                    i = (i + 1)
-                Loop
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Transaction() As Global.System.Data.SqlServerCe.SqlCeTransaction
-            Get
-                Return Me._transaction
-            End Get
-            Set
-                Me._transaction = value
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    Me.CommandCollection(i).Transaction = Me._transaction
-                    i = (i + 1)
-                Loop
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
-                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
-                    Me.Adapter.InsertCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
-                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
-                End If
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlServerCe.SqlCeCommand()
-            Get
-                If (Me._commandCollection Is Nothing) Then
-                    Me.InitCommandCollection
-                End If
-                Return Me._commandCollection
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ClearBeforeFill() As Boolean
-            Get
-                Return Me._clearBeforeFill
-            End Get
-            Set
-                Me._clearBeforeFill = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitAdapter()
-            Me._adapter = New Global.System.Data.SqlServerCe.SqlCeDataAdapter()
-            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
-            tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "STI CONSULTATION"
-            tableMapping.ColumnMappings.Add("STI ID", "STI ID")
-            tableMapping.ColumnMappings.Add("Patient ID", "Patient ID")
-            tableMapping.ColumnMappings.Add("Date of Consultation", "Date of Consultation")
-            tableMapping.ColumnMappings.Add("BP", "BP")
-            tableMapping.ColumnMappings.Add("Heart rate", "Heart rate")
-            tableMapping.ColumnMappings.Add("Respiratory rate", "Respiratory rate")
-            tableMapping.ColumnMappings.Add("Temperature", "Temperature")
-            tableMapping.ColumnMappings.Add("Chief Complaint", "Chief Complaint")
-            tableMapping.ColumnMappings.Add("History of Present Illness", "History of Present Illness")
-            tableMapping.ColumnMappings.Add("Past Medical History", "Past Medical History")
-            tableMapping.ColumnMappings.Add("Personal and Social History", "Personal and Social History")
-            tableMapping.ColumnMappings.Add("Signs and Symptoms", "Signs and Symptoms")
-            tableMapping.ColumnMappings.Add("Initial Impression", "Initial Impression")
-            tableMapping.ColumnMappings.Add("Final Diagnosis", "Final Diagnosis")
-            tableMapping.ColumnMappings.Add("Prescription", "Prescription")
-            tableMapping.ColumnMappings.Add("Laboratory request", "Laboratory request")
-            tableMapping.ColumnMappings.Add("Referral ", "Referral ")
-            tableMapping.ColumnMappings.Add("Date of Follow-up", "Date of Follow-up")
-            Me._adapter.TableMappings.Add(tableMapping)
-            Me._adapter.DeleteCommand = New Global.System.Data.SqlServerCe.SqlCeCommand()
-            Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [STI CONSULTATION] WHERE (([STI ID] = @p1))"
-            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "STI ID", Global.System.Data.DataRowVersion.Original, Nothing))
-            Me._adapter.InsertCommand = New Global.System.Data.SqlServerCe.SqlCeCommand()
-            Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [STI CONSULTATION] ([Patient ID], [Date of Consultation], [BP], [Hear"& _ 
-                "t rate], [Respiratory rate], [Temperature], [Chief Complaint], [History of Prese"& _ 
-                "nt Illness], [Past Medical History], [Personal and Social History], [Signs and S"& _ 
-                "ymptoms], [Initial Impression], [Final Diagnosis], [Prescription], [Laboratory r"& _ 
-                "equest], [Referral ], [Date of Follow-up]) VALUES (@p1, @p2, @p3, @p4, @p5, @p6,"& _ 
-                " @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17)"
-            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Patient ID", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Consultation", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p3", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "BP", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p4", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Heart rate", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p5", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Respiratory rate", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p6", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Temperature", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p7", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Chief Complaint", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p8", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "History of Present Illness", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p9", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Past Medical History", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p10", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Personal and Social History", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p11", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Signs and Symptoms", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p12", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Initial Impression", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p13", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Final Diagnosis", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p14", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Prescription", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p15", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Laboratory request", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p16", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Referral ", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p17", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Follow-up", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand = New Global.System.Data.SqlServerCe.SqlCeCommand()
-            Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [STI CONSULTATION] SET [Patient ID] = @p1, [Date of Consultation] = @p2, ["& _ 
-                "BP] = @p3, [Heart rate] = @p4, [Respiratory rate] = @p5, [Temperature] = @p6, [C"& _ 
-                "hief Complaint] = @p7, [History of Present Illness] = @p8, [Past Medical History"& _ 
-                "] = @p9, [Personal and Social History] = @p10, [Signs and Symptoms] = @p11, [Ini"& _ 
-                "tial Impression] = @p12, [Final Diagnosis] = @p13, [Prescription] = @p14, [Labor"& _ 
-                "atory request] = @p15, [Referral ] = @p16, [Date of Follow-up] = @p17 WHERE (([S"& _ 
-                "TI ID] = @p18))"
-            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p1", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Patient ID", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p2", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Consultation", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p3", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "BP", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p4", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Heart rate", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p5", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Respiratory rate", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p6", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Temperature", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p7", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Chief Complaint", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p8", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "History of Present Illness", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p9", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Past Medical History", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p10", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Personal and Social History", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p11", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Signs and Symptoms", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p12", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Initial Impression", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p13", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Final Diagnosis", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p14", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Prescription", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p15", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Laboratory request", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p16", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Referral ", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p17", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "Date of Follow-up", Global.System.Data.DataRowVersion.Current, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlServerCe.SqlCeParameter("@p18", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, true, 0, 0, "STI ID", Global.System.Data.DataRowVersion.Original, Nothing))
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitConnection()
-            Me._connection = New Global.System.Data.SqlServerCe.SqlCeConnection()
-            Me._connection.ConnectionString = Global.TRYSHC.My.MySettings.Default.tryshcConnectionString
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlServerCe.SqlCeCommand(0) {}
-            Me._commandCollection(0) = New Global.System.Data.SqlServerCe.SqlCeCommand()
-            Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT [STI ID], [Patient ID], [Date of Consultation], [BP], [Heart rate], [Respi"& _ 
-                "ratory rate], [Temperature], [Chief Complaint], [History of Present Illness], [P"& _ 
-                "ast Medical History], [Personal and Social History], [Signs and Symptoms], [Init"& _ 
-                "ial Impression], [Final Diagnosis], [Prescription], [Laboratory request], [Refer"& _ 
-                "ral ], [Date of Follow-up] FROM [STI CONSULTATION]"
-            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As tryshcDataSet1.STI_CONSULTATIONDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As tryshcDataSet1.STI_CONSULTATIONDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As tryshcDataSet1.STI_CONSULTATIONDataTable = New tryshcDataSet1.STI_CONSULTATIONDataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As tryshcDataSet1.STI_CONSULTATIONDataTable) As Integer
-            Return Me.Adapter.Update(dataTable)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As tryshcDataSet1) As Integer
-            Return Me.Adapter.Update(dataSet, "STI CONSULTATION")
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(dataRows)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal p1 As Long) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(p1,Long)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert( _
-                    ByVal p1 As Global.System.Nullable(Of Long),  _
-                    ByVal p2 As Global.System.Nullable(Of Date),  _
-                    ByVal p3 As String,  _
-                    ByVal p4 As String,  _
-                    ByVal p5 As String,  _
-                    ByVal p6 As String,  _
-                    ByVal p7 As String,  _
-                    ByVal p8 As String,  _
-                    ByVal p9 As String,  _
-                    ByVal p10 As String,  _
-                    ByVal p11 As String,  _
-                    ByVal p12 As String,  _
-                    ByVal p13 As String,  _
-                    ByVal p14 As String,  _
-                    ByVal p15 As String,  _
-                    ByVal p16 As String,  _
-                    ByVal p17 As Global.System.Nullable(Of Date)) As Integer
-            If (p1.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(p1.Value,Long)
+            If (p18.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(p18.Value,Long)
             Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
             End If
-            If (p2.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(p2.Value,Date)
+            If (p19.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(p19.Value,Long)
             Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
             End If
-            If (p3 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
+            If (p20.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(p20.Value,Long)
             Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(p3,String)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
             End If
-            If (p4 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
+            If (p21 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(p4,String)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(p21,String)
             End If
-            If (p5 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
+            If (p22 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(p5,String)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(p22,String)
             End If
-            If (p6 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
+            If (p23 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(p6,String)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(p23,String)
             End If
-            If (p7 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
+            If (p24 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(p7,String)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(p24,String)
             End If
-            If (p8 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
+            If (p25 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(p8,String)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(p25,String)
             End If
-            If (p9 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(p9,String)
-            End If
-            If (p10 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(9).Value = CType(p10,String)
-            End If
-            If (p11 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(10).Value = CType(p11,String)
-            End If
-            If (p12 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(p12,String)
-            End If
-            If (p13 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(12).Value = CType(p13,String)
-            End If
-            If (p14 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(13).Value = CType(p14,String)
-            End If
-            If (p15 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(14).Value = CType(p15,String)
-            End If
-            If (p16 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(15).Value = CType(p16,String)
-            End If
-            If (p17.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(16).Value = CType(p17.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal p1 As Global.System.Nullable(Of Long),  _
-                    ByVal p2 As Global.System.Nullable(Of Date),  _
-                    ByVal p3 As String,  _
-                    ByVal p4 As String,  _
-                    ByVal p5 As String,  _
-                    ByVal p6 As String,  _
-                    ByVal p7 As String,  _
-                    ByVal p8 As String,  _
-                    ByVal p9 As String,  _
-                    ByVal p10 As String,  _
-                    ByVal p11 As String,  _
-                    ByVal p12 As String,  _
-                    ByVal p13 As String,  _
-                    ByVal p14 As String,  _
-                    ByVal p15 As String,  _
-                    ByVal p16 As String,  _
-                    ByVal p17 As Global.System.Nullable(Of Date),  _
-                    ByVal p18 As Long) As Integer
-            If (p1.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(p1.Value,Long)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
-            End If
-            If (p2.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(p2.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
-            End If
-            If (p3 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(p3,String)
-            End If
-            If (p4 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(p4,String)
-            End If
-            If (p5 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(p5,String)
-            End If
-            If (p6 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(p6,String)
-            End If
-            If (p7 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(p7,String)
-            End If
-            If (p8 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(p8,String)
-            End If
-            If (p9 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(p9,String)
-            End If
-            If (p10 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(p10,String)
-            End If
-            If (p11 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(p11,String)
-            End If
-            If (p12 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(p12,String)
-            End If
-            If (p13 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(p13,String)
-            End If
-            If (p14 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(p14,String)
-            End If
-            If (p15 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(p15,String)
-            End If
-            If (p16 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(p16,String)
-            End If
-            If (p17.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(p17.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(17).Value = CType(p18,Long)
+            Me.Adapter.UpdateCommand.Parameters(25).Value = CType(p26,Long)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -7595,15 +9795,15 @@ Namespace tryshcDataSet1TableAdapters
         
         Private _updateOrder As UpdateOrderOption
         
-        Private _health_Certificate_Application_and_RenewalTableAdapter As Health_Certificate_Application_and_RenewalTableAdapter
+        Private _consultationTableAdapter As ConsultationTableAdapter
         
-        Private _hIV_Voluntary_Counseling_and_TestingTableAdapter As HIV_Voluntary_Counseling_and_TestingTableAdapter
+        Private _healthCertificateTableAdapter As HealthCertificateTableAdapter
         
-        Private _loginTableAdapter As LoginTableAdapter
+        Private _personalInformationTableAdapter As PersonalInformationTableAdapter
         
-        Private _personal_InformationTableAdapter As Personal_InformationTableAdapter
+        Private _userTableAdapter As UserTableAdapter
         
-        Private _sTI_CONSULTATIONTableAdapter As STI_CONSULTATIONTableAdapter
+        Private _vCTTableAdapter As VCTTableAdapter
         
         Private _backupDataSetBeforeUpdate As Boolean
         
@@ -7625,12 +9825,12 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property Health_Certificate_Application_and_RenewalTableAdapter() As Health_Certificate_Application_and_RenewalTableAdapter
+        Public Property ConsultationTableAdapter() As ConsultationTableAdapter
             Get
-                Return Me._health_Certificate_Application_and_RenewalTableAdapter
+                Return Me._consultationTableAdapter
             End Get
             Set
-                Me._health_Certificate_Application_and_RenewalTableAdapter = value
+                Me._consultationTableAdapter = value
             End Set
         End Property
         
@@ -7639,12 +9839,12 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property HIV_Voluntary_Counseling_and_TestingTableAdapter() As HIV_Voluntary_Counseling_and_TestingTableAdapter
+        Public Property HealthCertificateTableAdapter() As HealthCertificateTableAdapter
             Get
-                Return Me._hIV_Voluntary_Counseling_and_TestingTableAdapter
+                Return Me._healthCertificateTableAdapter
             End Get
             Set
-                Me._hIV_Voluntary_Counseling_and_TestingTableAdapter = value
+                Me._healthCertificateTableAdapter = value
             End Set
         End Property
         
@@ -7653,12 +9853,12 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property LoginTableAdapter() As LoginTableAdapter
+        Public Property PersonalInformationTableAdapter() As PersonalInformationTableAdapter
             Get
-                Return Me._loginTableAdapter
+                Return Me._personalInformationTableAdapter
             End Get
             Set
-                Me._loginTableAdapter = value
+                Me._personalInformationTableAdapter = value
             End Set
         End Property
         
@@ -7667,12 +9867,12 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property Personal_InformationTableAdapter() As Personal_InformationTableAdapter
+        Public Property UserTableAdapter() As UserTableAdapter
             Get
-                Return Me._personal_InformationTableAdapter
+                Return Me._userTableAdapter
             End Get
             Set
-                Me._personal_InformationTableAdapter = value
+                Me._userTableAdapter = value
             End Set
         End Property
         
@@ -7681,12 +9881,12 @@ Namespace tryshcDataSet1TableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property STI_CONSULTATIONTableAdapter() As STI_CONSULTATIONTableAdapter
+        Public Property VCTTableAdapter() As VCTTableAdapter
             Get
-                Return Me._sTI_CONSULTATIONTableAdapter
+                Return Me._vCTTableAdapter
             End Get
             Set
-                Me._sTI_CONSULTATIONTableAdapter = value
+                Me._vCTTableAdapter = value
             End Set
         End Property
         
@@ -7709,25 +9909,25 @@ Namespace tryshcDataSet1TableAdapters
                 If (Not (Me._connection) Is Nothing) Then
                     Return Me._connection
                 End If
-                If ((Not (Me._health_Certificate_Application_and_RenewalTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._health_Certificate_Application_and_RenewalTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._health_Certificate_Application_and_RenewalTableAdapter.Connection
+                If ((Not (Me._consultationTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._consultationTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._consultationTableAdapter.Connection
                 End If
-                If ((Not (Me._hIV_Voluntary_Counseling_and_TestingTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._hIV_Voluntary_Counseling_and_TestingTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._hIV_Voluntary_Counseling_and_TestingTableAdapter.Connection
+                If ((Not (Me._healthCertificateTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._healthCertificateTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._healthCertificateTableAdapter.Connection
                 End If
-                If ((Not (Me._loginTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._loginTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._loginTableAdapter.Connection
+                If ((Not (Me._personalInformationTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._personalInformationTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._personalInformationTableAdapter.Connection
                 End If
-                If ((Not (Me._personal_InformationTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._personal_InformationTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._personal_InformationTableAdapter.Connection
+                If ((Not (Me._userTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._userTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._userTableAdapter.Connection
                 End If
-                If ((Not (Me._sTI_CONSULTATIONTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._sTI_CONSULTATIONTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._sTI_CONSULTATIONTableAdapter.Connection
+                If ((Not (Me._vCTTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._vCTTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._vCTTableAdapter.Connection
                 End If
                 Return Nothing
             End Get
@@ -7742,19 +9942,19 @@ Namespace tryshcDataSet1TableAdapters
         Public ReadOnly Property TableAdapterInstanceCount() As Integer
             Get
                 Dim count As Integer = 0
-                If (Not (Me._health_Certificate_Application_and_RenewalTableAdapter) Is Nothing) Then
+                If (Not (Me._consultationTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
-                If (Not (Me._hIV_Voluntary_Counseling_and_TestingTableAdapter) Is Nothing) Then
+                If (Not (Me._healthCertificateTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
-                If (Not (Me._loginTableAdapter) Is Nothing) Then
+                If (Not (Me._personalInformationTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
-                If (Not (Me._personal_InformationTableAdapter) Is Nothing) Then
+                If (Not (Me._userTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
-                If (Not (Me._sTI_CONSULTATIONTableAdapter) Is Nothing) Then
+                If (Not (Me._vCTTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
                 Return count
@@ -7766,50 +9966,50 @@ Namespace tryshcDataSet1TableAdapters
         '''</summary>
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Function UpdateUpdatedRows(ByVal dataSet As tryshcDataSet1, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow), ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
+        Private Function UpdateUpdatedRows(ByVal dataSet As Database1DataSet1, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow), ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._personal_InformationTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.Personal_Information.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._personalInformationTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.PersonalInformation.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._personal_InformationTableAdapter.Update(updatedRows))
+                    result = (result + Me._personalInformationTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._sTI_CONSULTATIONTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.STI_CONSULTATION.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._userTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.User.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._sTI_CONSULTATIONTableAdapter.Update(updatedRows))
+                    result = (result + Me._userTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._loginTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.Login.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._vCTTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.VCT.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._loginTableAdapter.Update(updatedRows))
+                    result = (result + Me._vCTTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._health_Certificate_Application_and_RenewalTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.Health_Certificate_Application_and_Renewal.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._healthCertificateTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.HealthCertificate.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._health_Certificate_Application_and_RenewalTableAdapter.Update(updatedRows))
+                    result = (result + Me._healthCertificateTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._hIV_Voluntary_Counseling_and_TestingTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.HIV_Voluntary_Counseling_and_Testing.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._consultationTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.Consultation.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._hIV_Voluntary_Counseling_and_TestingTableAdapter.Update(updatedRows))
+                    result = (result + Me._consultationTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -7821,45 +10021,45 @@ Namespace tryshcDataSet1TableAdapters
         '''</summary>
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Function UpdateInsertedRows(ByVal dataSet As tryshcDataSet1, ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
+        Private Function UpdateInsertedRows(ByVal dataSet As Database1DataSet1, ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._personal_InformationTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.Personal_Information.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._personalInformationTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.PersonalInformation.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._personal_InformationTableAdapter.Update(addedRows))
+                    result = (result + Me._personalInformationTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._sTI_CONSULTATIONTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.STI_CONSULTATION.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._userTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.User.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._sTI_CONSULTATIONTableAdapter.Update(addedRows))
+                    result = (result + Me._userTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._loginTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.Login.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._vCTTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.VCT.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._loginTableAdapter.Update(addedRows))
+                    result = (result + Me._vCTTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._health_Certificate_Application_and_RenewalTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.Health_Certificate_Application_and_Renewal.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._healthCertificateTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.HealthCertificate.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._health_Certificate_Application_and_RenewalTableAdapter.Update(addedRows))
+                    result = (result + Me._healthCertificateTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._hIV_Voluntary_Counseling_and_TestingTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.HIV_Voluntary_Counseling_and_Testing.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._consultationTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.Consultation.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._hIV_Voluntary_Counseling_and_TestingTableAdapter.Update(addedRows))
+                    result = (result + Me._consultationTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -7871,45 +10071,45 @@ Namespace tryshcDataSet1TableAdapters
         '''</summary>
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Function UpdateDeletedRows(ByVal dataSet As tryshcDataSet1, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
+        Private Function UpdateDeletedRows(ByVal dataSet As Database1DataSet1, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._hIV_Voluntary_Counseling_and_TestingTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.HIV_Voluntary_Counseling_and_Testing.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me._consultationTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.Consultation.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._hIV_Voluntary_Counseling_and_TestingTableAdapter.Update(deletedRows))
+                    result = (result + Me._consultationTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._health_Certificate_Application_and_RenewalTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.Health_Certificate_Application_and_Renewal.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me._healthCertificateTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.HealthCertificate.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._health_Certificate_Application_and_RenewalTableAdapter.Update(deletedRows))
+                    result = (result + Me._healthCertificateTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._loginTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.Login.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me._vCTTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.VCT.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._loginTableAdapter.Update(deletedRows))
+                    result = (result + Me._vCTTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._sTI_CONSULTATIONTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.STI_CONSULTATION.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me._userTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.User.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._sTI_CONSULTATIONTableAdapter.Update(deletedRows))
+                    result = (result + Me._userTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._personal_InformationTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.Personal_Information.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me._personalInformationTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.PersonalInformation.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._personal_InformationTableAdapter.Update(deletedRows))
+                    result = (result + Me._personalInformationTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -7947,35 +10147,35 @@ Namespace tryshcDataSet1TableAdapters
         '''</summary>
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overridable Function UpdateAll(ByVal dataSet As tryshcDataSet1) As Integer
+        Public Overridable Function UpdateAll(ByVal dataSet As Database1DataSet1) As Integer
             If (dataSet Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("dataSet")
             End If
             If (dataSet.HasChanges = false) Then
                 Return 0
             End If
-            If ((Not (Me._health_Certificate_Application_and_RenewalTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._health_Certificate_Application_and_RenewalTableAdapter.Connection) = false)) Then
+            If ((Not (Me._consultationTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._consultationTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
-            If ((Not (Me._hIV_Voluntary_Counseling_and_TestingTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._hIV_Voluntary_Counseling_and_TestingTableAdapter.Connection) = false)) Then
+            If ((Not (Me._healthCertificateTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._healthCertificateTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
-            If ((Not (Me._loginTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._loginTableAdapter.Connection) = false)) Then
+            If ((Not (Me._personalInformationTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._personalInformationTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
-            If ((Not (Me._personal_InformationTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._personal_InformationTableAdapter.Connection) = false)) Then
+            If ((Not (Me._userTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._userTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
-            If ((Not (Me._sTI_CONSULTATIONTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._sTI_CONSULTATIONTableAdapter.Connection) = false)) Then
+            If ((Not (Me._vCTTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._vCTTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
@@ -8011,49 +10211,49 @@ Namespace tryshcDataSet1TableAdapters
             Try 
                 '---- Prepare for update -----------
                 '
-                If (Not (Me._health_Certificate_Application_and_RenewalTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._health_Certificate_Application_and_RenewalTableAdapter, Me._health_Certificate_Application_and_RenewalTableAdapter.Connection)
-                    Me._health_Certificate_Application_and_RenewalTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlServerCe.SqlCeConnection)
-                    Me._health_Certificate_Application_and_RenewalTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlServerCe.SqlCeTransaction)
-                    If Me._health_Certificate_Application_and_RenewalTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._health_Certificate_Application_and_RenewalTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._health_Certificate_Application_and_RenewalTableAdapter.Adapter)
+                If (Not (Me._consultationTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._consultationTableAdapter, Me._consultationTableAdapter.Connection)
+                    Me._consultationTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlServerCe.SqlCeConnection)
+                    Me._consultationTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlServerCe.SqlCeTransaction)
+                    If Me._consultationTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._consultationTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._consultationTableAdapter.Adapter)
                     End If
                 End If
-                If (Not (Me._hIV_Voluntary_Counseling_and_TestingTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._hIV_Voluntary_Counseling_and_TestingTableAdapter, Me._hIV_Voluntary_Counseling_and_TestingTableAdapter.Connection)
-                    Me._hIV_Voluntary_Counseling_and_TestingTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlServerCe.SqlCeConnection)
-                    Me._hIV_Voluntary_Counseling_and_TestingTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlServerCe.SqlCeTransaction)
-                    If Me._hIV_Voluntary_Counseling_and_TestingTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._hIV_Voluntary_Counseling_and_TestingTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._hIV_Voluntary_Counseling_and_TestingTableAdapter.Adapter)
+                If (Not (Me._healthCertificateTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._healthCertificateTableAdapter, Me._healthCertificateTableAdapter.Connection)
+                    Me._healthCertificateTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlServerCe.SqlCeConnection)
+                    Me._healthCertificateTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlServerCe.SqlCeTransaction)
+                    If Me._healthCertificateTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._healthCertificateTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._healthCertificateTableAdapter.Adapter)
                     End If
                 End If
-                If (Not (Me._loginTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._loginTableAdapter, Me._loginTableAdapter.Connection)
-                    Me._loginTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlServerCe.SqlCeConnection)
-                    Me._loginTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlServerCe.SqlCeTransaction)
-                    If Me._loginTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._loginTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._loginTableAdapter.Adapter)
+                If (Not (Me._personalInformationTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._personalInformationTableAdapter, Me._personalInformationTableAdapter.Connection)
+                    Me._personalInformationTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlServerCe.SqlCeConnection)
+                    Me._personalInformationTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlServerCe.SqlCeTransaction)
+                    If Me._personalInformationTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._personalInformationTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._personalInformationTableAdapter.Adapter)
                     End If
                 End If
-                If (Not (Me._personal_InformationTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._personal_InformationTableAdapter, Me._personal_InformationTableAdapter.Connection)
-                    Me._personal_InformationTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlServerCe.SqlCeConnection)
-                    Me._personal_InformationTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlServerCe.SqlCeTransaction)
-                    If Me._personal_InformationTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._personal_InformationTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._personal_InformationTableAdapter.Adapter)
+                If (Not (Me._userTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._userTableAdapter, Me._userTableAdapter.Connection)
+                    Me._userTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlServerCe.SqlCeConnection)
+                    Me._userTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlServerCe.SqlCeTransaction)
+                    If Me._userTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._userTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._userTableAdapter.Adapter)
                     End If
                 End If
-                If (Not (Me._sTI_CONSULTATIONTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._sTI_CONSULTATIONTableAdapter, Me._sTI_CONSULTATIONTableAdapter.Connection)
-                    Me._sTI_CONSULTATIONTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlServerCe.SqlCeConnection)
-                    Me._sTI_CONSULTATIONTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlServerCe.SqlCeTransaction)
-                    If Me._sTI_CONSULTATIONTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._sTI_CONSULTATIONTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._sTI_CONSULTATIONTableAdapter.Adapter)
+                If (Not (Me._vCTTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._vCTTableAdapter, Me._vCTTableAdapter.Connection)
+                    Me._vCTTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlServerCe.SqlCeConnection)
+                    Me._vCTTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlServerCe.SqlCeTransaction)
+                    If Me._vCTTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._vCTTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._vCTTableAdapter.Adapter)
                     End If
                 End If
                 '
@@ -8116,25 +10316,25 @@ Namespace tryshcDataSet1TableAdapters
                 If workConnOpened Then
                     workConnection.Close
                 End If
-                If (Not (Me._health_Certificate_Application_and_RenewalTableAdapter) Is Nothing) Then
-                    Me._health_Certificate_Application_and_RenewalTableAdapter.Connection = CType(revertConnections(Me._health_Certificate_Application_and_RenewalTableAdapter),Global.System.Data.SqlServerCe.SqlCeConnection)
-                    Me._health_Certificate_Application_and_RenewalTableAdapter.Transaction = Nothing
+                If (Not (Me._consultationTableAdapter) Is Nothing) Then
+                    Me._consultationTableAdapter.Connection = CType(revertConnections(Me._consultationTableAdapter),Global.System.Data.SqlServerCe.SqlCeConnection)
+                    Me._consultationTableAdapter.Transaction = Nothing
                 End If
-                If (Not (Me._hIV_Voluntary_Counseling_and_TestingTableAdapter) Is Nothing) Then
-                    Me._hIV_Voluntary_Counseling_and_TestingTableAdapter.Connection = CType(revertConnections(Me._hIV_Voluntary_Counseling_and_TestingTableAdapter),Global.System.Data.SqlServerCe.SqlCeConnection)
-                    Me._hIV_Voluntary_Counseling_and_TestingTableAdapter.Transaction = Nothing
+                If (Not (Me._healthCertificateTableAdapter) Is Nothing) Then
+                    Me._healthCertificateTableAdapter.Connection = CType(revertConnections(Me._healthCertificateTableAdapter),Global.System.Data.SqlServerCe.SqlCeConnection)
+                    Me._healthCertificateTableAdapter.Transaction = Nothing
                 End If
-                If (Not (Me._loginTableAdapter) Is Nothing) Then
-                    Me._loginTableAdapter.Connection = CType(revertConnections(Me._loginTableAdapter),Global.System.Data.SqlServerCe.SqlCeConnection)
-                    Me._loginTableAdapter.Transaction = Nothing
+                If (Not (Me._personalInformationTableAdapter) Is Nothing) Then
+                    Me._personalInformationTableAdapter.Connection = CType(revertConnections(Me._personalInformationTableAdapter),Global.System.Data.SqlServerCe.SqlCeConnection)
+                    Me._personalInformationTableAdapter.Transaction = Nothing
                 End If
-                If (Not (Me._personal_InformationTableAdapter) Is Nothing) Then
-                    Me._personal_InformationTableAdapter.Connection = CType(revertConnections(Me._personal_InformationTableAdapter),Global.System.Data.SqlServerCe.SqlCeConnection)
-                    Me._personal_InformationTableAdapter.Transaction = Nothing
+                If (Not (Me._userTableAdapter) Is Nothing) Then
+                    Me._userTableAdapter.Connection = CType(revertConnections(Me._userTableAdapter),Global.System.Data.SqlServerCe.SqlCeConnection)
+                    Me._userTableAdapter.Transaction = Nothing
                 End If
-                If (Not (Me._sTI_CONSULTATIONTableAdapter) Is Nothing) Then
-                    Me._sTI_CONSULTATIONTableAdapter.Connection = CType(revertConnections(Me._sTI_CONSULTATIONTableAdapter),Global.System.Data.SqlServerCe.SqlCeConnection)
-                    Me._sTI_CONSULTATIONTableAdapter.Transaction = Nothing
+                If (Not (Me._vCTTableAdapter) Is Nothing) Then
+                    Me._vCTTableAdapter.Connection = CType(revertConnections(Me._vCTTableAdapter),Global.System.Data.SqlServerCe.SqlCeConnection)
+                    Me._vCTTableAdapter.Transaction = Nothing
                 End If
                 If (0 < adaptersWithAcceptChangesDuringUpdate.Count) Then
                     Dim adapters((adaptersWithAcceptChangesDuringUpdate.Count) - 1) As Global.System.Data.Common.DataAdapter
