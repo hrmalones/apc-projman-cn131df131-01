@@ -8,9 +8,9 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{84775F23-C12D-4A35-ADEA-8032F6F302A8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>SHCSystem.My.MyApplication</StartupObject>
-    <RootNamespace>SHCSystem</RootNamespace>
-    <AssemblyName>SHCSystem</AssemblyName>
+    <StartupObject>eSHC.My.MyApplication</StartupObject>
+    <RootNamespace>eSHC</RootNamespace>
+    <AssemblyName>eSHC</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -38,7 +38,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>SHCSystem.xml</DocumentationFile>
+    <DocumentationFile>eSHC.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
@@ -48,7 +48,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>SHCSystem.xml</DocumentationFile>
+    <DocumentationFile>eSHC.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -277,18 +277,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="SHCSystemDataSet.Designer.vb">
+    <Compile Include="eSHCDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SHCSystemDataSet.xsd</DependentUpon>
+      <DependentUpon>eSHCDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="SHCSystemDataSet1.Designer.vb">
+    <Compile Include="eSHCDataSet1.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SHCSystemDataSet1.xsd</DependentUpon>
+      <DependentUpon>eSHCmDataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="SHCSystemDataSet1.vb">
-      <DependentUpon>SHCSystemDataSet1.xsd</DependentUpon>
+    <Compile Include="eSHCDataSet1.vb">
+      <DependentUpon>eSHCDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="UserRegistration.Designer.vb">
       <DependentUpon>UserRegistration.vb</DependentUpon>
@@ -436,31 +436,31 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="SHCSystemDataSet.xsc">
-      <DependentUpon>SHCSystemDataSet.xsd</DependentUpon>
+    <None Include="eSHCDataSet.xsc">
+      <DependentUpon>eSHCDataSet.xsd</DependentUpon>
     </None>
-    <None Include="SHCSystemDataSet.xsd">
+    <None Include="eSHCDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>SHCSystemDataSet.Designer.vb</LastGenOutput>
+      <LastGenOutput>eSHCDataSet.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="SHCSystemDataSet.xss">
-      <DependentUpon>SHCSystemDataSet.xsd</DependentUpon>
+    <None Include="eSHCDataSet.xss">
+      <DependentUpon>eSHCDataSet.xsd</DependentUpon>
     </None>
-    <None Include="SHCSystemDataSet1.xsc">
-      <DependentUpon>SHCSystemDataSet1.xsd</DependentUpon>
+    <None Include="eSHCDataSet1.xsc">
+      <DependentUpon>eSHCDataSet1.xsd</DependentUpon>
     </None>
-    <None Include="SHCSystemDataSet1.xsd">
+    <None Include="eSHCDataSet1.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>SHCSystemDataSet1.Designer.vb</LastGenOutput>
+      <LastGenOutput>eSHCDataSet1.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="SHCSystemDataSet1.xss">
-      <DependentUpon>SHCSystemDataSet1.xsd</DependentUpon>
+    <None Include="eSHCDataSet1.xss">
+      <DependentUpon>eSHCDataSet1.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SHCSystem.sdf">
+    <Content Include="eSHC.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
