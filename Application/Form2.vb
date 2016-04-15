@@ -1,8 +1,8 @@
 ﻿Public Class Form2
 
     Private Sub Form2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'SHCSystemDataSet1.DataTable1' table. You can move, or remove it, as needed.
-        Me.DataTable1TableAdapter.Fill(Me.SHCSystemDataSet1.DataTable1)
+        'TODO: This line of code loads data into the 'eSHCDataSet1.DataTable1' table. You can move, or remove it, as needed.
+        Me.DataTable1TableAdapter.Fill(Me.eSHCDataSet1.DataTable1)
 
         Me.DataTable1TableAdapter.Fill(Me.SHCSystemDataSet1.DataTable1)
 
