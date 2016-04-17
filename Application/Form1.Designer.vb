@@ -25,7 +25,7 @@ Partial Class Form1
         Me.components = New System.ComponentModel.Container()
         Dim ReportDataSource1 As Microsoft.Reporting.WinForms.ReportDataSource = New Microsoft.Reporting.WinForms.ReportDataSource()
         Me.PersonalInformationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.SHCSystemDataSet1 = New SHCSystem.SHCSystemDataSet1()
+        Me.eSHCDataSet1 = New eSHC.eSHCDataSet1()
         Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -36,15 +36,15 @@ Partial Class Form1
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.HealthCertificateBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.HealthCertificateTableAdapter = New SHCSystem.SHCSystemDataSet1TableAdapters.HealthCertificateTableAdapter()
+        Me.HealthCertificateTableAdapter = New eSHC.eSHCDataSet1TableAdapters.HealthCertificateTableAdapter()
         Me.STIConsultationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.STIConsultationTableAdapter = New SHCSystem.SHCSystemDataSet1TableAdapters.STIConsultationTableAdapter()
+        Me.STIConsultationTableAdapter = New eSHC.eSHCDataSet1TableAdapters.STIConsultationTableAdapter()
         Me.HIVVCTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.HIVVCTTableAdapter = New SHCSystem.SHCSystemDataSet1TableAdapters.HIVVCTTableAdapter()
-        Me.PersonalInformationTableAdapter = New SHCSystem.SHCSystemDataSet1TableAdapters.PersonalInformationTableAdapter()
+        Me.HIVVCTTableAdapter = New eSHC.eSHCDataSet1TableAdapters.HIVVCTTableAdapter()
+        Me.PersonalInformationTableAdapter = New eSHC.eSHCDataSet1TableAdapters.PersonalInformationTableAdapter()
         Me.Button3 = New System.Windows.Forms.Button()
         CType(Me.PersonalInformationBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SHCSystemDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.eSHCDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HealthCertificateBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.STIConsultationBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HIVVCTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,19 +53,19 @@ Partial Class Form1
         'PersonalInformationBindingSource
         '
         Me.PersonalInformationBindingSource.DataMember = "PersonalInformation"
-        Me.PersonalInformationBindingSource.DataSource = Me.SHCSystemDataSet1
+        Me.PersonalInformationBindingSource.DataSource = Me.eSHCDataSet1
         '
-        'SHCSystemDataSet1
+        'eSHCDataSet1
         '
-        Me.SHCSystemDataSet1.DataSetName = "SHCSystemDataSet1"
-        Me.SHCSystemDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        Me.eSHCDataSet1.DataSetName = "SHCSystemDataSet1"
+        Me.eSHCDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'ReportViewer1
         '
         ReportDataSource1.Name = "DataSet1"
         ReportDataSource1.Value = Me.PersonalInformationBindingSource
         Me.ReportViewer1.LocalReport.DataSources.Add(ReportDataSource1)
-        Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "SHCSystem.Report5.rdlc"
+        Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "eSHC.Report5.rdlc"
         Me.ReportViewer1.Location = New System.Drawing.Point(34, 126)
         Me.ReportViewer1.Name = "ReportViewer1"
         Me.ReportViewer1.Size = New System.Drawing.Size(668, 210)
@@ -140,7 +140,7 @@ Partial Class Form1
         'HealthCertificateBindingSource
         '
         Me.HealthCertificateBindingSource.DataMember = "HealthCertificate"
-        Me.HealthCertificateBindingSource.DataSource = Me.SHCSystemDataSet1
+        Me.HealthCertificateBindingSource.DataSource = Me.eSHCDataSet1
         '
         'HealthCertificateTableAdapter
         '
@@ -149,7 +149,7 @@ Partial Class Form1
         'STIConsultationBindingSource
         '
         Me.STIConsultationBindingSource.DataMember = "STIConsultation"
-        Me.STIConsultationBindingSource.DataSource = Me.SHCSystemDataSet1
+        Me.STIConsultationBindingSource.DataSource = Me.eSHCDataSet1
         '
         'STIConsultationTableAdapter
         '
@@ -158,7 +158,7 @@ Partial Class Form1
         'HIVVCTBindingSource
         '
         Me.HIVVCTBindingSource.DataMember = "HIVVCT"
-        Me.HIVVCTBindingSource.DataSource = Me.SHCSystemDataSet1
+        Me.HIVVCTBindingSource.DataSource = Me.eSHCDataSet1
         '
         'HIVVCTTableAdapter
         '
@@ -204,15 +204,15 @@ Partial Class Form1
 
     End Sub
     Friend WithEvents HealthCertificateBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents SHCSystemDataSet1 As SHCSystem.SHCSystemDataSet1
-    Friend WithEvents HealthCertificateTableAdapter As SHCSystem.SHCSystemDataSet1TableAdapters.HealthCertificateTableAdapter
+    Friend WithEvents eSHCDataSet1 As eSHC.eSHCDataSet1
+    Friend WithEvents HealthCertificateTableAdapter As eSHC.eSHCDataSet1TableAdapters.HealthCertificateTableAdapter
     Friend WithEvents STIConsultationBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents STIConsultationTableAdapter As SHCSystem.SHCSystemDataSet1TableAdapters.STIConsultationTableAdapter
+    Friend WithEvents STIConsultationTableAdapter As eSHC.eSHCDataSet1TableAdapters.STIConsultationTableAdapter
     Friend WithEvents HIVVCTBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents HIVVCTTableAdapter As SHCSystem.SHCSystemDataSet1TableAdapters.HIVVCTTableAdapter
+    Friend WithEvents HIVVCTTableAdapter As eSHC.eSHCDataSet1TableAdapters.HIVVCTTableAdapter
     Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
     Friend WithEvents PersonalInformationBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents PersonalInformationTableAdapter As SHCSystem.SHCSystemDataSet1TableAdapters.PersonalInformationTableAdapter
+    Friend WithEvents PersonalInformationTableAdapter As eSHC.eSHCDataSet1TableAdapters.PersonalInformationTableAdapter
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
